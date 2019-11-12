@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Actions\CreateBookAction;
+use App\Actions\DeleteBookAction;
 use App\Http\Requests\BookRequest;
 use App\Http\Resources\BookResource;
 use App\DataTransferObjects\BookData;
@@ -24,5 +25,12 @@ class BooksController
         return (new BookResource($book))
             ->response()
             ->setStatusCode(201);
+    }
+
+    public function destroy(Book $book, DeleteBookAction $delteBookAction)
+    {
+        $delteBookAction->execute($book);
+
+        return response()->json();
     }
 }
