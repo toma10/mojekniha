@@ -14,4 +14,15 @@ class BooksController
     {
         return new BookResource($book);
     }
+
+    public function store(BookRequest $request, CreateBookAction $createBookAction)
+    {
+        $book = $createBookAction->execute(
+            new BookData($request->validated())
+        );
+
+        return (new BookResource($book))
+            ->response()
+            ->setStatusCode(201);
+    }
 }
