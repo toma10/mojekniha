@@ -12,12 +12,12 @@ class DeleteAuthorActionTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_deletes_the_Author()
+    public function it_deletes_the_author()
     {
         $author = factory(Author::class)->create();
 
         (new DeleteAuthorAction())->execute($author);
 
-        $this->assertNull($author->fresh());
+        $this->assertTrue($author->trashed());
     }
 }
