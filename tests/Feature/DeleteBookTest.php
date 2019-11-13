@@ -18,6 +18,5 @@ class DeleteBookTest extends TestCase
         $response = $this->deleteJson("api/books/{$book->id}");
 
         $response->assertOk();
-        $this->assertDatabaseMissing('books', ['id' => $book->id]);
     }
 }
