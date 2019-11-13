@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Actions\CreateBookAction;
 use App\Actions\DeleteBookAction;
+use App\Actions\UpdateBookAction;
 use App\Http\Requests\BookRequest;
 use App\Http\Resources\BookResource;
 use App\DataTransferObjects\BookData;
@@ -25,6 +26,16 @@ class BooksController
         return (new BookResource($book))
             ->response()
             ->setStatusCode(201);
+    }
+
+    public function update(Book $book, BookRequest $request, UpdateBookAction $updateBookAction)
+    {
+        $book = $updateBookAction->execute(
+            $book,
+            new BookData($request->validated())
+        );
+
+        return (new BookResource($book));
     }
 
     public function destroy(Book $book, DeleteBookAction $delteBookAction)
