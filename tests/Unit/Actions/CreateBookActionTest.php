@@ -19,9 +19,9 @@ class CreateBookActionTest extends TestCase
 
         $book = (new CreateBookAction())->execute($bookData);
 
-        $this->assertEquals($bookData->name, $book['name']);
-        $this->assertEquals($bookData->original_name, $book['original_name']);
-        $this->assertEquals($bookData->description, $book['description']);
-        $this->assertEquals($bookData->release_year, $book['release_year']);
+        $this->assertEquals($bookData->name, $book->name);
+        $this->assertEquals($bookData->original_name, $book->original_name);
+        $this->assertEquals($bookData->description, $book->description);
+        $this->assertEquals($bookData->release_year, $book->release_year);
     }
 }
