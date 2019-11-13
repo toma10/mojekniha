@@ -17,4 +17,7 @@ class BookData extends DataTransferObject
 
     /** @var int */
     public $release_year;
+
+    /** @var int */
+    public $author_id;
 }

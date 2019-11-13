@@ -2,19 +2,25 @@
 
 namespace Tests;
 
-use Exception;
+use PHPUnit\Framework\Assert;
+use Illuminate\Support\Collection;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected function getValidParams(array $overrides = []): array
+    protected function setUp(): void
     {
-        if (!property_exists(static::class, 'validParms')) {
-            throw new Exception("You must define 'validParms' for given test");
-        }
+        parent::setUp();
 
-        return array_merge($this->validParms, $overrides);
+        Collection::macro('assertContains', function (...$values) {
+            collect($values)->each(function ($value) {
+                Assert::assertTrue(
+                    $this->contains($value),
+                    'Failed asserting that the collection contains the specified value.'
+                );
+            });
+        });
     }
 }

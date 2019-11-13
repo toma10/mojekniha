@@ -3,7 +3,6 @@
 namespace Tests\Unit\Actions;
 
 use Tests\TestCase;
-use App\Models\Author;
 use App\Actions\CreateAuthorAction;
 use App\DataTransferObjects\AuthorData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,7 +14,12 @@ class CreateAuthorActionTest extends TestCase
     /** @test */
     public function it_creates_an_author()
     {
-        $authorData = new AuthorData(factory(Author::class)->raw());
+        $authorData = new AuthorData([
+            'name' => 'Joseph Heller',
+            'birth_date' => '1923-05-01',
+            'death_date' => '1999-12-12',
+            'biography' => 'Psal satirická díla, zejména novely a dramata.',
+        ]);
 
         $author = (new CreateAuthorAction())->execute($authorData);
 

@@ -18,6 +18,7 @@ class BookRequest extends FormRequest
             'original_name' => ['required'],
             'description' => ['required'],
             'release_year' => ['required', 'numeric', 'min:0'],
+            'author_id' => ['required', 'exists:authors,id'],
         ];
     }
 }

@@ -17,10 +17,10 @@ class UpdateAuthorActionTest extends TestCase
     {
         $author = factory(Author::class)->create();
         $authorData = new AuthorData([
-            'name' => 'Ernest Hemingway',
-            'birth_date' => '1899-07-12',
-            'death_date' => '1961-07-02',
-            'biography' => 'Je považován za čelního představitele tzv. ztracené generace.',
+            'name' => 'Joseph Heller',
+            'birth_date' => '1923-05-01',
+            'death_date' => '1999-12-12',
+            'biography' => 'Psal satirická díla, zejména novely a dramata.',
         ]);
 
         $author = (new UpdateAuthorAction())->execute($author, $authorData);
