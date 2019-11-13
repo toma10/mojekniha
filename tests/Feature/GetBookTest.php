@@ -13,12 +13,7 @@ class GetBookTest extends TestCase
     /** @test */
     public function it_returns_the_book()
     {
-        $book = factory(Book::class)->create([
-            'name' => 'Hlava XXII',
-            'original_name' => 'Catch-22',
-            'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
-            'release_year' => 1961,
-        ]);
+        $book = factory(Book::class)->create();
 
         $response = $this->getJson("api/books/{$book->id}");
 
