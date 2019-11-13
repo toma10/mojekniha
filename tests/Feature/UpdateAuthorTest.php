@@ -10,6 +10,13 @@ class UpdateAuthorTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $validParms = [
+        'name' => 'Ernest Hemingway',
+        'birth_date' => '1899-07-12',
+        'death_date' => '1961-07-02',
+        'biography' => 'Je považován za čelního představitele tzv. ztracené generace.',
+    ];
+
     /** @test */
     public function it_updates_the_author()
     {
@@ -107,15 +114,5 @@ class UpdateAuthorTest extends TestCase
         $response = $this->putJson("api/authors/{$author->id}", $data);
 
         $response->assertJsonValidationErrors('biography');
-    }
-
-    private function getValidParams(array $overrides = []): array
-    {
-        return array_merge([
-            'name' => 'Ernest Hemingway',
-            'birth_date' => '1899-07-12',
-            'death_date' => '1961-07-02',
-            'biography' => 'Je považován za čelního představitele tzv. ztracené generace.',
-        ], $overrides);
     }
 }

@@ -10,6 +10,13 @@ class UpdateBookTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $validParms = [
+        'name' => '1984',
+        'original_name' => 'Nineteen Eighty-Four',
+        'description' => '1984, dnes již klasické dílo antiutopického žánru, je bezesporu jedním z nejpozoruhodnějších románů 20. století a brilantní analýzou všech totalitních systémů.',
+        'release_year' => 1949,
+    ];
+
     /** @test */
     public function it_updates_the_book()
     {
@@ -105,15 +112,5 @@ class UpdateBookTest extends TestCase
         $response = $this->putJson("api/books/{$book->id}", $data);
 
         $response->assertJsonValidationErrors('release_year');
-    }
-
-    private function getValidParams(array $overrides = []): array
-    {
-        return array_merge([
-            'name' => '1984',
-            'original_name' => 'Nineteen Eighty-Four',
-            'description' => '1984, dnes již klasické dílo antiutopického žánru, je bezesporu jedním z nejpozoruhodnějších románů 20. století a brilantní analýzou všech totalitních systémů.',
-            'release_year' => 1949,
-        ], $overrides);
     }
 }

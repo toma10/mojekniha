@@ -3,22 +3,23 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateBookTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $validParms = [
+        'name' => 'Hlava XXII',
+        'original_name' => 'Catch-22',
+        'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
+        'release_year' => 1961,
+    ];
+
     /** @test */
     public function it_creates_a_book()
     {
-        $data = factory(Book::class)->raw([
-            'name' => 'Hlava XXII',
-            'original_name' => 'Catch-22',
-            'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
-            'release_year' => 1961,
-        ]);
+        $data = $this->getValidParams();
 
         $response = $this->postJSon('api/books', $data);
 
@@ -37,7 +38,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function it_requires_a_name()
     {
-        $data = factory(Book::class)->raw(['name' => null]);
+        $data = $this->getValidParams(['name' => null]);
 
         $response = $this->postJSon('api/books', $data);
 
@@ -47,7 +48,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function it_requires_an_original_name()
     {
-        $data = factory(Book::class)->raw(['original_name' => null]);
+        $data = $this->getValidParams(['original_name' => null]);
 
         $response = $this->postJSon('api/books', $data);
 
@@ -57,7 +58,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function it_requires_a_description()
     {
-        $data = factory(Book::class)->raw(['description' => null]);
+        $data = $this->getValidParams(['description' => null]);
 
         $response = $this->postJSon('api/books', $data);
 
@@ -67,7 +68,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function it_requires_a_release_year()
     {
-        $data = factory(Book::class)->raw(['release_year' => null]);
+        $data = $this->getValidParams(['release_year' => null]);
 
         $response = $this->postJSon('api/books', $data);
 
@@ -77,7 +78,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function release_year_must_be_numeric()
     {
-        $data = factory(Book::class)->raw(['release_year' => 'not-a-valid-number']);
+        $data = $this->getValidParams(['release_year' => 'not-a-valid-number']);
 
         $response = $this->postJSon('api/books', $data);
 
@@ -87,7 +88,7 @@ class CreateBookTest extends TestCase
     /** @test */
     public function release_year_must_be_positive()
     {
-        $data = factory(Book::class)->raw(['release_year' => -1]);
+        $data = $this->getValidParams(['release_year' => -1]);
 
         $response = $this->postJSon('api/books', $data);
 

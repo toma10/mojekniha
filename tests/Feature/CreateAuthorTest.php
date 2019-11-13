@@ -3,22 +3,23 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Author;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateAuthorTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $validParms = [
+        'name' => 'Joseph Heller',
+        'birth_date' => '1923-05-01',
+        'death_date' => '1999-12-12',
+        'biography' => 'Psal satirická díla, zejména novely a dramata.',
+    ];
+
     /** @test */
     public function it_creates_an_author()
     {
-        $data = factory(Author::class)->raw([
-            'name' => 'Joseph Heller',
-            'birth_date' => '1923-05-01',
-            'death_date' => '1999-12-12',
-            'biography' => 'Psal satirická díla, zejména novely a dramata.',
-        ]);
+        $data = $this->getValidParams();
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -37,7 +38,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function it_requires_a_name()
     {
-        $data = factory(Author::class)->raw(['name' => null]);
+        $data = $this->getValidParams(['name' => null]);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -47,7 +48,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function it_requires_a_birth_date()
     {
-        $data = factory(Author::class)->raw(['birth_date' => null]);
+        $data = $this->getValidParams(['birth_date' => null]);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -57,7 +58,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function birth_date_must_be_valid_date()
     {
-        $data = factory(Author::class)->raw(['birth_date' => 'not-a-valid-date']);
+        $data = $this->getValidParams(['birth_date' => 'not-a-valid-date']);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -67,7 +68,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function death_date_is_optional()
     {
-        $data = factory(Author::class)->raw(['death_date' => null]);
+        $data = $this->getValidParams(['death_date' => null]);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -77,7 +78,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function death_date_must_be_valid_date()
     {
-        $data = factory(Author::class)->raw(['death_date' => 'not-a-valid-date']);
+        $data = $this->getValidParams(['death_date' => 'not-a-valid-date']);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -87,7 +88,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function biography_is_optional()
     {
-        $data = factory(Author::class)->raw(['biography' => null]);
+        $data = $this->getValidParams(['biography' => null]);
 
         $response = $this->postJSon('api/authors', $data);
 
@@ -97,7 +98,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function biography_must_be_string()
     {
-        $data = factory(Author::class)->raw(['biography' => 123]);
+        $data = $this->getValidParams(['biography' => 123]);
 
         $response = $this->postJSon('api/authors', $data);
 
