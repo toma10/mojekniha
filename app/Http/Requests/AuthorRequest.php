@@ -18,6 +18,7 @@ class AuthorRequest extends FormRequest
             'birth_date' => ['required', 'date'],
             'death_date' => ['nullable', 'date'],
             'biography' => ['nullable', 'string'],
+            'nationality_id' => ['required', 'exists:nationalities,id'],
         ];
     }
 }

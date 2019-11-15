@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Author;
+use App\Models\Nationality;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateAuthorTest extends TestCase
@@ -14,12 +15,14 @@ class UpdateAuthorTest extends TestCase
     public function it_updates_the_author()
     {
         $author = factory(Author::class)->create();
+        $nationality = factory(Nationality::class)->create(['name' => 'americká']);
+
         $data = [
             'name' => 'Joseph Heller',
             'birth_date' => '1923-05-01',
             'death_date' => '1999-12-12',
             'biography' => 'Psal satirická díla, zejména novely a dramata.',
-            'author_id' => $author->id,
+            'nationality_id' => $nationality->id,
         ];
 
         $response = $this->putJson("api/authors/{$author->id}", $data);
@@ -32,6 +35,10 @@ class UpdateAuthorTest extends TestCase
                 'birth_date' => $data['birth_date'],
                 'death_date' => $data['death_date'],
                 'biography' => $data['biography'],
+                'nationality' => [
+                    'id' => $nationality->id,
+                    'name' => $nationality->name,
+                ],
             ],
         ]);
     }
@@ -121,5 +128,27 @@ class UpdateAuthorTest extends TestCase
         $response = $this->putJson("api/authors/{$author->id}", $data);
 
         $response->assertJsonValidationErrors('biography');
+    }
+
+    /** @test */
+    public function it_requires_a_nationality_id()
+    {
+        $author = factory(Author::class)->create();
+        $data = factory(Author::class)->raw(['nationality_id' => null]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonValidationErrors('nationality_id');
+    }
+
+    /** @test */
+    public function nationality_id_must_exist()
+    {
+        $author = factory(Author::class)->create();
+        $data = factory(Author::class)->raw(['nationality_id' => 999]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonValidationErrors('nationality_id');
     }
 }

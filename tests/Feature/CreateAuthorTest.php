@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Author;
+use App\Models\Nationality;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateAuthorTest extends TestCase
@@ -13,11 +14,13 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function it_creates_an_author()
     {
+        $nationality = factory(Nationality::class)->create(['name' => 'americká']);
         $data = [
             'name' => 'Joseph Heller',
             'birth_date' => '1923-05-01',
             'death_date' => '1999-12-12',
             'biography' => 'Psal satirická díla, zejména novely a dramata.',
+            'nationality_id' => $nationality->id,
         ];
 
         $response = $this->postJSon('api/authors', $data);
@@ -30,6 +33,10 @@ class CreateAuthorTest extends TestCase
                 'birth_date' => $data['birth_date'],
                 'death_date' => $data['death_date'],
                 'biography' => $data['biography'],
+                'nationality' => [
+                    'id' => $nationality->id,
+                    'name' => $nationality->name,
+                ],
             ],
         ]);
     }
@@ -102,5 +109,25 @@ class CreateAuthorTest extends TestCase
         $response = $this->postJSon('api/authors', $data);
 
         $response->assertJsonValidationErrors('biography');
+    }
+
+    /** @test */
+    public function it_requires_a_nationality_id()
+    {
+        $data = factory(Author::class)->raw(['nationality_id' => null]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $response->assertJsonValidationErrors('nationality_id');
+    }
+
+    /** @test */
+    public function nationality_id_must_exist()
+    {
+        $data = factory(Author::class)->raw(['nationality_id' => 999]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $response->assertJsonValidationErrors('nationality_id');
     }
 }

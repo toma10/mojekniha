@@ -9,6 +9,11 @@ class Author extends BaseModel
 {
     use SoftDeletes;
 
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class);
+    }
+
     public function books(): HasMany
     {
         return $this->hasMany(Book::class);

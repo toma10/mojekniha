@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Author;
+use App\Models\Nationality;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class GetAuthorTest extends TestCase
@@ -13,7 +14,8 @@ class GetAuthorTest extends TestCase
     /** @test */
     public function it_returns_the_author()
     {
-        $author = factory(Author::class)->create();
+        $nationality = factory(Nationality::class)->create(['name' => 'americká']);
+        $author = factory(Author::class)->create(['nationality_id' => $nationality]);
 
         $response = $this->getJson("api/authors/{$author->id}");
 
@@ -25,6 +27,10 @@ class GetAuthorTest extends TestCase
                 'birth_date' => $author->birth_date,
                 'death_date' => $author->death_date,
                 'biography' => $author->biography,
+                'nationality' => [
+                    'id' => $nationality->id,
+                    'name' => $nationality->name,
+                ],
             ],
         ]);
     }

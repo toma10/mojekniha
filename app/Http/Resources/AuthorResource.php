@@ -14,6 +14,7 @@ class AuthorResource extends JsonResource
             'birth_date' => $this->birth_date,
             'death_date' => $this->death_date,
             'biography' => $this->biography,
+            'nationality' => new NationalityResource($this->nationality),
         ];
     }
 }
