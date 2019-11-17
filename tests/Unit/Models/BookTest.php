@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Tag;
 use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Genre;
@@ -35,5 +36,18 @@ class BookTest extends TestCase
 
         $this->assertInstanceOf(BelongsToMany::class, $book->genres());
         $book->genres->assertContains($genreA, $genreB);
+    }
+
+    /** @test */
+    public function it_may_belongs_to_multiple_tags()
+    {
+        $book = factory(Book::class)->create();
+        $tagA = factory(Tag::class)->create();
+        $tagB = factory(Tag::class)->create();
+
+        $book->tags()->saveMany([$tagA, $tagB]);
+
+        $this->assertInstanceOf(BelongsToMany::class, $book->tags());
+        $book->tags->assertContains($tagA, $tagB);
     }
 }
