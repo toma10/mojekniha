@@ -49,4 +49,15 @@ class UpdateGenreTest extends TestCase
 
         $response->assertJsonValidationErrors('name');
     }
+
+    /** @test */
+    public function name_must_be_unique()
+    {
+        $genre = factory(Genre::class)->create(['name' => 'Romány']);
+        $data = factory(Genre::class)->raw(['name' => 'Romány']);
+
+        $response = $this->putJson("api/genres/{$genre->id}", $data);
+
+        $response->assertJsonValidationErrors('name');
+    }
 }
