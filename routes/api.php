@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\AuthorsController;
@@ -18,3 +19,8 @@ Route::get('genres/{genre}', [GenresController::class, 'show']);
 Route::post('genres', [GenresController::class, 'store']);
 Route::put('genres/{genre}', [GenresController::class, 'update']);
 Route::delete('genres/{genre}', [GenresController::class, 'destroy']);
+
+Route::get('tags/{tag}', [TagsController::class, 'show']);
+Route::post('tags', [TagsController::class, 'store']);
+Route::put('tags/{tag}', [TagsController::class, 'update']);
+Route::delete('tags/{tag}', [TagsController::class, 'destroy']);
