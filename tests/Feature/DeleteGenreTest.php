@@ -19,4 +19,12 @@ class DeleteGenreTest extends TestCase
 
         $response->assertOk();
     }
+
+    /** @test */
+    public function it_404s_if_invalid_id_is_provided()
+    {
+        $response = $this->deleteJson('api/genres/999');
+
+        $response->assertNotFound();
+    }
 }
