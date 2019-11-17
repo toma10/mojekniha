@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Http\Response;
 use App\Actions\CreateTagAction;
 use App\Actions\DeleteTagAction;
 use App\Actions\UpdateTagAction;
@@ -25,7 +26,7 @@ class TagsController
 
         return (new TagResource($tag))
             ->response()
-            ->setStatusCode(201);
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function update(Tag $tag, TagRequest $request, UpdateTagAction $updateTagAction)

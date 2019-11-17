@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\Response;
 use App\Actions\CreateBookAction;
 use App\Actions\DeleteBookAction;
 use App\Actions\UpdateBookAction;
@@ -25,7 +26,7 @@ class BooksController
 
         return (new BookResource($book))
             ->response()
-            ->setStatusCode(201);
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function update(Book $book, BookRequest $request, UpdateBookAction $updateBookAction)

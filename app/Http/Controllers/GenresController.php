@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use Illuminate\Http\Response;
 use App\Actions\CreateGenreAction;
 use App\Actions\DeleteGenreAction;
 use App\Actions\UpdateGenreAction;
@@ -25,7 +26,7 @@ class GenresController
 
         return (new GenreResource($genre))
             ->response()
-            ->setStatusCode(201);
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function update(GenreRequest $request, Genre $genre, UpdateGenreAction $updateGenreAction)

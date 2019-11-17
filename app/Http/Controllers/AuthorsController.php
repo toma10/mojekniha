@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use Illuminate\Http\Response;
 use App\Actions\CreateAuthorAction;
 use App\Actions\DeleteAuthorAction;
 use App\Actions\UpdateAuthorAction;
@@ -25,7 +26,7 @@ class AuthorsController
 
         return (new AuthorResource($author))
             ->response()
-            ->setStatusCode(201);
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function update(Author $author, AuthorRequest $request, UpdateAuthorAction $updateAuthorAction)
