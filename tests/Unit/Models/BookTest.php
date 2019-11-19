@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
+use App\Models\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,7 +17,7 @@ class BookTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_belongs_to_a_book()
+    public function it_belongs_to_an_author()
     {
         $author = factory(Author::class)->create();
         $book = factory(Book::class)->create(['author_id' => $author]);
@@ -49,5 +50,17 @@ class BookTest extends TestCase
 
         $this->assertInstanceOf(BelongsToMany::class, $book->tags());
         $book->tags->assertContains($tagA, $tagB);
+    }
+
+    /** @test */
+    public function it_may_belongs_to_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $bookA = factory(Book::class)->create(['series_id' => $series]);
+        $bookB = factory(Book::class)->create(['series_id' => null]);
+
+        $this->assertInstanceOf(BelongsTo::class, $bookA->series());
+        $this->assertTrue($bookA->series->is($series));
+        $this->assertNull($bookB->series);
     }
 }
