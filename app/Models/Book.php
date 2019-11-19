@@ -15,6 +15,11 @@ class Book extends BaseModel
         return $this->belongsTo(Author::class);
     }
 
+    public function series(): BelongsTo
+    {
+        return $this->belongsTo(Series::class);
+    }
+
     public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class);

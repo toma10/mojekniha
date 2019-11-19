@@ -18,4 +18,9 @@ class Author extends BaseModel
     {
         return $this->hasMany(Book::class);
     }
+
+    public function series(): HasMany
+    {
+        return $this->hasMany(Series::class);
+    }
 }

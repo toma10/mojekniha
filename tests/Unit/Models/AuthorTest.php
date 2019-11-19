@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Series;
 use App\Models\Nationality;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -33,5 +34,16 @@ class AuthorTest extends TestCase
 
         $this->assertInstanceOf(HasMany::class, $author->books());
         $author->books->assertContains($bookA, $bookB);
+    }
+
+    /** @test */
+    public function it_may_have_multiple_series()
+    {
+        $author = factory(Author::class)->create();
+        $seriesA = factory(Series::class)->create(['author_id' => $author]);
+        $seriesB = factory(Series::class)->create(['author_id' => $author]);
+
+        $this->assertInstanceOf(HasMany::class, $author->series());
+        $author->series->assertContains($seriesA, $seriesB);
     }
 }
