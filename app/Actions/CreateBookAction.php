@@ -9,6 +9,9 @@ class CreateBookAction
 {
     public function execute(BookData $bookData): Book
     {
-        return Book::create($bookData->all());
+        $data = $bookData->except('cover_image')->toArray();
+        $data['cover_image_path'] = optional($bookData->cover_image)->store('book-covers', ['disk' => 'public']);
+
+        return Book::create($data);
     }
 }

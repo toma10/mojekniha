@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BookRequest extends FormRequest
@@ -19,6 +20,7 @@ class BookRequest extends FormRequest
             'description' => ['required'],
             'release_year' => ['required', 'numeric', 'min:0'],
             'author_id' => ['required', 'exists:authors,id'],
+            'cover_image' => ['nullable', 'image', Rule::dimensions()->minWidth(400)],
         ];
     }
 }

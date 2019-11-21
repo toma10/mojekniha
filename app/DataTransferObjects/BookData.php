@@ -18,6 +18,9 @@ class BookData extends DataTransferObject
     /** @var int */
     public $release_year;
 
+    /** @var \Illuminate\Http\UploadedFile|null */
+    public $cover_image;
+
     /** @var int */
     public $author_id;
 }

@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Author;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateBookTest extends TestCase
@@ -20,7 +22,7 @@ class CreateBookTest extends TestCase
             'original_name' => 'Catch-22',
             'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
             'release_year' => 1961,
-            'author_id' => $author->id
+            'author_id' => $author->id,
         ];
 
         $response = $this->postJSon('api/books', $data);
@@ -33,6 +35,26 @@ class CreateBookTest extends TestCase
                 'original_name' => $data['original_name'],
                 'description' => $data['description'],
                 'release_year' => $data['release_year'],
+            ],
+        ]);
+    }
+
+    /** @test */
+    public function cover_image_is_returned_if_included()
+    {
+        Storage::fake('public');
+
+        $file = File::image('cover-image.png', $width = 400);
+        $data = factory(Book::class)->raw([
+            'cover_image' => $file,
+        ]);
+
+        $response = $this->postJSon('api/books', $data);
+
+        $this->assertNotNull($book = Book::first());
+        $response->assertJson([
+            'data' => [
+                'cover_image_path' => Storage::url($book->cover_image_path),
             ],
         ]);
     }
@@ -115,5 +137,41 @@ class CreateBookTest extends TestCase
         $response = $this->postJSon('api/books', $data);
 
         $response->assertJsonValidationErrors('author_id');
+    }
+
+    /** @test */
+    public function cover_image_must_be_an_image()
+    {
+        Storage::fake('public');
+
+        $file = File::create('not-a-valid-image.pdf');
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
+
+        $response = $this->postJSon('api/books', $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_must_be_at_least_400px_wide()
+    {
+        Storage::fake('public');
+
+        $file = File::image('cover-image.png', $width = 399);
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
+
+        $response = $this->postJSon('api/books', $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_is_optional()
+    {
+        $data = factory(Book::class)->raw(['cover_image' => null]);
+
+        $response = $this->postJSon('api/books', $data);
+
+        $response->assertJsonMissingValidationErrors('cover_image');
     }
 }
