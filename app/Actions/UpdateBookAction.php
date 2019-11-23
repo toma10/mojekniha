@@ -13,7 +13,7 @@ class UpdateBookAction
         $data = $bookData->except('cover_image')->toArray();
 
         if ($bookData->cover_image) {
-            Storage::delete($book->cover_image_path);
+            Storage::disk('public')->delete($book->cover_image_path);
             $data['cover_image_path'] = $bookData->cover_image->store('book-covers', ['disk' => 'public']);
         }
 

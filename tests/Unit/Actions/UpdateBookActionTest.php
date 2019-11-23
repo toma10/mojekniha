@@ -89,6 +89,6 @@ class UpdateBookActionTest extends TestCase
             $file->getPathname(),
             Storage::disk('public')->path($book->cover_image_path)
         );
-        // Storage::disk('public')->assertMissing($currentCoverImagePath);
+        Storage::disk('public')->assertMissing($currentCoverImagePath);
     }
 }
