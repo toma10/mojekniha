@@ -46,9 +46,9 @@ class UpdateBookTest extends TestCase
     {
         Storage::fake('public');
 
-        $file = File::image('cover-image.png', $width = 400);
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
+        $file = File::image('cover-image.png', $width = 400);
         $data = [
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
