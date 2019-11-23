@@ -37,7 +37,6 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals($bookData->author_id, $book->author_id);
     }
 
-
     /** @test */
     public function cover_image_is_uploaded_if_included()
     {
