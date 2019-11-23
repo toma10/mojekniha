@@ -43,7 +43,7 @@ class UpdateAuthorActionTest extends TestCase
 
         $author = factory(Author::class)->create();
         $nationality = factory(Nationality::class)->create();
-        $file = File::image('portrait-image.png');
+        $file = File::image('portrait-image.jpg');
         $authorData = new AuthorData([
             'name' => 'Joseph Heller',
             'birth_date' => '1923-05-01',
@@ -55,38 +55,6 @@ class UpdateAuthorActionTest extends TestCase
 
         $author = (new UpdateAuthorAction())->execute($author, $authorData);
 
-        Storage::disk('public')->assertExists($author->portrait_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($author->portrait_image_path)
-        );
-    }
-
-    /** @test */
-    public function it_removes_old_image_if_new_is_included()
-    {
-        Storage::fake('public');
-
-        $currentPortraitImagePath = File::image('current-portrait-image.png')->store('book-portraits', ['disk' => 'public']);
-        $author = factory(Author::class)->create(['portrait_image_path' => $currentPortraitImagePath]);
-        $nationality = factory(Nationality::class)->create();
-        $file = File::image('portrait-image.png');
-        $authorData = new AuthorData([
-            'name' => 'Joseph Heller',
-            'birth_date' => '1923-05-01',
-            'death_date' => '1999-12-12',
-            'biography' => 'Psal satirická díla, zejména novely a dramata.',
-            'nationality_id' => $nationality->id,
-            'portrait_image' => $file,
-        ]);
-
-        $author = (new UpdateAuthorAction())->execute($author, $authorData);
-
-        Storage::disk('public')->assertExists($author->portrait_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($author->portrait_image_path)
-        );
-        Storage::disk('public')->assertMissing($currentPortraitImagePath);
+        $this->assertNotNull($author->getFirstMedia('portrait-image'));
     }
 }

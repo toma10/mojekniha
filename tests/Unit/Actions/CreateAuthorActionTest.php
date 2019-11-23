@@ -41,7 +41,7 @@ class CreateAuthorActionTest extends TestCase
         Storage::fake('public');
 
         $nationality = factory(Nationality::class)->create(['name' => 'americká']);
-        $file = File::image('portrait-image.png', $width = 400);
+        $file = File::image('portrait-image.jpg', $width = 400);
         $authorData = new AuthorData([
             'name' => 'Joseph Heller',
             'birth_date' => '1923-05-01',
@@ -53,10 +53,6 @@ class CreateAuthorActionTest extends TestCase
 
         $author = (new CreateAuthorAction())->execute($authorData);
 
-        Storage::disk('public')->assertExists($author->portrait_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($author->portrait_image_path)
-        );
+        $this->assertNotNull($author->getFirstMedia('portrait-image'));
     }
 }

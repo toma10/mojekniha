@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Author extends BaseModel
+class Author extends BaseModel implements HasMedia
 {
-    use SoftDeletes;
+    use SoftDeletes, HasMediaTrait;
 
-    public function getPortraitImagePathUrlAttribute(): ?string
+    public function registerMediaCollections()
     {
-        if ($this->portrait_image_path === null) {
-            return null;
-        }
-
-        return Storage::url($this->portrait_image_path);
+        $this
+            ->addMediaCollection('portrait-image')
+            ->useFallbackUrl(public_path('/images/portrait-image.jpg'))
+            ->singleFile();
     }
 
     public function nationality(): BelongsTo

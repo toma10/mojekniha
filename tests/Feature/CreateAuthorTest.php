@@ -25,7 +25,7 @@ class CreateAuthorTest extends TestCase
             'nationality_id' => $nationality->id,
         ];
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertCreated();
         $response->assertJsonStructure(['data' => ['id']]);
@@ -48,17 +48,15 @@ class CreateAuthorTest extends TestCase
     {
         Storage::fake('public');
 
-        $file = File::image('portrait-image.png', $width = 400);
-        $data = factory(Author::class)->raw([
-            'portrait_image' => $file,
-        ]);
+        $file = File::image('portrait-image.jpg', $width = 400);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $this->assertNotNull($author = Author::first());
         $response->assertJson([
             'data' => [
-                'portrait_image_path' => Storage::url($author->portrait_image_path),
+                'portrait_image_path' => $author->getFirstMediaUrl('portrait-image'),
             ],
         ]);
     }
@@ -68,7 +66,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['name' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -78,7 +76,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['birth_date' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('birth_date');
     }
@@ -88,7 +86,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['birth_date' => 'not-a-valid-date']);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('birth_date');
     }
@@ -98,7 +96,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['death_date' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonMissingValidationErrors('death_date');
     }
@@ -108,7 +106,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['death_date' => 'not-a-valid-date']);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('death_date');
     }
@@ -118,7 +116,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['biography' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonMissingValidationErrors('biography');
     }
@@ -128,7 +126,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['biography' => 123]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('biography');
     }
@@ -138,7 +136,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['nationality_id' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('nationality_id');
     }
@@ -148,7 +146,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['nationality_id' => 999]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('nationality_id');
     }
@@ -161,8 +159,20 @@ class CreateAuthorTest extends TestCase
         $file = File::create('not-a-valid-image.pdf');
         $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
+    public function portrait_image_must_be_a_jpg()
+    {
+        Storage::fake('public');
+
+        $file = File::image('not-a-jpg-image.png', $width = 400);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->postJson('api/authors', $data);
         $response->assertJsonValidationErrors('portrait_image');
     }
 
@@ -171,10 +181,10 @@ class CreateAuthorTest extends TestCase
     {
         Storage::fake('public');
 
-        $file = File::image('portrait-image.png', $width = 399);
+        $file = File::image('portrait-image.jpg', $width = 399);
         $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonValidationErrors('portrait_image');
     }
@@ -184,7 +194,7 @@ class CreateAuthorTest extends TestCase
     {
         $data = factory(Author::class)->raw(['portrait_image' => null]);
 
-        $response = $this->postJSon('api/authors', $data);
+        $response = $this->postJson('api/authors', $data);
 
         $response->assertJsonMissingValidationErrors('portrait_image');
     }

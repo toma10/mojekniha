@@ -51,21 +51,14 @@ class UpdateAuthorTest extends TestCase
 
         $author = factory(Author::class)->create();
         $nationality = factory(Nationality::class)->create(['name' => 'americká']);
-        $file = File::image('portrait-image.png', $width = 400);
-        $data = [
-            'name' => 'Joseph Heller',
-            'birth_date' => '1923-05-01',
-            'death_date' => '1999-12-12',
-            'biography' => 'Psal satirická díla, zejména novely a dramata.',
-            'nationality_id' => $nationality->id,
-            'portrait_image' => $file,
-        ];
+        $file = File::image('portrait-image.jpg', $width = 400);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
         $response = $this->putJson("api/authors/{$author->id}", $data);
 
         $response->assertJson([
             'data' => [
-                'portrait_image_path' => Storage::url($author->fresh()->portrait_image_path),
+                'portrait_image_path' => $author->getFirstMediaUrl('portrait-image'),
             ],
         ]);
     }
@@ -194,12 +187,26 @@ class UpdateAuthorTest extends TestCase
     }
 
     /** @test */
+    public function portrait_image_must_be_a_jpg()
+    {
+        Storage::fake('public');
+
+        $author = factory(Author::class)->create();
+        $file = File::image('not-a-jpg-image.png', $width = 400);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
     public function portrait_image_must_be_at_least_400px_wide()
     {
         Storage::fake('public');
 
         $author = factory(Author::class)->create();
-        $file = File::image('portrait-image.png', $width = 399);
+        $file = File::image('not-a-jpg-image.jpg', $width = 399);
         $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
         $response = $this->putJson("api/authors/{$author->id}", $data);
