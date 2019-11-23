@@ -23,7 +23,7 @@ class BookTest extends TestCase
         $bookA = factory(Book::class)->create(['cover_image_path' => null]);
         $this->assertNull($bookA->cover_image_path_url);
 
-        $bookB = factory(Book::class)->create(['cover_image_path' => '/storage/book-covers/cover-image.png']);
+        $bookB = factory(Book::class)->create(['cover_image_path' => 'book-covers/cover-image.png']);
         $this->assertEquals(Storage::url($bookB->cover_image_path), $bookB->cover_image_path_url);
     }
 
