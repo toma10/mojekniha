@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Author;
 use App\Models\Nationality;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateAuthorTest extends TestCase
@@ -37,6 +39,26 @@ class CreateAuthorTest extends TestCase
                     'id' => $nationality->id,
                     'name' => $nationality->name,
                 ],
+            ],
+        ]);
+    }
+
+    /** @test */
+    public function portrait_image_is_returned_if_included()
+    {
+        Storage::fake('public');
+
+        $file = File::image('portrait-image.png', $width = 400);
+        $data = factory(Author::class)->raw([
+            'portrait_image' => $file,
+        ]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $this->assertNotNull($author = Author::first());
+        $response->assertJson([
+            'data' => [
+                'portrait_image_path' => Storage::url($author->portrait_image_path),
             ],
         ]);
     }
@@ -129,5 +151,41 @@ class CreateAuthorTest extends TestCase
         $response = $this->postJSon('api/authors', $data);
 
         $response->assertJsonValidationErrors('nationality_id');
+    }
+
+    /** @test */
+    public function portrait_image_must_be_an_image()
+    {
+        Storage::fake('public');
+
+        $file = File::create('not-a-valid-image.pdf');
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
+    public function portrait_image_must_be_at_least_400px_wide()
+    {
+        Storage::fake('public');
+
+        $file = File::image('portrait-image.png', $width = 399);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
+    public function portrait_image_is_optional()
+    {
+        $data = factory(Author::class)->raw(['portrait_image' => null]);
+
+        $response = $this->postJSon('api/authors', $data);
+
+        $response->assertJsonMissingValidationErrors('portrait_image');
     }
 }

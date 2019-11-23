@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Author;
 use App\Models\Nationality;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateAuthorTest extends TestCase
@@ -16,7 +18,6 @@ class UpdateAuthorTest extends TestCase
     {
         $author = factory(Author::class)->create();
         $nationality = factory(Nationality::class)->create(['name' => 'americká']);
-
         $data = [
             'name' => 'Joseph Heller',
             'birth_date' => '1923-05-01',
@@ -39,6 +40,32 @@ class UpdateAuthorTest extends TestCase
                     'id' => $nationality->id,
                     'name' => $nationality->name,
                 ],
+            ],
+        ]);
+    }
+
+    /** @test */
+    public function portrait_image_is_returned_if_included()
+    {
+        Storage::fake('public');
+
+        $author = factory(Author::class)->create();
+        $nationality = factory(Nationality::class)->create(['name' => 'americká']);
+        $file = File::image('portrait-image.png', $width = 400);
+        $data = [
+            'name' => 'Joseph Heller',
+            'birth_date' => '1923-05-01',
+            'death_date' => '1999-12-12',
+            'biography' => 'Psal satirická díla, zejména novely a dramata.',
+            'nationality_id' => $nationality->id,
+            'portrait_image' => $file,
+        ];
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJson([
+            'data' => [
+                'portrait_image_path' => Storage::url($author->fresh()->portrait_image_path),
             ],
         ]);
     }
@@ -150,5 +177,44 @@ class UpdateAuthorTest extends TestCase
         $response = $this->putJson("api/authors/{$author->id}", $data);
 
         $response->assertJsonValidationErrors('nationality_id');
+    }
+
+    /** @test */
+    public function portrait_image_must_be_an_image()
+    {
+        Storage::fake('public');
+
+        $author = factory(Author::class)->create();
+        $file = File::create('not-a-valid-image.pdf');
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
+    public function portrait_image_must_be_at_least_400px_wide()
+    {
+        Storage::fake('public');
+
+        $author = factory(Author::class)->create();
+        $file = File::image('portrait-image.png', $width = 399);
+        $data = factory(Author::class)->raw(['portrait_image' => $file]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonValidationErrors('portrait_image');
+    }
+
+    /** @test */
+    public function portrait_image_is_optional()
+    {
+        $author = factory(Author::class)->create();
+        $data = factory(Author::class)->raw(['portrait_image' => null]);
+
+        $response = $this->putJson("api/authors/{$author->id}", $data);
+
+        $response->assertJsonMissingValidationErrors('portrait_image');
     }
 }

@@ -9,6 +9,9 @@ class CreateAuthorAction
 {
     public function execute(AuthorData $authorData): Author
     {
-        return Author::create($authorData->all());
+        $data = $authorData->except('portrait_image')->toArray();
+        $data['portrait_image_path'] = optional($authorData->portrait_image)->store('author-portraits', ['disk' => 'public']);
+
+        return Author::create($data);
     }
 }

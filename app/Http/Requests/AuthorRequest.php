@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthorRequest extends FormRequest
@@ -19,6 +20,7 @@ class AuthorRequest extends FormRequest
             'death_date' => ['nullable', 'date'],
             'biography' => ['nullable', 'string'],
             'nationality_id' => ['required', 'exists:nationalities,id'],
+            'portrait_image' => ['nullable', 'image', Rule::dimensions()->minWidth(400)],
         ];
     }
 }

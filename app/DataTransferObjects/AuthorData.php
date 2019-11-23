@@ -18,6 +18,9 @@ class AuthorData extends DataTransferObject
     /** @var string|null */
     public $biography;
 
+    /** @var \Illuminate\Http\UploadedFile|null */
+    public $portrait_image;
+
     /** @var int */
     public $nationality_id;
 }
