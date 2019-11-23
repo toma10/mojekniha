@@ -44,7 +44,7 @@ class UpdateBookActionTest extends TestCase
 
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
-        $file = File::image('cover-image.png');
+        $file = File::image('cover-image.jpg');
         $bookData = new BookData([
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
@@ -56,38 +56,6 @@ class UpdateBookActionTest extends TestCase
 
         $book = (new UpdateBookAction())->execute($book, $bookData);
 
-        Storage::disk('public')->assertExists($book->cover_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($book->cover_image_path)
-        );
-    }
-
-    /** @test */
-    public function it_removes_old_image_if_new_is_included()
-    {
-        Storage::fake('public');
-
-        $currentCoverImagePath = File::image('current-cover-image.png')->store('book-covers', ['disk' => 'public']);
-        $book = factory(Book::class)->create(['cover_image_path' => $currentCoverImagePath]);
-        $author = factory(Author::class)->create();
-        $file = File::image('new-cover-image.png');
-        $bookData = new BookData([
-            'name' => 'Hlava XXII',
-            'original_name' => 'Catch-22',
-            'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
-            'release_year' => 1961,
-            'author_id' => $author->id,
-            'cover_image' => $file,
-        ]);
-
-        $book = (new UpdateBookAction())->execute($book, $bookData);
-
-        Storage::disk('public')->assertExists($book->cover_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($book->cover_image_path)
-        );
-        Storage::disk('public')->assertMissing($currentCoverImagePath);
+        $this->assertNotNull($book->getFirstMedia('cover-image'));
     }
 }

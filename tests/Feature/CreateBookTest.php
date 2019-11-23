@@ -25,7 +25,7 @@ class CreateBookTest extends TestCase
             'author_id' => $author->id,
         ];
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertCreated();
         $response->assertJsonStructure(['data' => ['id']]);
@@ -40,21 +40,19 @@ class CreateBookTest extends TestCase
     }
 
     /** @test */
-    public function cover_image_is_returned_if_included()
+    public function cover_image_path_is_returned_if_included()
     {
         Storage::fake('public');
 
-        $file = File::image('cover-image.png', $width = 400);
-        $data = factory(Book::class)->raw([
-            'cover_image' => $file,
-        ]);
+        $file = File::image('cover-image.jpg', $width = 400);
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $this->assertNotNull($book = Book::first());
         $response->assertJson([
             'data' => [
-                'cover_image_path' => Storage::url($book->cover_image_path),
+                'cover_image_path' => $book->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -64,7 +62,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['name' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -74,7 +72,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['original_name' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('original_name');
     }
@@ -84,7 +82,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['description' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('description');
     }
@@ -94,7 +92,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['release_year' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('release_year');
     }
@@ -104,7 +102,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['release_year' => 'not-a-valid-number']);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('release_year');
     }
@@ -114,7 +112,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['release_year' => -1]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('release_year');
     }
@@ -124,7 +122,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['author_id' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('author_id');
     }
@@ -134,7 +132,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['author_id' => 999]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('author_id');
     }
@@ -147,7 +145,20 @@ class CreateBookTest extends TestCase
         $file = File::create('not-a-valid-image.pdf');
         $data = factory(Book::class)->raw(['cover_image' => $file]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_must_be_a_jpg()
+    {
+        Storage::fake('public');
+
+        $file = File::image('not-a-jpg-image.png', $width = 400);
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
+
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('cover_image');
     }
@@ -157,10 +168,10 @@ class CreateBookTest extends TestCase
     {
         Storage::fake('public');
 
-        $file = File::image('cover-image.png', $width = 399);
+        $file = File::image('cover-image.jpg', $width = 399);
         $data = factory(Book::class)->raw(['cover_image' => $file]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('cover_image');
     }
@@ -170,7 +181,7 @@ class CreateBookTest extends TestCase
     {
         $data = factory(Book::class)->raw(['cover_image' => null]);
 
-        $response = $this->postJSon('api/books', $data);
+        $response = $this->postJson('api/books', $data);
 
         $response->assertJsonMissingValidationErrors('cover_image');
     }

@@ -29,40 +29,32 @@ class UpdateBookTest extends TestCase
         $response = $this->putJson("api/books/{$book->id}", $data);
 
         $response->assertOk();
-        $response->assertExactJson([
+        $response->assertJson([
             'data' => [
                 'id' => $book['id'],
                 'name' => $data['name'],
                 'original_name' => $data['original_name'],
                 'description' => $data['description'],
                 'release_year' => $data['release_year'],
-                'cover_image_path' => null,
             ],
         ]);
     }
 
     /** @test */
-    public function cover_image_is_returned_if_included()
+    public function cover_image_path_is_returned_if_included()
     {
         Storage::fake('public');
 
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
-        $file = File::image('cover-image.png', $width = 400);
-        $data = [
-            'name' => 'Hlava XXII',
-            'original_name' => 'Catch-22',
-            'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
-            'release_year' => 1961,
-            'author_id' => $author->id,
-            'cover_image' => $file,
-        ];
+        $file = File::image('cover-image.jpg', $width = 400);
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
 
         $response = $this->putJson("api/books/{$book->id}", $data);
 
         $response->assertJson([
             'data' => [
-                'cover_image_path' => Storage::url($book->fresh()->cover_image_path),
+                'cover_image_path' => $book->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -178,12 +170,26 @@ class UpdateBookTest extends TestCase
     }
 
     /** @test */
+    public function cover_image_must_be_a_jpg()
+    {
+        Storage::fake('public');
+
+        $book = factory(Book::class)->create();
+        $file = File::image('not-a-jpg-image.png', $width = 400);
+        $data = factory(Book::class)->raw(['cover_image' => $file]);
+
+        $response = $this->putJson("api/books/{$book->id}", $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
     public function cover_image_must_be_at_least_400px_wide()
     {
         Storage::fake('public');
 
         $book = factory(Book::class)->create();
-        $file = File::image('cover-image.png', $width = 399);
+        $file = File::image('cover-image.jpg', $width = 399);
         $data = factory(Book::class)->raw(['cover_image' => $file]);
 
         $response = $this->putJson("api/books/{$book->id}", $data);

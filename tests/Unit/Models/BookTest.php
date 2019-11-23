@@ -8,7 +8,6 @@ use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
 use App\Models\Series;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,16 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class BookTest extends TestCase
 {
     use RefreshDatabase;
-
-    /** @test */
-    public function it_returns_cover_image_path_url_if_cover_image_path_is_not_null()
-    {
-        $bookA = factory(Book::class)->create(['cover_image_path' => null]);
-        $this->assertNull($bookA->cover_image_path_url);
-
-        $bookB = factory(Book::class)->create(['cover_image_path' => 'book-covers/cover-image.png']);
-        $this->assertEquals(Storage::url($bookB->cover_image_path), $bookB->cover_image_path_url);
-    }
 
     /** @test */
     public function it_belongs_to_an_author()

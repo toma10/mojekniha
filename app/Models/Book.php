@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Book extends BaseModel
+class Book extends BaseModel implements HasMedia
 {
-    use SoftDeletes;
+    use SoftDeletes, HasMediaTrait;
 
-    public function getCoverImagePathUrlAttribute(): ?string
+    public function registerMediaCollections()
     {
-        if ($this->cover_image_path === null) {
-            return null;
-        }
-
-        return Storage::url($this->cover_image_path);
+        $this
+            ->addMediaCollection('cover-image')
+            ->useFallbackUrl(public_path('/images/book-cover.jpg'))
+            ->singleFile();
     }
 
     public function author(): BelongsTo

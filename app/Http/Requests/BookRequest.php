@@ -20,7 +20,7 @@ class BookRequest extends FormRequest
             'description' => ['required'],
             'release_year' => ['required', 'numeric', 'min:0'],
             'author_id' => ['required', 'exists:authors,id'],
-            'cover_image' => ['nullable', 'image', Rule::dimensions()->minWidth(400)],
+            'cover_image' => ['nullable', 'image', 'mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)],
         ];
     }
 }

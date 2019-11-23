@@ -10,8 +10,18 @@ class CreateBookAction
     public function execute(BookData $bookData): Book
     {
         $data = $bookData->except('cover_image')->toArray();
-        $data['cover_image_path'] = optional($bookData->cover_image)->store('book-covers', ['disk' => 'public']);
 
-        return Book::create($data);
+        return tap(Book::create($data), function ($book) use ($bookData) {
+            if ($bookData->cover_image) {
+                $book
+                    ->addMedia($bookData->cover_image)
+                    ->usingName($book->original_name)
+                    ->usingFileName("{$book->original_name}.jpg")
+                    ->sanitizingFileName(function ($fileName) {
+                        return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+                    })
+                    ->toMediaCollection('cover-image');
+            }
+        });
     }
 }

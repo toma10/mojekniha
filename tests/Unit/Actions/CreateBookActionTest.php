@@ -41,7 +41,7 @@ class CreateBookActionTest extends TestCase
         Storage::fake('public');
 
         $author = factory(Author::class)->create();
-        $file = File::image('cover-image.png', $width = 400);
+        $file = File::image('cover-image.jpg', $width = 400);
         $bookData = new BookData([
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
@@ -53,10 +53,6 @@ class CreateBookActionTest extends TestCase
 
         $book = (new CreateBookAction())->execute($bookData);
 
-        Storage::disk('public')->assertExists($book->cover_image_path);
-        $this->assertFileEquals(
-            $file->getPathname(),
-            Storage::disk('public')->path($book->cover_image_path)
-        );
+        $this->assertNotNull($book->getFirstMedia('cover-image'));
     }
 }
