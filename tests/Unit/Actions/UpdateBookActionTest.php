@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Actions;
 
+use Mockery;
 use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Author;
@@ -9,6 +10,7 @@ use App\Actions\UpdateBookAction;
 use Illuminate\Http\Testing\File;
 use App\DataTransferObjects\BookData;
 use Illuminate\Support\Facades\Storage;
+use App\Actions\UploadBookCoverImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateBookActionTest extends TestCase
@@ -28,7 +30,7 @@ class UpdateBookActionTest extends TestCase
             'author_id' => $author->id,
         ]);
 
-        $book = (new UpdateBookAction())->execute($book, $bookData);
+        $book = app(UpdateBookAction::class)->execute($book, $bookData);
 
         $this->assertEquals($bookData->name, $book->name);
         $this->assertEquals($bookData->original_name, $book->original_name);
@@ -38,7 +40,7 @@ class UpdateBookActionTest extends TestCase
     }
 
     /** @test */
-    public function cover_image_is_uploaded_if_included()
+    public function upload_book_cover_image_action_is_called_if_cover_image_is_included()
     {
         Storage::fake('public');
 
@@ -54,8 +56,15 @@ class UpdateBookActionTest extends TestCase
             'cover_image' => $file,
         ]);
 
-        $book = (new UpdateBookAction())->execute($book, $bookData);
+        $this->mock(UploadBookCoverImageAction::class, function ($mock) use ($file) {
+            $mock
+                ->shouldReceive()
+                ->execute(Mockery::type(Book::class), Mockery::on(function ($uploadedFile) use ($file) {
+                    return $file === $uploadedFile;
+                }))
+                ->once();
+        });
 
-        $this->assertNotNull($book->getFirstMedia('cover-image'));
+        app(UpdateBookAction::class)->execute($book, $bookData);
     }
 }

@@ -2,12 +2,15 @@
 
 namespace Tests\Unit\Actions;
 
+use Mockery;
 use Tests\TestCase;
+use App\Models\Author;
 use App\Models\Nationality;
 use Illuminate\Http\Testing\File;
 use App\Actions\CreateAuthorAction;
 use App\DataTransferObjects\AuthorData;
 use Illuminate\Support\Facades\Storage;
+use App\Actions\UploadAuthorPortraitImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateAuthorActionTest extends TestCase
@@ -26,7 +29,7 @@ class CreateAuthorActionTest extends TestCase
             'nationality_id' => $nationality->id,
         ]);
 
-        $author = (new CreateAuthorAction())->execute($authorData);
+        $author = app(CreateAuthorAction::class)->execute($authorData);
 
         $this->assertEquals($authorData->name, $author->name);
         $this->assertEquals($authorData->birth_date, $author->birth_date);
@@ -36,7 +39,7 @@ class CreateAuthorActionTest extends TestCase
     }
 
     /** @test */
-    public function portrait_image_is_uploaded_if_included()
+    public function upload_author_portrait_image_action_is_called_if_cover_image_is_included()
     {
         Storage::fake('public');
 
@@ -51,8 +54,15 @@ class CreateAuthorActionTest extends TestCase
             'portrait_image' => $file,
         ]);
 
-        $author = (new CreateAuthorAction())->execute($authorData);
+        $this->mock(UploadAuthorPortraitImageAction::class, function ($mock) use ($file) {
+            $mock
+                ->shouldReceive()
+                ->execute(Mockery::type(Author::class), Mockery::on(function ($uploadedFile) use ($file) {
+                    return $file === $uploadedFile;
+                }))
+                ->once();
+        });
 
-        $this->assertNotNull($author->getFirstMedia('portrait-image'));
+        app(CreateAuthorAction::class)->execute($authorData);
     }
 }

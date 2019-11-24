@@ -7,21 +7,23 @@ use App\DataTransferObjects\BookData;
 
 class UpdateBookAction
 {
+    protected $uploadBookCoverImageAction;
+
+    public function __construct(UploadBookCoverImageAction $uploadBookCoverImageAction)
+    {
+        $this->uploadBookCoverImageAction = $uploadBookCoverImageAction;
+    }
+
     public function execute(Book $book, BookData $bookData): Book
     {
-        return tap($book, function ($book) use ($bookData) {
-            $book->update($bookData->except('cover_image')->toArray());
+        $book->update(
+            $bookData->except('cover_image')->toArray()
+        );
 
-            if ($bookData->cover_image) {
-                $book
-                    ->addMedia($bookData->cover_image)
-                    ->usingName($bookData->original_name)
-                    ->usingFileName("{$bookData->original_name}.jpg")
-                    ->sanitizingFileName(function ($fileName) {
-                        return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
-                    })
-                    ->toMediaCollection('cover-image');
-            }
-        });
+        if ($bookData->cover_image) {
+            $this->uploadBookCoverImageAction->execute($book, $bookData->cover_image);
+        }
+
+        return $book;
     }
 }
