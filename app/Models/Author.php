@@ -12,7 +12,7 @@ class Author extends BaseModel implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    public function registerMediaCollections()
+    public function registerMediaCollections(): void
     {
         $this
             ->addMediaCollection('portrait-image')
