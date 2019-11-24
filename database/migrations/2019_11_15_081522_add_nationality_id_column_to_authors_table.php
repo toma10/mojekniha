@@ -17,7 +17,8 @@ class AddNationalityIdColumnToAuthorsTable extends Migration
             $table->unsignedBigInteger('nationality_id');
 
             $table->foreign('nationality_id')
-                ->references('id')->on('nationalities')
+                ->references('id')
+                ->on('nationalities')
                 ->onDelete('cascade');
         });
     }
