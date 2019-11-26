@@ -20,7 +20,7 @@ class CreateSeriesTest extends TestCase
             'author_id' => $author->id,
         ];
 
-        $response = $this->postJSon('api/series', $data);
+        $response = $this->postJson('api/series', $data);
 
         $response->assertCreated();
         $response->assertJsonStructure(['data' => ['id']]);
@@ -36,7 +36,7 @@ class CreateSeriesTest extends TestCase
     {
         $data = factory(Series::class)->raw(['name' => null]);
 
-        $response = $this->postJSon('api/series', $data);
+        $response = $this->postJson('api/series', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -46,7 +46,7 @@ class CreateSeriesTest extends TestCase
     {
         $data = factory(Series::class)->raw(['author_id' => null]);
 
-        $response = $this->postJSon('api/series', $data);
+        $response = $this->postJson('api/series', $data);
 
         $response->assertJsonValidationErrors('author_id');
     }
@@ -56,7 +56,7 @@ class CreateSeriesTest extends TestCase
     {
         $data = factory(Series::class)->raw(['author_id' => 999]);
 
-        $response = $this->postJSon('api/series', $data);
+        $response = $this->postJson('api/series', $data);
 
         $response->assertJsonValidationErrors('author_id');
     }
