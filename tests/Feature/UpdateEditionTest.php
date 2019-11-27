@@ -6,6 +6,8 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateEditionTest extends TestCase
@@ -17,7 +19,7 @@ class UpdateEditionTest extends TestCase
     {
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
-        $language = factory(Language::class)->create(['name' => 'český',]);
+        $language = factory(Language::class)->create(['name' => 'český']);
         $data = [
             'book_id' => $book->id,
             'isbn' => '978-80-7381-931-6',
@@ -40,6 +42,24 @@ class UpdateEditionTest extends TestCase
                 ],
                 'number_of_pages' => $data['number_of_pages'],
                 'number_of_copies' => $data['number_of_copies'],
+            ],
+        ]);
+    }
+
+    /** @test */
+    public function cover_image_path_is_returned_if_included()
+    {
+        Storage::fake('public');
+
+        $edition = factory(Edition::class)->create();
+        $file = File::image('cover-image.jpg', $width = 400);
+        $data = factory(Edition::class)->raw(['cover_image' => $file]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJson([
+            'data' => [
+                'cover_image_path' => $edition->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -204,5 +224,58 @@ class UpdateEditionTest extends TestCase
         $response = $this->putJson("api/editions/{$edition->id}", $data);
 
         $response->assertJsonValidationErrors('number_of_copies');
+    }
+
+    /** @test */
+    public function cover_image_must_be_an_image()
+    {
+        Storage::fake('public');
+
+        $edition = factory(Edition::class)->create();
+        $file = File::create('not-a-valid-image.pdf');
+        $data = factory(Edition::class)->raw(['cover_image' => $file]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_must_be_a_jpg()
+    {
+        Storage::fake('public');
+
+        $edition = factory(Edition::class)->create();
+        $file = File::image('not-a-jpg-image.png', $width = 400);
+        $data = factory(Edition::class)->raw(['cover_image' => $file]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_must_be_at_least_400px_wide()
+    {
+        Storage::fake('public');
+
+        $edition = factory(Edition::class)->create();
+        $file = File::image('cover-image.jpg', $width = 399);
+        $data = factory(Edition::class)->raw(['cover_image' => $file]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonValidationErrors('cover_image');
+    }
+
+    /** @test */
+    public function cover_image_is_optional()
+    {
+        $edition = factory(Edition::class)->create();
+        $data = factory(Edition::class)->raw(['cover_image' => null]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonMissingValidationErrors('cover_image');
     }
 }

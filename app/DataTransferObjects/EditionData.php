@@ -23,4 +23,7 @@ class EditionData extends DataTransferObject
 
     /** @var int */
     public $number_of_copies;
+
+    /** @var \Illuminate\Http\UploadedFile|null */
+    public $cover_image;
 }

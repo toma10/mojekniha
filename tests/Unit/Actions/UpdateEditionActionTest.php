@@ -2,12 +2,16 @@
 
 namespace Tests\Unit\Actions;
 
+use Mockery;
 use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use Illuminate\Http\Testing\File;
 use App\Actions\UpdateEditionAction;
+use Illuminate\Support\Facades\Storage;
 use App\DataTransferObjects\EditionData;
+use App\Actions\UploadEditionCoverImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateEditionActionTest extends TestCase
@@ -37,5 +41,36 @@ class UpdateEditionActionTest extends TestCase
         $this->assertEquals($editionData->language_id, $edition->language_id);
         $this->assertEquals($editionData->number_of_pages, $edition->number_of_pages);
         $this->assertEquals($editionData->number_of_copies, $edition->number_of_copies);
+    }
+
+    /** @test */
+    public function upload_edition_cover_image_action_is_called_if_cover_image_is_included()
+    {
+        Storage::fake('public');
+
+        $edition = factory(Edition::class)->create();
+        $book = factory(Book::class)->create();
+        $language = factory(Language::class)->create(['name' => 'český',]);
+        $file = File::image('cover-image.jpg');
+        $editionData = new EditionData([
+            'book_id' => $book->id,
+            'isbn' => '978-80-7381-931-6',
+            'release_year' => 2011,
+            'language_id' => $language->id,
+            'number_of_pages' => 536,
+            'number_of_copies' => 1000,
+            'cover_image' => $file,
+        ]);
+
+        $this->mock(UploadEditionCoverImageAction::class, function ($mock) use ($file) {
+            $mock
+                ->shouldReceive()
+                ->execute(Mockery::type(Edition::class), Mockery::on(function ($uploadedFile) use ($file) {
+                    return $file === $uploadedFile;
+                }))
+                ->once();
+        });
+
+        app(UpdateEditionAction::class)->execute($edition, $editionData);
     }
 }
