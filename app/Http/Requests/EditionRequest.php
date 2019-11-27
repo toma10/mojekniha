@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EditionRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'book_id' => ['required', 'exists:books,id'],
