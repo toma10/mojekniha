@@ -62,14 +62,13 @@ class UpdateEditionActionTest extends TestCase
             'cover_image' => $file,
         ]);
 
-        $this->mock(UploadEditionCoverImageAction::class, function ($mock) use ($file) {
-            $mock
-                ->shouldReceive()
-                ->execute(Mockery::type(Edition::class), Mockery::on(function ($uploadedFile) use ($file) {
-                    return $file === $uploadedFile;
-                }))
-                ->once();
-        });
+        $uploadEditionCoverImageAction = $this->mock(UploadEditionCoverImageAction::class);
+        $uploadEditionCoverImageAction
+            ->shouldReceive()
+            ->execute(Mockery::type(Edition::class), Mockery::on(function ($uploadedFile) use ($file) {
+                return $file === $uploadedFile;
+            }))
+            ->once();
 
         app(UpdateEditionAction::class)->execute($edition, $editionData);
     }

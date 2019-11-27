@@ -56,14 +56,13 @@ class UpdateAuthorActionTest extends TestCase
         ]);
 
 
-        $this->mock(UploadAuthorPortraitImageAction::class, function ($mock) use ($file) {
-            $mock
-                ->shouldReceive()
-                ->execute(Mockery::type(Author::class), Mockery::on(function ($uploadedFile) use ($file) {
-                    return $file === $uploadedFile;
-                }))
-                ->once();
-        });
+        $uploadAuthorPortraitImageAction = $this->mock(UploadAuthorPortraitImageAction::class);
+        $uploadAuthorPortraitImageAction
+            ->shouldReceive()
+            ->execute(Mockery::type(Author::class), Mockery::on(function ($uploadedFile) use ($file) {
+                return $file === $uploadedFile;
+            }))
+            ->once();
 
         app(UpdateAuthorAction::class)->execute($author, $authorData);
     }

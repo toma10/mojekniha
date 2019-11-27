@@ -56,14 +56,13 @@ class UpdateBookActionTest extends TestCase
             'cover_image' => $file,
         ]);
 
-        $this->mock(UploadBookCoverImageAction::class, function ($mock) use ($file) {
-            $mock
-                ->shouldReceive()
-                ->execute(Mockery::type(Book::class), Mockery::on(function ($uploadedFile) use ($file) {
-                    return $file === $uploadedFile;
-                }))
-                ->once();
-        });
+        $uploadBookCoverImageAction = $this->mock(UploadBookCoverImageAction::class);
+        $uploadBookCoverImageAction
+            ->shouldReceive()
+            ->execute(Mockery::type(Book::class), Mockery::on(function ($uploadedFile) use ($file) {
+                return $file === $uploadedFile;
+            }))
+            ->once();
 
         app(UpdateBookAction::class)->execute($book, $bookData);
     }
