@@ -8,7 +8,9 @@ use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
 use App\Models\Series;
+use App\Models\Edition;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -24,6 +26,17 @@ class BookTest extends TestCase
 
         $this->assertInstanceOf(BelongsTo::class, $book->author());
         $this->assertTrue($book->author->is($author));
+    }
+
+    /** @test */
+    public function it_may_have_multiple_editions()
+    {
+        $book = factory(Book::class)->create();
+        $editionA = factory(Edition::class)->create(['book_id' => $book->id]);
+        $editionB = factory(Edition::class)->create(['book_id' => $book->id]);
+
+        $this->assertInstanceOf(HasMany::class, $book->editions());
+        $book->editions->assertContains($editionA, $editionB);
     }
 
     /** @test */

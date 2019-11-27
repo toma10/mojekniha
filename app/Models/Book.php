@@ -25,6 +25,11 @@ class Book extends BaseModel implements HasMedia
         return $this->belongsTo(Author::class);
     }
 
+    public function editions()
+    {
+        return $this->hasMany(Edition::class);
+    }
+
     public function series(): BelongsTo
     {
         return $this->belongsTo(Series::class);
