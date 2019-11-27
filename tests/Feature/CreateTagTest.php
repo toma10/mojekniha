@@ -17,7 +17,7 @@ class CreateTagTest extends TestCase
             'name' => 'zfilmovano',
         ];
 
-        $response = $this->postJSon('api/tags', $data);
+        $response = $this->postJson('api/tags', $data);
 
         $response->assertCreated();
         $response->assertJsonStructure(['data' => ['id']]);
@@ -33,7 +33,7 @@ class CreateTagTest extends TestCase
     {
         $data = factory(Tag::class)->raw(['name' => null]);
 
-        $response = $this->postJSon('api/tags', $data);
+        $response = $this->postJson('api/tags', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -44,7 +44,7 @@ class CreateTagTest extends TestCase
         factory(Tag::class)->create(['name' => 'zfilmovano']);
         $data = factory(Tag::class)->raw(['name' => 'zfilmovano']);
 
-        $response = $this->postJSon('api/tags', $data);
+        $response = $this->postJson('api/tags', $data);
 
         $response->assertJsonValidationErrors('name');
     }

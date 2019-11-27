@@ -17,7 +17,7 @@ class CreateGenreTest extends TestCase
             'name' => 'Romány',
         ];
 
-        $response = $this->postJSon('api/genres', $data);
+        $response = $this->postJson('api/genres', $data);
 
         $response->assertCreated();
         $response->assertJsonStructure(['data' => ['id']]);
@@ -33,7 +33,7 @@ class CreateGenreTest extends TestCase
     {
         $data = factory(Genre::class)->raw(['name' => null]);
 
-        $response = $this->postJSon('api/genres', $data);
+        $response = $this->postJson('api/genres', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -44,7 +44,7 @@ class CreateGenreTest extends TestCase
         factory(Genre::class)->create(['name' => 'Romány']);
         $data = factory(Genre::class)->raw(['name' => 'Romány']);
 
-        $response = $this->postJSon('api/genres', $data);
+        $response = $this->postJson('api/genres', $data);
 
         $response->assertJsonValidationErrors('name');
     }
