@@ -11,7 +11,7 @@ use App\Http\Requests\EditionRequest;
 use App\Http\Resources\EditionResource;
 use App\DataTransferObjects\EditionData;
 
-class EditionsController extends Controller
+class EditionsController
 {
     public function store(EditionRequest $request, CreateEditionAction $createEditionAction)
     {
