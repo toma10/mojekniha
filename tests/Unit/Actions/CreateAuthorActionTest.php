@@ -39,7 +39,7 @@ class CreateAuthorActionTest extends TestCase
     }
 
     /** @test */
-    public function upload_author_portrait_image_action_is_called_if_cover_image_is_included()
+    public function upload_author_portrait_image_action_is_called_if_portrait_image_is_included()
     {
         Storage::fake('public');
 

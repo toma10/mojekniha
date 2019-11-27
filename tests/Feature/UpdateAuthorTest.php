@@ -45,7 +45,7 @@ class UpdateAuthorTest extends TestCase
     }
 
     /** @test */
-    public function portrait_image_is_returned_if_included()
+    public function portrait_image_path_is_returned_if_portrait_image_is_included()
     {
         Storage::fake('public');
 
