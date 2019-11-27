@@ -18,6 +18,6 @@ class DeleteTagActionTest extends TestCase
 
         (new DeleteTagAction())->execute($tag);
 
-        $this->assertNull($tag->fresh());
+        $this->assertDeleted($tag);
     }
 }

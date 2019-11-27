@@ -18,6 +18,6 @@ class DeleteGenreActionTest extends TestCase
 
         (new DeleteGenreAction())->execute($genre);
 
-        $this->assertNull($genre->fresh());
+        $this->assertDeleted($genre);
     }
 }

@@ -18,6 +18,6 @@ class DeleteSeriesActionTest extends TestCase
 
         (new DeleteSeriesAction())->execute($series);
 
-        $this->assertNull($series->fresh());
+        $this->assertDeleted($series);
     }
 }

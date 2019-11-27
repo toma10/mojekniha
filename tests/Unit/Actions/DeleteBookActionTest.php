@@ -18,6 +18,6 @@ class DeleteBookActionTest extends TestCase
 
         (new DeleteBookAction())->execute($book);
 
-        $this->assertTrue($book->trashed());
+        $this->assertSoftDeleted($book);
     }
 }

@@ -18,6 +18,6 @@ class DeleteEditionActionTest extends TestCase
 
         (new DeleteEditionAction())->execute($edition);
 
-        $this->assertNull($edition->fresh());
+        $this->assertDeleted($edition);
     }
 }

@@ -18,6 +18,6 @@ class DeleteAuthorActionTest extends TestCase
 
         (new DeleteAuthorAction())->execute($author);
 
-        $this->assertTrue($author->trashed());
+        $this->assertSoftDeleted($author);
     }
 }
