@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -31,5 +32,16 @@ class EditionTest extends TestCase
 
         $this->assertInstanceOf(BelongsTo::class, $edition->language());
         $this->assertTrue($edition->language->is($language));
+    }
+
+
+    /** @test */
+    public function it_has_a_book_binding()
+    {
+        $bookBinding = factory(BookBinding::class)->create();
+        $edition = factory(Edition::class)->create(['book_binding_id' => $bookBinding]);
+
+        $this->assertInstanceOf(BelongsTo::class, $edition->bookBinding());
+        $this->assertTrue($edition->bookBinding->is($bookBinding));
     }
 }

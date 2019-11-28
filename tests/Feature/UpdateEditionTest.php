@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,6 +21,7 @@ class UpdateEditionTest extends TestCase
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create(['name' => 'český']);
+        $bookBinding = factory(BookBinding::class)->create(['name' => 'pevná / vázaná s přebalem']);
         $data = [
             'book_id' => $book->id,
             'isbn' => '978-80-7381-931-6',
@@ -27,6 +29,7 @@ class UpdateEditionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
         ];
 
         $response = $this->putJson("api/editions/{$edition->id}", $data);
@@ -42,6 +45,10 @@ class UpdateEditionTest extends TestCase
                 ],
                 'number_of_pages' => $data['number_of_pages'],
                 'number_of_copies' => $data['number_of_copies'],
+                'book_binding' => [
+                    'id' => $bookBinding->id,
+                    'name' => $bookBinding->name,
+                ],
             ],
         ]);
     }
@@ -224,6 +231,28 @@ class UpdateEditionTest extends TestCase
         $response = $this->putJson("api/editions/{$edition->id}", $data);
 
         $response->assertJsonValidationErrors('number_of_copies');
+    }
+
+    /** @test */
+    public function it_requires_a_book_binding_id()
+    {
+        $edition = factory(Edition::class)->create();
+        $data = factory(Edition::class)->raw(['book_binding_id' => null]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonValidationErrors('book_binding_id');
+    }
+
+    /** @test */
+    public function book_binding_id_must_exist()
+    {
+        $edition = factory(Edition::class)->create();
+        $data = factory(Edition::class)->raw(['book_binding_id' => 999]);
+
+        $response = $this->putJson("api/editions/{$edition->id}", $data);
+
+        $response->assertJsonValidationErrors('book_binding_id');
     }
 
     /** @test */

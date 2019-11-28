@@ -27,4 +27,9 @@ class Edition extends BaseModel implements HasMedia
     {
         return $this->belongsTo(Language::class);
     }
+
+    public function bookBinding()
+    {
+        return $this->belongsTo(BookBinding::class);
+    }
 }

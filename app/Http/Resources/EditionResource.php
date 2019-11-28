@@ -15,6 +15,7 @@ class EditionResource extends JsonResource
             'language' => new LanguageResource($this->language),
             'number_of_pages' => $this->number_of_pages,
             'number_of_copies' => $this->number_of_copies,
+            'book_binding' => new BookBindingResource($this->bookBinding),
             'cover_image_path' => $this->getFirstMediaUrl('cover-image'),
         ];
     }

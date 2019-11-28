@@ -3,6 +3,7 @@
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Faker\Generator as Faker;
 
 $factory->define(Edition::class, function (Faker $faker) {
@@ -13,5 +14,6 @@ $factory->define(Edition::class, function (Faker $faker) {
         'language_id' => factory(Language::class),
         'number_of_pages' => $faker->numberBetween(100, 500),
         'number_of_copies' => $faker->numberBetween(1000, 10000),
+        'book_binding_id' => factory(BookBinding::class),
     ];
 });

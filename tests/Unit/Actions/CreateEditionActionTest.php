@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Illuminate\Http\Testing\File;
 use App\Actions\CreateEditionAction;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ class CreateEditionActionTest extends TestCase
     {
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create();
+        $bookBinding = factory(BookBinding::class)->create();
         $editionData = new EditionData([
             'book_id' => $book->id,
             'isbn' => '978-80-7381-931-6',
@@ -30,6 +32,7 @@ class CreateEditionActionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
         ]);
 
         $edition = app(CreateEditionAction::class)->execute($editionData);
@@ -40,6 +43,7 @@ class CreateEditionActionTest extends TestCase
         $this->assertEquals($editionData->language_id, $edition->language_id);
         $this->assertEquals($editionData->number_of_pages, $edition->number_of_pages);
         $this->assertEquals($editionData->number_of_copies, $edition->number_of_copies);
+        $this->assertEquals($editionData->book_binding_id, $edition->book_binding_id);
     }
 
 
@@ -50,6 +54,7 @@ class CreateEditionActionTest extends TestCase
 
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create();
+        $bookBinding = factory(BookBinding::class)->create();
         $file = File::image('cover-image.jpg', $width = 400);
         $editionData = new EditionData([
             'book_id' => $book->id,
@@ -58,6 +63,7 @@ class CreateEditionActionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
             'cover_image' => $file,
         ]);
 

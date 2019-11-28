@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Illuminate\Http\Testing\File;
 use App\Actions\UpdateEditionAction;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,7 @@ class UpdateEditionActionTest extends TestCase
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create(['name' => 'český',]);
+        $bookBinding = factory(BookBinding::class)->create();
         $editionData = new EditionData([
             'book_id' => $book->id,
             'isbn' => '978-80-7381-931-6',
@@ -31,6 +33,7 @@ class UpdateEditionActionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
         ]);
 
         $edition = app(UpdateEditionAction::class)->execute($edition, $editionData);
@@ -41,6 +44,7 @@ class UpdateEditionActionTest extends TestCase
         $this->assertEquals($editionData->language_id, $edition->language_id);
         $this->assertEquals($editionData->number_of_pages, $edition->number_of_pages);
         $this->assertEquals($editionData->number_of_copies, $edition->number_of_copies);
+        $this->assertEquals($editionData->book_binding_id, $edition->book_binding_id);
     }
 
     /** @test */
@@ -51,6 +55,7 @@ class UpdateEditionActionTest extends TestCase
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create(['name' => 'český',]);
+        $bookBinding = factory(BookBinding::class)->create();
         $file = File::image('cover-image.jpg');
         $editionData = new EditionData([
             'book_id' => $book->id,
@@ -59,6 +64,7 @@ class UpdateEditionActionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
             'cover_image' => $file,
         ]);
 

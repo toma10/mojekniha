@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Book;
 use App\Models\Edition;
 use App\Models\Language;
+use App\Models\BookBinding;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,6 +20,7 @@ class CreateEditionTest extends TestCase
     {
         $book = factory(Book::class)->create();
         $language = factory(Language::class)->create(['name' => 'český']);
+        $bookBinding = factory(BookBinding::class)->create(['name' => 'pevná / vázaná s přebalem']);
         $data = [
             'book_id' => $book->id,
             'isbn' => '978-80-7381-931-6',
@@ -26,6 +28,7 @@ class CreateEditionTest extends TestCase
             'language_id' => $language->id,
             'number_of_pages' => 536,
             'number_of_copies' => 1000,
+            'book_binding_id' => $bookBinding->id,
         ];
 
         $response = $this->postJson('api/editions', $data);
@@ -42,6 +45,10 @@ class CreateEditionTest extends TestCase
                 ],
                 'number_of_pages' => $data['number_of_pages'],
                 'number_of_copies' => $data['number_of_copies'],
+                'book_binding' => [
+                    'id' => $bookBinding->id,
+                    'name' => $bookBinding->name,
+                ],
             ],
         ]);
     }
@@ -202,6 +209,26 @@ class CreateEditionTest extends TestCase
         $response = $this->postJson('api/editions', $data);
 
         $response->assertJsonValidationErrors('number_of_copies');
+    }
+
+    /** @test */
+    public function it_requires_a_book_binding_id()
+    {
+        $data = factory(Edition::class)->raw(['book_binding_id' => null]);
+
+        $response = $this->postJson('api/editions', $data);
+
+        $response->assertJsonValidationErrors('book_binding_id');
+    }
+
+    /** @test */
+    public function book_binding_id_must_exist()
+    {
+        $data = factory(Edition::class)->raw(['book_binding_id' => 999]);
+
+        $response = $this->postJson('api/editions', $data);
+
+        $response->assertJsonValidationErrors('book_binding_id');
     }
 
     /** @test */
