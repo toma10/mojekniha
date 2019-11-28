@@ -13,7 +13,6 @@ class UpdateTagTest extends TestCase
     /** @test */
     public function it_updates_the_tag()
     {
-        $this->withoutExceptionHandling();
         $tag = factory(Tag::class)->create();
         $data = [
             'name' => 'zfilmovano',
