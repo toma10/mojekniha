@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Genre;
-use App\Models\Author;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateGenreTest extends TestCase
@@ -15,7 +14,6 @@ class UpdateGenreTest extends TestCase
     public function it_updates_the_genre()
     {
         $genre = factory(Genre::class)->create();
-        $author = factory(Author::class)->create();
         $data = [
             'name' => 'Romány',
         ];
