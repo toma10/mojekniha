@@ -32,7 +32,7 @@ class RegisterActionTest extends TestCase
         $this->assertNotNull($token);
         $this->assertAuthenticated();
 
-        $user = User::first();
+        $this->assertAuthenticatedAs($user = User::first());
         $this->assertEquals($registerData->name, $user->name);
         $this->assertEquals($registerData->username, $user->username);
         $this->assertEquals($registerData->email, $user->email);

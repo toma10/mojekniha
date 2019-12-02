@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use PHPUnit\Framework\Assert;
 use Illuminate\Support\Collection;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -22,5 +23,12 @@ abstract class TestCase extends BaseTestCase
                 );
             });
         });
+    }
+
+    public function login(User $user): self
+    {
+        auth()->login($user);
+
+        return $this;
     }
 }

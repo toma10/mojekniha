@@ -11,6 +11,16 @@ class RegisterTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function it_403s_if_user_is_already_logged_in()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->login($user)->postJson('api/auth/register');
+
+        $response->assertForbidden();
+    }
+
+    /** @test */
     public function it_registers_a_user()
     {
         $data = [
