@@ -1,0 +1,20 @@
+<?php
+
+namespace App\DataTransferObjects\Auth;
+
+use Spatie\DataTransferObject\DataTransferObject;
+
+class RegisterData extends DataTransferObject
+{
+    /** @var string */
+    public $name;
+
+    /** @var string */
+    public $username;
+
+    /** @var string */
+    public $email;
+
+    /** @var string */
+    public $password;
+}

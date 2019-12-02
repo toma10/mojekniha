@@ -7,6 +7,9 @@ use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\EditionsController;
 use App\Http\Controllers\BookBindingsController;
+use App\Http\Controllers\Auth\RegisterController;
+
+Route::post('auth/register', RegisterController::class);
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
 Route::post('authors', [AuthorsController::class, 'store']);
