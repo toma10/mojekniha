@@ -2,38 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Actions\LoginAction;
+use App\Http\Resources\TokenResource;
+use App\Http\Requests\Auth\LoginRequest;
+use App\DataTransferObjects\Auth\LoginData;
 
-class LoginController extends Controller
+class LoginController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __invoke(LoginRequest $request, LoginAction $loginAction)
     {
-        $this->middleware('guest')->except('logout');
+        $token = $loginAction->execute(
+            new LoginData($request->validated())
+        );
+
+        return new TokenResource($token);
     }
 }

@@ -6,10 +6,14 @@ use App\Http\Controllers\GenresController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\EditionsController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BookBindingsController;
 use App\Http\Controllers\Auth\RegisterController;
 
-Route::post('auth/register', RegisterController::class);
+Route::post('auth/register', RegisterController::class)->middleware('guest:api');
+Route::post('auth/login', LoginController::class);
+Route::post('auth/logout', LogoutController::class)->middleware('auth:api');
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
 Route::post('authors', [AuthorsController::class, 'store']);
