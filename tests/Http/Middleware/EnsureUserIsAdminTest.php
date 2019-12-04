@@ -31,7 +31,7 @@ class EnsureUserIsAdminTest extends TestCase
     /** @test */
     public function it_403s_if_user_is_not_an_admin()
     {
-        $user = factory(User::class)->create(['is_admin' => false]);
+        $user = factory(User::class)->create();
 
         $response = $this->login($user)->getJson('/webhook-test');
 
@@ -41,7 +41,7 @@ class EnsureUserIsAdminTest extends TestCase
     /** @test */
     public function admin_can_continue()
     {
-        $admin = factory(User::class)->create(['is_admin' => true]);
+        $admin = factory(User::class)->state('admin')->create();
 
         $response = $this->login($admin)->getJson('/webhook-test');
 
