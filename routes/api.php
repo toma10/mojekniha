@@ -4,16 +4,21 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\Auth\MeController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\EditionsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BookBindingsController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\UpdateProfileController;
 
 Route::post('auth/register', RegisterController::class)->middleware('guest:api');
 Route::post('auth/login', LoginController::class);
 Route::post('auth/logout', LogoutController::class)->middleware('auth:api');
+
+Route::get('auth/me', MeController::class)->middleware('auth:api');
+Route::put('auth/me', UpdateProfileController::class)->middleware('auth:api');
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
 Route::post('authors', [AuthorsController::class, 'store']);
