@@ -13,6 +13,7 @@ class User extends Authenticatable implements JWTSubject
     protected $guarded = [];
 
     protected $casts = [
+        'is_admin' => 'bool',
         'email_verified_at' => 'datetime',
     ];
 
@@ -24,5 +25,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 }
