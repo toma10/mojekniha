@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Actions\UpdateProfileAction;
 use App\Http\Resources\UserResource;
 use App\DataTransferObjects\ProfileData;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\Auth\UpdateProfileRequest;
 
 class UpdateProfileController
 {

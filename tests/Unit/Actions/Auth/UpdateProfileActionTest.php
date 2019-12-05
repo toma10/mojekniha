@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Actions;
+namespace Tests\Unit\Actions\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
