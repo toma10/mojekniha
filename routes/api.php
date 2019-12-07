@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BookBindingsController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UpdateProfileController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
@@ -20,7 +21,9 @@ Route::post('auth/logout', LogoutController::class)->middleware('auth:api');
 
 Route::get('auth/me', MeController::class)->middleware('auth:api');
 Route::put('auth/me', UpdateProfileController::class)->middleware('auth:api');
+
 Route::post('auth/password', ChangePasswordController::class)->middleware('auth:api');
+Route::put('auth/password', ResetPasswordController::class)->middleware('guest:api');
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
 Route::post('authors', [AuthorsController::class, 'store']);
