@@ -22,7 +22,6 @@ class ChangePasswordTest extends TestCase
     /** @test */
     public function user_can_change_password()
     {
-        $this->withoutExceptionHandling();
         $me = factory(User::class)->create(['password' => Hash::make('password')]);
         $data = [
             'password' => 'password',
@@ -72,7 +71,6 @@ class ChangePasswordTest extends TestCase
         $data = [
             'password' => 'password',
             'new_password' => null,
-            'new_password_confirmation' => 'new-password',
         ];
 
         $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
