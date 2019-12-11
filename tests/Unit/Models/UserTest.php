@@ -19,4 +19,14 @@ class UserTest extends TestCase
         $this->assertFalse($user->isAdmin());
         $this->assertTrue($admin->isAdmin());
     }
+
+    /** @test */
+    public function it_can_determine_if_has_verified_email()
+    {
+        $unverifiedUser = factory(User::class)->create(['email_verified_at' => null]);
+        $verifiedUser = factory(User::class)->create(['email_verified_at' => now()]);
+
+        $this->assertFalse($unverifiedUser->hasVerifiedEmail());
+        $this->assertTrue($verifiedUser->hasVerifiedEmail());
+    }
 }

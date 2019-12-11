@@ -18,6 +18,7 @@ class RegisterRequest extends FormRequest
             'username' => ['required', 'unique:users,username'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
+            'verify_email_url' => ['required', 'url'],
         ];
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
+use App\Events\Auth\Registered;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
 use App\DataTransferObjects\Auth\RegisterData;
 
 class RegisterAction
@@ -18,7 +18,7 @@ class RegisterAction
             'password' => Hash::make($registerData->password),
         ]);
 
-        event(new Registered($user));
+        event(new Registered($user, $registerData->verify_email_url));
 
         return auth()->login($user);
     }

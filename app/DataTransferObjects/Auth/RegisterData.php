@@ -17,4 +17,7 @@ class RegisterData extends DataTransferObject
 
     /** @var string */
     public $password;
+
+    /** @var string */
+    public $verify_email_url;
 }

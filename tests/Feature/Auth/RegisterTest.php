@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
@@ -23,12 +24,15 @@ class RegisterTest extends TestCase
     /** @test */
     public function it_registers_a_user()
     {
+        Notification::fake();
+
         $data = [
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'johndoe@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'verify_email_url' => 'http://url.dev',
         ];
 
         $response = $this->postJson('api/auth/register', $data);
@@ -132,5 +136,25 @@ class RegisterTest extends TestCase
         $response = $this->postJson('api/auth/register', $data);
 
         $response->assertJsonValidationErrors('password');
+    }
+
+    /** @test */
+    public function it_requires_a_verify_email_url()
+    {
+        $data = factory(User::class)->raw(['verify_email_url' => null]);
+
+        $response = $this->postJson('api/auth/register', $data);
+
+        $response->assertJsonValidationErrors('verify_email_url');
+    }
+
+    /** @test */
+    public function verify_email_url_must_be_valid_url()
+    {
+        $data = factory(User::class)->raw(['verify_email_url' => 'not-a-valid-url']);
+
+        $response = $this->postJson('api/auth/register', $data);
+
+        $response->assertJsonValidationErrors('verify_email_url');
     }
 }

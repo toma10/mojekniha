@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Authenticatable implements JWTSubject
+class User extends BaseModel implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    JWTSubject
 {
-    use Notifiable;
+    use Authenticatable, Authorizable, Notifiable;
 
     protected $guarded = [];
 
@@ -30,5 +36,10 @@ class User extends Authenticatable implements JWTSubject
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    public function hasVerifiedEmail(): bool
+    {
+        return $this->email_verified_at !== null;
     }
 }
