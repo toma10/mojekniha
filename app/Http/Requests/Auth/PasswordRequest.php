@@ -11,6 +11,9 @@ class PasswordRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function rules(): array
     {
         return [

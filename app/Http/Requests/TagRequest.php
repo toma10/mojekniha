@@ -11,10 +11,13 @@ class TagRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:tags,name']
+            'name' => ['required', 'unique:tags,name'],
         ];
     }
 }

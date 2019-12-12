@@ -11,6 +11,9 @@ class SeriesRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function rules(): array
     {
         return [

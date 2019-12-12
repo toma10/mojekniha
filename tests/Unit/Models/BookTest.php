@@ -2,17 +2,17 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Tag;
-use Tests\TestCase;
-use App\Models\Book;
-use App\Models\Genre;
 use App\Models\Author;
-use App\Models\Series;
+use App\Models\Book;
 use App\Models\Edition;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Genre;
+use App\Models\Series;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class BookTest extends TestCase
 {

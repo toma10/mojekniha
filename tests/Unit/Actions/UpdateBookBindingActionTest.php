@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\BookBinding;
 use App\Actions\UpdateBookBindingAction;
 use App\DataTransferObjects\BookBindingData;
+use App\Models\BookBinding;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateBookBindingActionTest extends TestCase
 {

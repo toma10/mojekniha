@@ -4,6 +4,9 @@ namespace App\Support;
 
 class Url
 {
+    /**
+     * @param array<mixed> $params
+     */
     public static function build(string $url, array $params): string
     {
         $url = trim($url, '/?');

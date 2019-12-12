@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Events\Auth\Registered;
 use App\Actions\Auth\RegisterAction;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Event;
 use App\DataTransferObjects\Auth\RegisterData;
+use App\Events\Auth\Registered;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
 class RegisterActionTest extends TestCase
 {

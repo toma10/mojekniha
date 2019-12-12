@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Actions\Auth\LogoutAction;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class LogoutActionTest extends TestCase
 {
@@ -17,7 +17,7 @@ class LogoutActionTest extends TestCase
         auth()->login(factory(User::class)->create());
         $this->assertAuthenticated();
 
-        (new LogoutAction)->execute();
+        (new LogoutAction())->execute();
 
         $this->assertGuest();
     }
@@ -27,7 +27,7 @@ class LogoutActionTest extends TestCase
     {
         $this->assertGuest();
 
-        (new LogoutAction)->execute();
+        (new LogoutAction())->execute();
 
         $this->assertGuest();
     }

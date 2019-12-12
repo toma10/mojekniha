@@ -3,9 +3,9 @@
 namespace Tests;
 
 use App\Models\User;
-use PHPUnit\Framework\Assert;
-use Illuminate\Support\Collection;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Collection;
+use PHPUnit\Framework\Assert;
 
 abstract class TestCase extends BaseTestCase
 {

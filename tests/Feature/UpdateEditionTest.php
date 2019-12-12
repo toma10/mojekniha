@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Book;
+use App\Models\BookBinding;
 use App\Models\Edition;
 use App\Models\Language;
-use App\Models\BookBinding;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateEditionTest extends TestCase
 {

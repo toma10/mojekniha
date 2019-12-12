@@ -2,11 +2,11 @@
 
 namespace App\Actions\Auth;
 
-use App\Models\User;
-use App\Models\PasswordReset;
-use Facades\App\Support\PasswordResetTokenGenerator;
-use App\Notifications\Auth\ResetPasswordNotification;
 use App\DataTransferObjects\Auth\RequestPasswordResetData;
+use App\Models\PasswordReset;
+use App\Models\User;
+use App\Notifications\Auth\ResetPasswordNotification;
+use Facades\App\Support\PasswordResetTokenGenerator;
 
 class RequestPasswordResetAction
 {
@@ -14,7 +14,7 @@ class RequestPasswordResetAction
     {
         $token = PasswordResetTokenGenerator::generate();
 
-        $user = User::whereEmail($data->email)->firstOrFail();
+        $user = User::findByEmail($data->email);
 
         PasswordReset::create([
             'email' => $user->email,

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\DataTransferObjects\PasswordData;
 use App\Actions\Auth\ChangePasswordAction;
-use Illuminate\Validation\ValidationException;
+use App\DataTransferObjects\PasswordData;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Tests\TestCase;
 
 class ChangePasswordActionTest extends TestCase
 {
@@ -23,7 +23,7 @@ class ChangePasswordActionTest extends TestCase
             'new_password' => 'new-password',
         ]);
 
-        $me = (new ChangePasswordAction)->execute($me, $passwordData);
+        $me = (new ChangePasswordAction())->execute($me, $passwordData);
 
         $this->assertTrue(Hash::check('new-password', $me->password));
     }
@@ -38,9 +38,10 @@ class ChangePasswordActionTest extends TestCase
         ]);
 
         try {
-            (new ChangePasswordAction)->execute($me, $passwordData);
+            (new ChangePasswordAction())->execute($me, $passwordData);
         } catch (ValidationException $e) {
             $this->assertTrue(Hash::check('password', $me->password));
+
             return;
         }
 

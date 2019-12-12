@@ -2,11 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\Author;
 use App\DataTransferObjects\AuthorData;
+use App\Models\Author;
 
 class UpdateAuthorAction
 {
+    /** @var UploadAuthorPortraitImageAction */
     protected $uploadAuthorPortraitImageAction;
 
     public function __construct(UploadAuthorPortraitImageAction $uploadAuthorPortraitImageAction)

@@ -2,11 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\Book;
 use App\DataTransferObjects\BookData;
+use App\Models\Book;
 
 class CreateBookAction
 {
+    /** @var UploadBookCoverImageAction */
     protected $uploadBookCoverImageAction;
 
     public function __construct(UploadBookCoverImageAction $uploadBookCoverImageAction)

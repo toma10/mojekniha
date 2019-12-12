@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Models\Book;
 use App\Models\Author;
+use App\Models\Book;
 use App\Models\Series;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SeriesTest extends TestCase
 {

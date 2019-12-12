@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Support;
 
-use Tests\TestCase;
 use App\Support\Url;
+use Tests\TestCase;
 
 class UrlTest extends TestCase
 {

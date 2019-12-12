@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Book;
 use App\Actions\DeleteBookAction;
+use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteBookActionTest extends TestCase
 {

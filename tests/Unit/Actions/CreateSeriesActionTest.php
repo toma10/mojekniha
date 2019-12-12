@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Author;
 use App\Actions\CreateSeriesAction;
 use App\DataTransferObjects\SeriesData;
+use App\Models\Author;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CreateSeriesActionTest extends TestCase
 {

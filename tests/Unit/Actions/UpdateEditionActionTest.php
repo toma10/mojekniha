@@ -2,18 +2,18 @@
 
 namespace Tests\Unit\Actions;
 
-use Mockery;
-use Tests\TestCase;
+use App\Actions\UpdateEditionAction;
+use App\Actions\UploadEditionCoverImageAction;
+use App\DataTransferObjects\EditionData;
 use App\Models\Book;
+use App\Models\BookBinding;
 use App\Models\Edition;
 use App\Models\Language;
-use App\Models\BookBinding;
-use Illuminate\Http\Testing\File;
-use App\Actions\UpdateEditionAction;
-use Illuminate\Support\Facades\Storage;
-use App\DataTransferObjects\EditionData;
-use App\Actions\UploadEditionCoverImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class UpdateEditionActionTest extends TestCase
 {
@@ -24,7 +24,7 @@ class UpdateEditionActionTest extends TestCase
     {
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
-        $language = factory(Language::class)->create(['name' => 'český',]);
+        $language = factory(Language::class)->create(['name' => 'český']);
         $bookBinding = factory(BookBinding::class)->create();
         $editionData = new EditionData([
             'book_id' => $book->id,
@@ -54,7 +54,7 @@ class UpdateEditionActionTest extends TestCase
 
         $edition = factory(Edition::class)->create();
         $book = factory(Book::class)->create();
-        $language = factory(Language::class)->create(['name' => 'český',]);
+        $language = factory(Language::class)->create(['name' => 'český']);
         $bookBinding = factory(BookBinding::class)->create();
         $file = File::image('cover-image.jpg');
         $editionData = new EditionData([

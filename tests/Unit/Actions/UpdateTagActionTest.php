@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Actions;
 
-use App\Models\Tag;
-use Tests\TestCase;
 use App\Actions\UpdateTagAction;
 use App\DataTransferObjects\TagData;
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateTagActionTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditionRequest extends FormRequest
 {
@@ -12,6 +12,9 @@ class EditionRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function rules(): array
     {
         return [

@@ -4,34 +4,41 @@ namespace App\Notifications\Auth;
 
 use App\Support\Url;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
 class VerifyEmailNotification extends Notification
 {
     use Queueable;
 
+    /** @var string */
     public $verifyEmailUrl;
 
-    public function __construct($verifyEmailUrl)
+    public function __construct(string $verifyEmailUrl)
     {
         $this->verifyEmailUrl = $verifyEmailUrl;
     }
 
-    public function via($notifiable)
+    /**
+     * @return array<string>
+     */
+    public function via(): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable)
+    /**
+     * @param  mixed $notifiable
+     */
+    public function toMail($notifiable): MailMessage
     {
         $url = Url::build($this->verifyEmailUrl, [
             'id' => $notifiable->id,
             'hash' => sha1($notifiable->email),
         ]);
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(Lang::get('Verify Email Address'))
             ->line(Lang::get('Please click the button below to verify your email address.'))
             ->action(Lang::get('Verify Email Address'), $url)

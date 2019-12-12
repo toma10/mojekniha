@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Events\Auth\EmailVerified;
-use Illuminate\Support\Facades\Event;
 use App\Actions\Auth\VerifyEmailAction;
 use App\DataTransferObjects\Auth\VerifyEmailData;
+use App\Events\Auth\EmailVerified;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Tests\TestCase;
 
 class VerifyEmailActionTest extends TestCase
 {
@@ -28,7 +28,7 @@ class VerifyEmailActionTest extends TestCase
             'hash' => sha1($me->email),
         ]);
 
-        (new VerifyEmailAction)->execute($me, $verifyEmailData);
+        (new VerifyEmailAction())->execute($me, $verifyEmailData);
 
         $this->assertTrue($me->fresh()->hasVerifiedEmail());
 
@@ -50,7 +50,7 @@ class VerifyEmailActionTest extends TestCase
             'hash' => sha1($me->email),
         ]);
 
-        (new VerifyEmailAction)->execute($me, $verifyEmailData);
+        (new VerifyEmailAction())->execute($me, $verifyEmailData);
 
         $this->assertTrue($me->fresh()->hasVerifiedEmail());
 
@@ -69,9 +69,10 @@ class VerifyEmailActionTest extends TestCase
         ]);
 
         try {
-            (new VerifyEmailAction)->execute($me, $verifyEmailData);
+            (new VerifyEmailAction())->execute($me, $verifyEmailData);
         } catch (AuthorizationException $e) {
             $this->assertFalse($me->fresh()->hasVerifiedEmail());
+
             return;
         }
 
@@ -90,9 +91,10 @@ class VerifyEmailActionTest extends TestCase
         ]);
 
         try {
-            (new VerifyEmailAction)->execute($me, $verifyEmailData);
+            (new VerifyEmailAction())->execute($me, $verifyEmailData);
         } catch (AuthorizationException $e) {
             $this->assertFalse($me->fresh()->hasVerifiedEmail());
+
             return;
         }
 

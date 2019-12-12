@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
+use App\Actions\Auth\ResetPasswordAction;
+use App\DataTransferObjects\Auth\ResetPasswordData;
 use App\Models\PasswordReset;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
-use App\Actions\Auth\ResetPasswordAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\DataTransferObjects\Auth\ResetPasswordData;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Tests\TestCase;
 
 class ResetPasswordActionTest extends TestCase
 {
@@ -27,13 +27,13 @@ class ResetPasswordActionTest extends TestCase
         $resetPasswordData = new ResetPasswordData([
             'email' => $me->email,
             'token' => $token,
-            'password' => 'new-password'
+            'password' => 'new-password',
         ]);
 
-        (new ResetPasswordAction)->execute($resetPasswordData);
+        (new ResetPasswordAction())->execute($resetPasswordData);
 
         $this->assertTrue(Hash::check('new-password', $me->fresh()->password));
-        $this->assertCount(0, PasswordReset::whereEmail($me->email)->get());
+        $this->assertCount(0, PasswordReset::where(['email' => $me->email])->get());
     }
 
     /** @test */
@@ -47,13 +47,14 @@ class ResetPasswordActionTest extends TestCase
         $resetPasswordData = new ResetPasswordData([
             'email' => $me->email,
             'token' => 'INVALID_RESET_TOKEN',
-            'password' => 'new-password'
+            'password' => 'new-password',
         ]);
 
         try {
-            (new ResetPasswordAction)->execute($resetPasswordData);
+            (new ResetPasswordAction())->execute($resetPasswordData);
         } catch (HttpException $e) {
             $this->assertEquals(Response::HTTP_FORBIDDEN, $e->getStatusCode());
+
             return;
         }
 
@@ -67,13 +68,14 @@ class ResetPasswordActionTest extends TestCase
         $resetPasswordData = new ResetPasswordData([
             'email' => $me->email,
             'token' => 'RESET_TOKEN',
-            'password' => 'new-password'
+            'password' => 'new-password',
         ]);
 
         try {
-            (new ResetPasswordAction)->execute($resetPasswordData);
+            (new ResetPasswordAction())->execute($resetPasswordData);
         } catch (HttpException $e) {
             $this->assertEquals(Response::HTTP_FORBIDDEN, $e->getStatusCode());
+
             return;
         }
 

@@ -1,5 +1,5 @@
 <?php
 
-Route::get('/', function () {
+Route::get('/', static function () {
     return response()->json(['status' => 'OK']);
 });

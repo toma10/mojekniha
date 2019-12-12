@@ -2,21 +2,21 @@
 
 namespace App\Actions\Auth;
 
-use App\Models\User;
-use App\Events\Auth\EmailVerified;
 use App\DataTransferObjects\Auth\VerifyEmailData;
+use App\Events\Auth\EmailVerified;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class VerifyEmailAction
 {
     public function execute(User $user, VerifyEmailData $verifyEmailData): void
     {
-        if (!hash_equals((string) $verifyEmailData->id, (string) $user->id)) {
-            throw new AuthorizationException;
+        if (! hash_equals((string) $verifyEmailData->id, (string) $user->id)) {
+            throw new AuthorizationException();
         }
 
-        if (!hash_equals((string) $verifyEmailData->hash, sha1($user->email))) {
-            throw new AuthorizationException;
+        if (! hash_equals((string) $verifyEmailData->hash, sha1($user->email))) {
+            throw new AuthorizationException();
         }
 
         if ($user->hasVerifiedEmail()) {

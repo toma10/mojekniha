@@ -7,9 +7,9 @@ use App\Notifications\Auth\VerifyEmailNotification;
 
 class SendEmailVerificationNotification
 {
-    public function handle(Registered $event)
+    public function handle(Registered $event): void
     {
-        if (!$event->user->hasVerifiedEmail()) {
+        if (! $event->user->hasVerifiedEmail()) {
             $event->user->notify(new VerifyEmailNotification($event->verifyEmailUrl));
         }
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -12,6 +12,9 @@ class UpdateProfileRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public function rules(): array
     {
         return [

@@ -2,8 +2,8 @@
 
 namespace App\Actions;
 
-use App\Models\Series;
 use App\DataTransferObjects\SeriesData;
+use App\Models\Series;
 
 class UpdateSeriesAction
 {

@@ -2,8 +2,8 @@
 
 namespace App\Actions;
 
-use App\Models\User;
 use App\DataTransferObjects\ProfileData;
+use App\Models\User;
 
 class UpdateProfileAction
 {

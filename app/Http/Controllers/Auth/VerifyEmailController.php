@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Response;
 use App\Actions\Auth\VerifyEmailAction;
-use App\Http\Requests\Auth\VerifyEmailRequest;
 use App\DataTransferObjects\Auth\VerifyEmailData;
+use App\Http\Requests\Auth\VerifyEmailRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class VerifyEmailController
 {
-    public function __invoke(VerifyEmailRequest $request, VerifyEmailAction $verifyEmailAction)
+    public function __invoke(VerifyEmailRequest $request, VerifyEmailAction $verifyEmailAction): JsonResponse
     {
         $verifyEmailAction->execute(
             $request->user(),

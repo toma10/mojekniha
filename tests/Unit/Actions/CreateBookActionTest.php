@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Actions;
 
+use App\Actions\CreateBookAction;
+use App\Actions\UploadBookCoverImageAction;
+use App\DataTransferObjects\BookData;
+use App\Models\Author;
+use App\Models\Book;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
-use App\Models\Book;
-use App\Models\Author;
-use App\Actions\CreateBookAction;
-use Illuminate\Http\Testing\File;
-use App\DataTransferObjects\BookData;
-use Illuminate\Support\Facades\Storage;
-use App\Actions\UploadBookCoverImageAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateBookActionTest extends TestCase
 {

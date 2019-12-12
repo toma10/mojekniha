@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Actions\LoginAction;
-use Illuminate\Support\Facades\Hash;
 use App\DataTransferObjects\Auth\LoginData;
-use Illuminate\Validation\ValidationException;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Tests\TestCase;
 
 class LoginActionTest extends TestCase
 {
@@ -27,7 +27,7 @@ class LoginActionTest extends TestCase
             'password' => 'password',
         ]);
 
-        (new LoginAction)->execute($loginData);
+        (new LoginAction())->execute($loginData);
 
         $this->assertAuthenticatedAs($user);
     }
@@ -46,9 +46,10 @@ class LoginActionTest extends TestCase
         ]);
 
         try {
-            (new LoginAction)->execute($loginData);
+            (new LoginAction())->execute($loginData);
         } catch (ValidationException $e) {
             $this->assertArrayHasKey('email', $e->errors());
+
             return;
         }
 

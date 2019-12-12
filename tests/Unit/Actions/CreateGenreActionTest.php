@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
 use App\Actions\CreateGenreAction;
 use App\DataTransferObjects\GenreData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CreateGenreActionTest extends TestCase
 {

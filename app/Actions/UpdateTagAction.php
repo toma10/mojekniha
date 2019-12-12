@@ -2,8 +2,8 @@
 
 namespace App\Actions;
 
-use App\Models\Tag;
 use App\DataTransferObjects\TagData;
+use App\Models\Tag;
 
 class UpdateTagAction
 {

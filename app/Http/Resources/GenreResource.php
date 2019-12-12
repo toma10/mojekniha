@@ -2,11 +2,20 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin \App\Models\Genre
+ */
 class GenreResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param Request $request
+     *
+     * @return array<mixed>
+     */
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

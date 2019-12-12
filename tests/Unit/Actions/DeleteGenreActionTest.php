@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Genre;
 use App\Actions\DeleteGenreAction;
+use App\Models\Genre;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteGenreActionTest extends TestCase
 {

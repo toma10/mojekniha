@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class ProfileData extends DataTransferObject
 {
-    /** @var @string */
+    /** @var string */
     public $name;
 
-    /** @var @string */
+    /** @var string */
     public $username;
 }

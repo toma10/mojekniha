@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Tag;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteTagTest extends TestCase
 {

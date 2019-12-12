@@ -2,25 +2,25 @@
 
 namespace App\Actions\Auth;
 
-use App\Models\User;
+use App\DataTransferObjects\Auth\ResetPasswordData;
 use App\Models\PasswordReset;
+use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
-use App\DataTransferObjects\Auth\ResetPasswordData;
 
 class ResetPasswordAction
 {
     public function execute(ResetPasswordData $data): void
     {
-        $this->guarPasswordResetToken($data->email, $data->token);
+        $this->guardPasswordResetToken($data->email, $data->token);
 
-        $user = User::whereEmail($data->email)->firstOrFail();
+        $user = User::findByEmail($data->email);
         $user->update(['password' => Hash::make($data->password)]);
 
-        PasswordReset::whereEmail($data->email)->delete();
+        PasswordReset::where(['email' => $data->email])->delete();
     }
 
-    protected function guarPasswordResetToken($email, $token): void
+    protected function guardPasswordResetToken(string $email, string $token): void
     {
         abort_if(
             PasswordReset::where(compact('email', 'token'))->count() !== 1,

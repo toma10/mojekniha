@@ -2,10 +2,10 @@
 
 namespace App\Actions\Auth;
 
-use App\Models\User;
-use App\Events\Auth\Registered;
-use Illuminate\Support\Facades\Hash;
 use App\DataTransferObjects\Auth\RegisterData;
+use App\Events\Auth\Registered;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterAction
 {

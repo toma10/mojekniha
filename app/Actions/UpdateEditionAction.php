@@ -2,11 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\Edition;
 use App\DataTransferObjects\EditionData;
+use App\Models\Edition;
 
 class UpdateEditionAction
 {
+    /** @var UploadEditionCoverImageAction */
     protected $uploadEditionCoverImageAction;
 
     public function __construct(UploadEditionCoverImageAction $uploadEditionCoverImageAction)

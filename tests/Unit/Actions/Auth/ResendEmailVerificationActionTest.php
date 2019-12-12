@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Actions\Auth\ResendEmailVerificationAction;
-use App\Notifications\Auth\VerifyEmailNotification;
 use App\DataTransferObjects\Auth\ResendEmailVerificationData;
+use App\Models\User;
+use App\Notifications\Auth\VerifyEmailNotification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class ResendEmailVerificationActionTest extends TestCase
 {
@@ -25,7 +25,7 @@ class ResendEmailVerificationActionTest extends TestCase
             'verify_email_url' => $verifyEmailUrl = 'http://url.dev',
         ]);
 
-        (new ResendEmailVerificationAction)->execute($me, $verifyEmailData);
+        (new ResendEmailVerificationAction())->execute($me, $verifyEmailData);
 
         Notification::assertSentTo(
             $me,
@@ -48,7 +48,7 @@ class ResendEmailVerificationActionTest extends TestCase
             'verify_email_url' => $verifyEmailUrl = 'http://url.dev',
         ]);
 
-        (new ResendEmailVerificationAction)->execute($me, $verifyEmailData);
+        (new ResendEmailVerificationAction())->execute($me, $verifyEmailData);
 
         Notification::assertNothingSent();
     }

@@ -2,8 +2,8 @@
 
 namespace App\Actions;
 
-use App\Models\BookBinding;
 use App\DataTransferObjects\BookBindingData;
+use App\Models\BookBinding;
 
 class CreateBookBindingAction
 {

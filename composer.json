@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "toma10/mojekniha",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -22,6 +22,8 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
+        "nunomaduro/larastan": "^0.4.3",
+        "nunomaduro/phpinsights": "^1.11",
         "phpunit/phpunit": "^8.0"
     },
     "config": {
@@ -51,7 +53,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "cs:fix": "php-cs-fixer fix",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -61,6 +62,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "lint": "php-cs-fixer fix -v",
+        "test:lint": "php-cs-fixer fix -v --dry-run",
+        "test:types": "php artisan code:analyse",
+        "test:insights": "php artisan insights",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:insights"
         ]
     }
 }

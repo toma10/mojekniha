@@ -3,32 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends BaseModel implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    JWTSubject
+class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable, Notifiable;
 
+    /** @var array<string> */
     protected $guarded = [];
 
+    /** @var array<string> */
     protected $casts = [
         'is_admin' => 'bool',
         'email_verified_at' => 'datetime',
     ];
 
+    public static function findByEmail(string $email): User
+    {
+        return User::where(['email' => $email])->firstOrFail();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    /**
+     * @return array<string>
+     */
+    public function getJWTCustomClaims(): array
     {
         return [];
     }

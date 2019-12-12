@@ -4,9 +4,9 @@ namespace App\Support;
 
 class PasswordResetTokenGenerator
 {
-    const TOKEN_LENGTH = 128;
+    protected const TOKEN_LENGTH = 128;
 
-    public function generate()
+    public function generate(): string
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyz';
 

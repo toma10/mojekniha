@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Actions\UpdateProfileAction;
 use App\DataTransferObjects\ProfileData;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateProfileActionTest extends TestCase
 {
@@ -21,7 +21,7 @@ class UpdateProfileActionTest extends TestCase
             'username' => 'johndoe',
         ]);
 
-        $me = (new UpdateProfileAction)->execute($me, $profileData);
+        $me = (new UpdateProfileAction())->execute($me, $profileData);
 
         $this->assertEquals('John Doe', $me->name);
         $this->assertEquals('johndoe', $me->username);

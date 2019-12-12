@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Book extends BaseModel implements HasMedia
 {
@@ -25,7 +26,7 @@ class Book extends BaseModel implements HasMedia
         return $this->belongsTo(Author::class);
     }
 
-    public function editions()
+    public function editions(): HasMany
     {
         return $this->hasMany(Edition::class);
     }

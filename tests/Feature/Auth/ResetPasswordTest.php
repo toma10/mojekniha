@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\PasswordReset;
+use App\Models\User;
+use App\Notifications\Auth\ResetPasswordNotification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Auth\ResetPasswordNotification;
+use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {
@@ -33,7 +33,7 @@ class ResetPasswordTest extends TestCase
 
         $response = $this->putJson('api/auth/password', [
             'email' => 'johndoe@example.com',
-            'reset_password_url' => 'http://url.dev'
+            'reset_password_url' => 'http://url.dev',
         ]);
 
         $response->assertStatus(Response::HTTP_ACCEPTED);

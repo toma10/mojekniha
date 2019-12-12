@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
 use App\Actions\CreateTagAction;
 use App\DataTransferObjects\TagData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CreateTagActionTest extends TestCase
 {

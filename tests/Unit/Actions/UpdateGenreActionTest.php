@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Genre;
 use App\Actions\UpdateGenreAction;
 use App\DataTransferObjects\GenreData;
+use App\Models\Genre;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UpdateGenreActionTest extends TestCase
 {

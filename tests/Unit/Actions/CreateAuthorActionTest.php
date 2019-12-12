@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Actions;
 
-use Mockery;
-use Tests\TestCase;
+use App\Actions\CreateAuthorAction;
+use App\Actions\UploadAuthorPortraitImageAction;
+use App\DataTransferObjects\AuthorData;
 use App\Models\Author;
 use App\Models\Nationality;
-use Illuminate\Http\Testing\File;
-use App\Actions\CreateAuthorAction;
-use App\DataTransferObjects\AuthorData;
-use Illuminate\Support\Facades\Storage;
-use App\Actions\UploadAuthorPortraitImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class CreateAuthorActionTest extends TestCase
 {

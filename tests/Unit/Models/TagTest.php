@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Tag;
-use Tests\TestCase;
 use App\Models\Book;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class TagTest extends TestCase
 {

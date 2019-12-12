@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class VerifyEmailTest extends TestCase
 {
@@ -63,7 +63,7 @@ class VerifyEmailTest extends TestCase
         $me = factory(User::class)->create();
         $data = [
             'id' => 'not-a-valid-int',
-            'hash' => 'HASH'
+            'hash' => 'HASH',
         ];
 
         $response = $this->login($me)->postJson('api/auth/email/verify', $data);

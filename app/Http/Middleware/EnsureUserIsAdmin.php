@@ -2,20 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class EnsureUserIsAdmin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  callable  $next
-     * @return mixed
-     */
-    public function handle($request, callable $next)
+    public function handle($request, Closure $next)
     {
-        if (!$request->user() || !$request->user()->isAdmin()) {
+        if (! $request->user() || ! $request->user()->isAdmin()) {
             throw new AuthorizationException();
         }
 

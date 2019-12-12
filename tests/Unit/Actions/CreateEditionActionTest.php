@@ -2,18 +2,18 @@
 
 namespace Tests\Unit\Actions;
 
-use Mockery;
-use Tests\TestCase;
+use App\Actions\CreateEditionAction;
+use App\Actions\UploadEditionCoverImageAction;
+use App\DataTransferObjects\EditionData;
 use App\Models\Book;
+use App\Models\BookBinding;
 use App\Models\Edition;
 use App\Models\Language;
-use App\Models\BookBinding;
-use Illuminate\Http\Testing\File;
-use App\Actions\CreateEditionAction;
-use Illuminate\Support\Facades\Storage;
-use App\DataTransferObjects\EditionData;
-use App\Actions\UploadEditionCoverImageAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
+use Mockery;
+use Tests\TestCase;
 
 class CreateEditionActionTest extends TestCase
 {
@@ -45,7 +45,6 @@ class CreateEditionActionTest extends TestCase
         $this->assertEquals($editionData->number_of_copies, $edition->number_of_copies);
         $this->assertEquals($editionData->book_binding_id, $edition->book_binding_id);
     }
-
 
     /** @test */
     public function upload_edition_cover_image_action_is_called_if_cover_image_is_included()

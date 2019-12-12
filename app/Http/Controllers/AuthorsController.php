@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
-use Illuminate\Http\Response;
 use App\Actions\CreateAuthorAction;
 use App\Actions\DeleteAuthorAction;
 use App\Actions\UpdateAuthorAction;
+use App\DataTransferObjects\AuthorData;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Resources\AuthorResource;
-use App\DataTransferObjects\AuthorData;
+use App\Models\Author;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class AuthorsController
 {
-    public function show(Author $author)
+    public function show(Author $author): JsonResource
     {
         return new AuthorResource($author);
     }
 
-    public function store(AuthorRequest $request, CreateAuthorAction $createAuthorAction)
+    public function store(AuthorRequest $request, CreateAuthorAction $createAuthorAction): JsonResponse
     {
         $author = $createAuthorAction->execute(
             new AuthorData($request->validated())
@@ -29,7 +31,7 @@ class AuthorsController
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function update(Author $author, AuthorRequest $request, UpdateAuthorAction $updateAuthorAction)
+    public function update(Author $author, AuthorRequest $request, UpdateAuthorAction $updateAuthorAction): JsonResource
     {
         $author = $updateAuthorAction->execute(
             $author,
@@ -39,7 +41,7 @@ class AuthorsController
         return new AuthorResource($author);
     }
 
-    public function destroy(Author $author, DeleteAuthorAction $deleteAuthorAction)
+    public function destroy(Author $author, DeleteAuthorAction $deleteAuthorAction): JsonResponse
     {
         $deleteAuthorAction->execute($author);
 

@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Edition;
 use App\Actions\DeleteEditionAction;
+use App\Models\Edition;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteEditionActionTest extends TestCase
 {

@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
+use App\Actions\UploadAuthorPortraitImageAction;
 use App\Models\Author;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
-use App\Actions\UploadAuthorPortraitImageAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UploadAuthorPortraitImageActionTest extends TestCase
 {

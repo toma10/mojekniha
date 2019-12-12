@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Edition extends BaseModel implements HasMedia
 {
@@ -28,7 +28,7 @@ class Edition extends BaseModel implements HasMedia
         return $this->belongsTo(Language::class);
     }
 
-    public function bookBinding()
+    public function bookBinding(): BelongsTo
     {
         return $this->belongsTo(BookBinding::class);
     }

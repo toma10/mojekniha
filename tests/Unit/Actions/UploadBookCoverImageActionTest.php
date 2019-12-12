@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
+use App\Actions\UploadBookCoverImageAction;
 use App\Models\Book;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
-use App\Actions\UploadBookCoverImageAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UploadBookCoverImageActionTest extends TestCase
 {

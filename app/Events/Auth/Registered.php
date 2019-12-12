@@ -3,14 +3,17 @@
 namespace App\Events\Auth;
 
 use App\Models\User;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class Registered
 {
     use Dispatchable, SerializesModels;
 
+    /** @var User */
     public $user;
+
+    /** @var string */
     public $verifyEmailUrl;
 
     public function __construct(User $user, string $verifyEmailUrl)

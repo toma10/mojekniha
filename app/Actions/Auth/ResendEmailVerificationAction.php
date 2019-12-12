@@ -2,9 +2,9 @@
 
 namespace App\Actions\Auth;
 
+use App\DataTransferObjects\Auth\ResendEmailVerificationData;
 use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
-use App\DataTransferObjects\Auth\ResendEmailVerificationData;
 
 class ResendEmailVerificationAction
 {

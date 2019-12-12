@@ -11,7 +11,7 @@ class LoginAction
     {
         $token = auth()->attempt($loginData->all());
 
-        if (!$token) {
+        if (! $token) {
             throw ValidationException::withMessages(
                 ['email' => [trans('auth.failed')]]
             );

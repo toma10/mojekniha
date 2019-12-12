@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Book;
+use App\Models\BookBinding;
 use App\Models\Edition;
 use App\Models\Language;
-use App\Models\BookBinding;
 use Faker\Generator as Faker;
 
 $factory->define(Edition::class, function (Faker $faker) {

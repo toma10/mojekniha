@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Response;
-use App\Actions\Auth\ResetPasswordAction;
 use App\Actions\Auth\RequestPasswordResetAction;
-use App\Http\Requests\Auth\ResetPasswordRequest;
-use App\DataTransferObjects\Auth\ResetPasswordData;
+use App\Actions\Auth\ResetPasswordAction;
 use App\DataTransferObjects\Auth\RequestPasswordResetData;
+use App\DataTransferObjects\Auth\ResetPasswordData;
+use App\Http\Requests\Auth\ResetPasswordRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ResetPasswordController
 {
@@ -15,7 +16,7 @@ class ResetPasswordController
         ResetPasswordRequest $request,
         RequestPasswordResetAction $requestPasswordResetAction,
         ResetPasswordAction $resetPasswordAction
-    ) {
+    ): JsonResponse {
         if ($request->has('token')) {
             $resetPasswordAction->execute(
                 new ResetPasswordData([

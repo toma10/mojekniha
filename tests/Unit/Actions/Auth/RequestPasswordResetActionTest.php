@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Actions\Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\PasswordReset;
-use Illuminate\Support\Facades\Notification;
 use App\Actions\Auth\RequestPasswordResetAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Facades\App\Support\PasswordResetTokenGenerator;
-use App\Notifications\Auth\ResetPasswordNotification;
 use App\DataTransferObjects\Auth\RequestPasswordResetData;
+use App\Models\PasswordReset;
+use App\Models\User;
+use App\Notifications\Auth\ResetPasswordNotification;
+use Facades\App\Support\PasswordResetTokenGenerator;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class RequestPasswordResetActionTest extends TestCase
 {
@@ -31,7 +31,7 @@ class RequestPasswordResetActionTest extends TestCase
             'reset_password_url' => $resetPasswordUrl = 'http://url.dev',
         ]);
 
-        (new RequestPasswordResetAction)->execute($requestPasswordResetData);
+        (new RequestPasswordResetAction())->execute($requestPasswordResetData);
 
         $this->assertPasswordResetCreated($me, $token);
         $this->assertResetPasswordNotificationSent($me, $token, $resetPasswordUrl);

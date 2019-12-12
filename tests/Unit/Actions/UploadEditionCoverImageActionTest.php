@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
+use App\Actions\UploadEditionCoverImageAction;
 use App\Models\Edition;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
-use App\Actions\UploadEditionCoverImageAction;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UploadEditionCoverImageActionTest extends TestCase
 {

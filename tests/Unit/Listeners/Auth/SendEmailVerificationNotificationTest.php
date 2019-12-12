@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Http\Middleware;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Events\Auth\Registered;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class SendEmailVerificationNotificationTest extends TestCase
 {

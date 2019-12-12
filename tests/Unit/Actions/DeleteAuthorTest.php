@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase;
-use App\Models\Author;
 use App\Actions\DeleteAuthorAction;
+use App\Models\Author;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteAuthorActionTest extends TestCase
 {

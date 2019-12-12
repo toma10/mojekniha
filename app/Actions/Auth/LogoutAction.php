@@ -2,16 +2,14 @@
 
 namespace App\Actions\Auth;
 
-use Exception;
-
 class LogoutAction
 {
-    public function execute():void
+    public function execute(): void
     {
-        try {
-            auth()->logout();
-        } catch (Exception $e) {
-            //
+        if (! auth()->check()) {
+            return;
         }
+
+        auth()->logout();
     }
 }

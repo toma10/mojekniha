@@ -2,11 +2,12 @@
 
 namespace App\Actions;
 
-use App\Models\Author;
 use App\DataTransferObjects\AuthorData;
+use App\Models\Author;
 
 class CreateAuthorAction
 {
+    /** @var UploadAuthorPortraitImageAction */
     protected $uploadAuthorPortraitImageAction;
 
     public function __construct(UploadAuthorPortraitImageAction $uploadAuthorPortraitImageAction)
@@ -16,7 +17,7 @@ class CreateAuthorAction
 
     public function execute(AuthorData $authorData): Author
     {
-        $author =Author::create(
+        $author = Author::create(
             $authorData->except('portrait_image')->toArray()
         );
 
