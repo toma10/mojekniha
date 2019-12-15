@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\BookBinding;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\BookBinding
+ * @mixin BookBinding
  */
 class BookBindingResource extends JsonResource
 {

@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Edition;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\Edition
+ * @mixin Edition
  */
 class EditionResource extends JsonResource
 {
