@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Nationality;
+use App\Domain\Book\Models\Nationality;
 use Faker\Generator as Faker;
 
 $factory->define(Nationality::class, function (Faker $faker) {

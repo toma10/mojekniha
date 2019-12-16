@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateAuthorAction;
-use App\Actions\DeleteAuthorAction;
-use App\Actions\UpdateAuthorAction;
-use App\DataTransferObjects\AuthorData;
+use App\Domain\Book\Actions\CreateAuthorAction;
+use App\Domain\Book\Actions\DeleteAuthorAction;
+use App\Domain\Book\Actions\UpdateAuthorAction;
+use App\Domain\Book\DataTransferObjects\AuthorData;
+use App\Domain\Book\Models\Author;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Resources\AuthorResource;
-use App\Models\Author;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;

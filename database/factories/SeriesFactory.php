@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Author;
-use App\Models\Series;
+use App\Domain\Book\Models\Author;
+use App\Domain\Book\Models\Series;
 use Faker\Generator as Faker;
 
 $factory->define(Series::class, function (Faker $faker) {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\RegisterAction;
-use App\DataTransferObjects\Auth\RegisterData;
+use App\Domain\Auth\Actions\RegisterAction;
+use App\Domain\Auth\DataTransferObjects\RegisterData;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\TokenResource;
 use Illuminate\Http\Resources\Json\JsonResource;

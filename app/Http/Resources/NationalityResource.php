@@ -2,12 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Nationality;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin Nationality
+ * @mixin \App\Domain\Book\Models\Nationality
  */
 class NationalityResource extends JsonResource
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\VerifyEmailAction;
-use App\DataTransferObjects\Auth\VerifyEmailData;
+use App\Domain\Auth\Actions\VerifyEmailAction;
+use App\Domain\Auth\DataTransferObjects\VerifyEmailData;
 use App\Http\Requests\Auth\VerifyEmailRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

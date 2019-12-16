@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateTagAction;
-use App\Actions\DeleteTagAction;
-use App\Actions\UpdateTagAction;
-use App\DataTransferObjects\TagData;
+use App\Domain\Book\Actions\CreateTagAction;
+use App\Domain\Book\Actions\DeleteTagAction;
+use App\Domain\Book\Actions\UpdateTagAction;
+use App\Domain\Book\DataTransferObjects\TagData;
+use App\Domain\Book\Models\Tag;
 use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
-use App\Models\Tag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;

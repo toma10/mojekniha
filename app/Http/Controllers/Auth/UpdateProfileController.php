@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\UpdateProfileAction;
-use App\DataTransferObjects\ProfileData;
+use App\Domain\Book\Actions\UpdateProfileAction;
+use App\Domain\Book\DataTransferObjects\ProfileData;
 use App\Http\Requests\Auth\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;

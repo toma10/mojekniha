@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\LoginAction;
-use App\DataTransferObjects\Auth\LoginData;
+use App\Domain\Auth\Actions\LoginAction;
+use App\Domain\Auth\DataTransferObjects\LoginData;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\TokenResource;
 use Illuminate\Http\Resources\Json\JsonResource;

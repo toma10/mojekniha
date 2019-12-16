@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateSeriesAction;
-use App\Actions\DeleteSeriesAction;
-use App\Actions\UpdateSeriesAction;
-use App\DataTransferObjects\SeriesData;
+use App\Domain\Book\Actions\CreateSeriesAction;
+use App\Domain\Book\Actions\DeleteSeriesAction;
+use App\Domain\Book\Actions\UpdateSeriesAction;
+use App\Domain\Book\DataTransferObjects\SeriesData;
+use App\Domain\Book\Models\Series;
 use App\Http\Requests\SeriesRequest;
 use App\Http\Resources\SeriesResource;
-use App\Models\Series;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;

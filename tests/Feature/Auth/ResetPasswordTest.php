@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\PasswordReset;
-use App\Models\User;
-use App\Notifications\Auth\ResetPasswordNotification;
+use App\Domain\Auth\Models\User;
+use App\Domain\Auth\Notifications\ResetPasswordNotification;
+use App\Domain\Book\Models\PasswordReset;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;

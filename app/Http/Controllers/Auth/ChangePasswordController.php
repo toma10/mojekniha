@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\ChangePasswordAction;
-use App\DataTransferObjects\PasswordData;
+use App\Domain\Auth\Actions\ChangePasswordAction;
+use App\Domain\Auth\DataTransferObjects\PasswordData;
 use App\Http\Requests\Auth\PasswordRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

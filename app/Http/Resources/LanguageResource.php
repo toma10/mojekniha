@@ -2,12 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin Language
+ * @mixin \App\Domain\Book\Models\Language
  */
 class LanguageResource extends JsonResource
 {

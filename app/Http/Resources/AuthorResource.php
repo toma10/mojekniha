@@ -2,12 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin Author
+ * @mixin \App\Domain\Book\Models\Author
  */
 class AuthorResource extends JsonResource
 {

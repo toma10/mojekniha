@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateGenreAction;
-use App\Actions\DeleteGenreAction;
-use App\Actions\UpdateGenreAction;
-use App\DataTransferObjects\GenreData;
+use App\Domain\Book\Actions\CreateGenreAction;
+use App\Domain\Book\Actions\DeleteGenreAction;
+use App\Domain\Book\Actions\UpdateGenreAction;
+use App\Domain\Book\DataTransferObjects\GenreData;
+use App\Domain\Book\Models\Genre;
 use App\Http\Requests\GenreRequest;
 use App\Http\Resources\GenreResource;
-use App\Models\Genre;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;

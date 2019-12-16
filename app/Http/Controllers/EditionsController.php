@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateEditionAction;
-use App\Actions\DeleteEditionAction;
-use App\Actions\UpdateEditionAction;
-use App\DataTransferObjects\EditionData;
+use App\Domain\Book\Actions\CreateEditionAction;
+use App\Domain\Book\Actions\DeleteEditionAction;
+use App\Domain\Book\Actions\UpdateEditionAction;
+use App\Domain\Book\DataTransferObjects\EditionData;
+use App\Domain\Book\Models\Edition;
 use App\Http\Requests\EditionRequest;
 use App\Http\Resources\EditionResource;
-use App\Models\Edition;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;

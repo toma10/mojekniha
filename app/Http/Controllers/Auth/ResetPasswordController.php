@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\RequestPasswordResetAction;
-use App\Actions\Auth\ResetPasswordAction;
-use App\DataTransferObjects\Auth\RequestPasswordResetData;
-use App\DataTransferObjects\Auth\ResetPasswordData;
+use App\Domain\Auth\Actions\RequestPasswordResetAction;
+use App\Domain\Auth\Actions\ResetPasswordAction;
+use App\Domain\Auth\DataTransferObjects\RequestPasswordResetData;
+use App\Domain\Auth\DataTransferObjects\ResetPasswordData;
 use App\Http\Requests\Auth\ResetPasswordRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

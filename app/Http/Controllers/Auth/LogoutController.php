@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\LogoutAction;
+use App\Domain\Auth\Actions\LogoutAction;
 use Illuminate\Http\JsonResponse;
 
 class LogoutController

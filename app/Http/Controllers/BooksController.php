@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateBookAction;
-use App\Actions\DeleteBookAction;
-use App\Actions\UpdateBookAction;
-use App\DataTransferObjects\BookData;
+use App\Domain\Book\Actions\CreateBookAction;
+use App\Domain\Book\Actions\DeleteBookAction;
+use App\Domain\Book\Actions\UpdateBookAction;
+use App\Domain\Book\DataTransferObjects\BookData;
+use App\Domain\Book\Models\Book;
 use App\Http\Requests\BookRequest;
 use App\Http\Resources\BookResource;
-use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
