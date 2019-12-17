@@ -2,16 +2,13 @@
 
 namespace App\Domain\Auth\Notifications;
 
+use App\Domain\Shared\Notifications\BaseNotification;
 use App\Domain\Shared\Support\Url;
-use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
 
-class ResetPasswordNotification extends Notification
+class ResetPasswordNotification extends BaseNotification
 {
-    use Queueable;
-
     /** @var string */
     public $token;
 
@@ -22,14 +19,6 @@ class ResetPasswordNotification extends Notification
     {
         $this->token = $token;
         $this->resetPasswordUrl = $resetPasswordUrl;
-    }
-
-    /**
-     * @return array<string>
-     */
-    public function via(): array
-    {
-        return ['mail'];
     }
 
     /**

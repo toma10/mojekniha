@@ -2,30 +2,19 @@
 
 namespace App\Domain\Auth\Notifications;
 
+use App\Domain\Shared\Notifications\BaseNotification;
 use App\Domain\Shared\Support\Url;
-use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
 
-class VerifyEmailNotification extends Notification
+class VerifyEmailNotification extends BaseNotification
 {
-    use Queueable;
-
     /** @var string */
     public $verifyEmailUrl;
 
     public function __construct(string $verifyEmailUrl)
     {
         $this->verifyEmailUrl = $verifyEmailUrl;
-    }
-
-    /**
-     * @return array<string>
-     */
-    public function via(): array
-    {
-        return ['mail'];
     }
 
     /**
