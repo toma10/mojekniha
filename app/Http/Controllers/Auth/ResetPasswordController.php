@@ -20,9 +20,9 @@ class ResetPasswordController
         if ($request->has('token')) {
             $resetPasswordAction->execute(
                 new ResetPasswordData([
-                    'email' => $request->email,
-                    'token' => $request->token,
-                    'password' => $request->password,
+                    'email' => $request->input('email'),
+                    'token' => $request->input('token'),
+                    'password' => $request->input('password'),
                 ])
             );
 
@@ -31,8 +31,8 @@ class ResetPasswordController
 
         $requestPasswordResetAction->execute(
             new RequestPasswordResetData([
-                'email' => $request->email,
-                'reset_password_url' => $request->reset_password_url,
+                'email' => $request->input('email'),
+                'reset_password_url' => $request->input('reset_password_url'),
             ])
         );
 
