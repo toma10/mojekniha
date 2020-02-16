@@ -7,8 +7,7 @@ use App\Domain\Book\Models\Author;
 
 class CreateAuthorAction
 {
-    /** @var UploadAuthorPortraitImageAction */
-    protected $uploadAuthorPortraitImageAction;
+    protected UploadAuthorPortraitImageAction $uploadAuthorPortraitImageAction;
 
     public function __construct(UploadAuthorPortraitImageAction $uploadAuthorPortraitImageAction)
     {

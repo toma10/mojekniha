@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class PasswordData extends DataTransferObject
 {
-    /** @var string */
-    public $password;
+    public string $password;
 
-    /** @var string */
-    public $new_password;
+    public string $new_password;
 }

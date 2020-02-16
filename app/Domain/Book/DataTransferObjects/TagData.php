@@ -6,6 +6,5 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class TagData extends DataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 }

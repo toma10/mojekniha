@@ -15,7 +15,9 @@ use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
-use SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 
 return [
 
@@ -94,10 +96,26 @@ return [
             'lineLimit' => 120,
             'absoluteLineLimit' => 160,
         ],
-        TypeHintDeclarationSniff::class => [
+        ParameterTypeHintSniff::class => [
             'exclude' => [
                 'app/Http/Middleware',
                 'app/Http/Resources',
+            ],
+        ],
+        ReturnTypeHintSniff::class => [
+            'exclude' => [
+                'app/Http/Middleware',
+            ],
+        ],
+        PropertyTypeHintSniff::class => [
+            'exclude' => [
+                'app/Console/Kernel.php',
+                'app/Exceptions/Handler.php',
+                'app/Domain/Auth/Models',
+                'app/Domain/Shared/Models',
+                'app/Http/Kernel',
+                'app/Http/Middleware',
+                'app/Providers',
             ],
         ],
         UnusedParameterSniff::class => [

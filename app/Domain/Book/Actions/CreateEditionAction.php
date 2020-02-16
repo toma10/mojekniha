@@ -7,8 +7,7 @@ use App\Domain\Book\Models\Edition;
 
 class CreateEditionAction
 {
-    /** @var UploadEditionCoverImageAction */
-    protected $uploadEditionCoverImageAction;
+    protected UploadEditionCoverImageAction $uploadEditionCoverImageAction;
 
     public function __construct(UploadEditionCoverImageAction $uploadEditionCoverImageAction)
     {

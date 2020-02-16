@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class VerifyEmailData extends DataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $hash;
+    public string $hash;
 }

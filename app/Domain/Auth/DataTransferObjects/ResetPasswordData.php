@@ -6,12 +6,9 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class ResetPasswordData extends DataTransferObject
 {
-    /** @var string */
-    public $email;
+    public string $email;
 
-    /** @var string */
-    public $token;
+    public string $token;
 
-    /** @var string */
-    public $password;
+    public string $password;
 }

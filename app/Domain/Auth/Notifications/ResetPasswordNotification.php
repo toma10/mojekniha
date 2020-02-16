@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Lang;
 
 class ResetPasswordNotification extends BaseNotification
 {
-    /** @var string */
-    public $token;
+    public string $token;
 
-    /** @var string */
-    public $resetPasswordUrl;
+    public string $resetPasswordUrl;
 
     public function __construct(string $token, string $resetPasswordUrl)
     {

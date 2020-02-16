@@ -2,31 +2,24 @@
 
 namespace App\Domain\Book\DataTransferObjects;
 
+use Illuminate\Http\UploadedFile;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class EditionData extends DataTransferObject
 {
-    /** @var int */
-    public $book_id;
+    public int $book_id;
 
-    /** @var string */
-    public $isbn;
+    public string $isbn;
 
-    /** @var int */
-    public $release_year;
+    public int $release_year;
 
-    /** @var int */
-    public $language_id;
+    public int $language_id;
 
-    /** @var int */
-    public $number_of_pages;
+    public int $number_of_pages;
 
-    /** @var int */
-    public $number_of_copies;
+    public int $number_of_copies;
 
-    /** @var int */
-    public $book_binding_id;
+    public int $book_binding_id;
 
-    /** @var \Illuminate\Http\UploadedFile|null */
-    public $cover_image;
+    public ?UploadedFile $cover_image;
 }

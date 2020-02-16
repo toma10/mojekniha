@@ -7,8 +7,7 @@ use App\Domain\Book\Models\Book;
 
 class CreateBookAction
 {
-    /** @var UploadBookCoverImageAction */
-    protected $uploadBookCoverImageAction;
+    protected UploadBookCoverImageAction $uploadBookCoverImageAction;
 
     public function __construct(UploadBookCoverImageAction $uploadBookCoverImageAction)
     {

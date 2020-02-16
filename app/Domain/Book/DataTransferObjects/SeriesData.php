@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class SeriesData extends DataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var int */
-    public $author_id;
+    public int $author_id;
 }

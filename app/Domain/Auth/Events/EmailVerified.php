@@ -10,8 +10,7 @@ class EmailVerified
 {
     use Dispatchable, SerializesModels;
 
-    /** @var User */
-    public $user;
+    public User $user;
 
     public function __construct(User $user)
     {

@@ -10,11 +10,9 @@ class Registered
 {
     use Dispatchable, SerializesModels;
 
-    /** @var User */
-    public $user;
+    public User $user;
 
-    /** @var string */
-    public $verifyEmailUrl;
+    public string $verifyEmailUrl;
 
     public function __construct(User $user, string $verifyEmailUrl)
     {

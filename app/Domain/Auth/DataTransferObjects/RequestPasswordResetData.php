@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class RequestPasswordResetData extends DataTransferObject
 {
-    /** @var string */
-    public $email;
+    public string $email;
 
-    /** @var string */
-    public $reset_password_url;
+    public string $reset_password_url;
 }

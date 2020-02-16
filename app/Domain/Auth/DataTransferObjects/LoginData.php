@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class LoginData extends DataTransferObject
 {
-    /** @var string */
-    public $email;
+    public string $email;
 
-    /** @var string */
-    public $password;
+    public string $password;
 }

@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Lang;
 
 class VerifyEmailNotification extends BaseNotification
 {
-    /** @var string */
-    public $verifyEmailUrl;
+    public string $verifyEmailUrl;
 
     public function __construct(string $verifyEmailUrl)
     {

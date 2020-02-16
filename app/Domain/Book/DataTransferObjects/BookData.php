@@ -2,25 +2,20 @@
 
 namespace App\Domain\Book\DataTransferObjects;
 
+use Illuminate\Http\UploadedFile;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class BookData extends DataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $original_name;
+    public string $original_name;
 
-    /** @var string */
-    public $description;
+    public string $description;
 
-    /** @var int */
-    public $release_year;
+    public int $release_year;
 
-    /** @var \Illuminate\Http\UploadedFile|null */
-    public $cover_image;
+    public ?UploadedFile $cover_image;
 
-    /** @var int */
-    public $author_id;
+    public int $author_id;
 }

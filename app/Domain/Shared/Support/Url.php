@@ -5,10 +5,7 @@ namespace App\Domain\Shared\Support;
 class Url
 {
     /**
-     * @param string $url
      * @param array<mixed> $params
-     *
-     * @return string
      */
     public static function build(string $url, array $params): string
     {

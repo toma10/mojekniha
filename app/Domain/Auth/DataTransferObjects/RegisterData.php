@@ -6,18 +6,13 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class RegisterData extends DataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $username;
+    public string $username;
 
-    /** @var string */
-    public $email;
+    public string $email;
 
-    /** @var string */
-    public $password;
+    public string $password;
 
-    /** @var string */
-    public $verify_email_url;
+    public string $verify_email_url;
 }
