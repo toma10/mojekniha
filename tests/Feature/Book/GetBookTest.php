@@ -25,7 +25,7 @@ class GetBookTest extends TestCase
                 'original_name' => $book->original_name,
                 'description' => $book->description,
                 'release_year' => $book->release_year,
-                'cover_image_path' => public_path('/images/book-cover.jpg'),
+                'cover_image_path' => url('/images/book-cover.jpg'),
             ],
         ]);
     }

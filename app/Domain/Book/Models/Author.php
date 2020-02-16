@@ -17,7 +17,7 @@ class Author extends BaseModel implements HasMedia
     {
         $this
             ->addMediaCollection('portrait-image')
-            ->useFallbackUrl(public_path('/images/portrait-image.jpg'))
+            ->useFallbackUrl(url('/images/portrait-image.jpg'))
             ->singleFile();
     }
 

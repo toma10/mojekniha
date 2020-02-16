@@ -31,7 +31,7 @@ class GetAuthorTest extends TestCase
                     'id' => $nationality->id,
                     'name' => $nationality->name,
                 ],
-                'portrait_image_path' => public_path('/images/portrait-image.jpg'),
+                'portrait_image_path' => url('/images/portrait-image.jpg'),
             ],
         ]);
     }

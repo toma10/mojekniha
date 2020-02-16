@@ -15,7 +15,7 @@ class Edition extends BaseModel implements HasMedia
     {
         $this
             ->addMediaCollection('cover-image')
-            ->useFallbackUrl(public_path('/images/book-cover.jpg'))
+            ->useFallbackUrl(url('/images/book-cover.jpg'))
             ->singleFile();
     }
 
