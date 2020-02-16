@@ -23,37 +23,37 @@ services:
       context: .
       dockerfile: ./build/php/Dockerfile
     depends_on:
-      - app-database
-      - app-redis
+      - mysql
+      - redis
     volumes:
       - ./:/var/www/html:cached
     networks:
       - app-network
-  app-database:
+  mysql:
     restart: unless-stopped
     image: mariadb:10.4
     volumes:
-      - database-data:/var/lib/mysql
+      - mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - ${MYSQL_LOCAL_PORT}:3306
+      - ${DB_LOCAL_PORT}:3306
     networks:
       - app-network
-  app-redis:
+  redis:
     restart: unless-stopped
     image: redis:5
     volumes:
-      - redis-data:/data
+      - redis:/data
     networks:
       - app-network
 
 volumes:
-  database-data:
-  redis-data:
+  mysql:
+  redis:
 
 networks:
   app-network:
