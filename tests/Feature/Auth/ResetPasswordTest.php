@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Domain\Auth\Models\User;
 use App\Domain\Auth\Notifications\ResetPasswordNotification;
-use App\Domain\Book\Models\PasswordReset;
+use App\Domain\Auth\Models\PasswordReset;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;

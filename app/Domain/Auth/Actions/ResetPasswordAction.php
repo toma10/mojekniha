@@ -4,7 +4,7 @@ namespace App\Domain\Auth\Actions;
 
 use App\Domain\Auth\DataTransferObjects\ResetPasswordData;
 use App\Domain\Auth\Models\User;
-use App\Domain\Book\Models\PasswordReset;
+use App\Domain\Auth\Models\PasswordReset;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 

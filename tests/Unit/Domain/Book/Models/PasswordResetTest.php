@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domain\Book\Models;
 
-use App\Domain\Book\Models\PasswordReset;
+use App\Domain\Auth\Models\PasswordReset;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

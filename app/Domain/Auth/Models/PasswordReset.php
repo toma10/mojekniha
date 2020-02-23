@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Book\Models;
+namespace App\Domain\Auth\Models;
 
 use App\Domain\Shared\Models\BaseModel;
 

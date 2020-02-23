@@ -6,7 +6,7 @@ use App\Domain\Auth\Actions\RequestPasswordResetAction;
 use App\Domain\Auth\DataTransferObjects\RequestPasswordResetData;
 use App\Domain\Auth\Models\User;
 use App\Domain\Auth\Notifications\ResetPasswordNotification;
-use App\Domain\Book\Models\PasswordReset;
+use App\Domain\Auth\Models\PasswordReset;
 use Facades\App\Domain\Auth\Support\PasswordResetTokenGenerator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
