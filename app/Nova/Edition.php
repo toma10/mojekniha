@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Domain\Book\Models\Edition as EditionModel;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Card;
 use Laravel\Nova\Fields\BelongsTo;
@@ -55,7 +56,8 @@ class Edition extends Resource
                 ->hideFromIndex(),
 
             Images::make('Cover image', 'cover-image')
-                ->rules('nullable'),
+                ->rules('nullable')
+                ->singleImageRules('mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)),
 
             BelongsTo::make('BookBinding')
                 ->hideFromIndex(),

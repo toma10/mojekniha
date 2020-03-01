@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Domain\Book\Models\Author as AuthorModel;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Card;
 use Laravel\Nova\Fields\BelongsTo;
@@ -56,7 +57,8 @@ class Author extends Resource
                 ->sortable(),
 
             Images::make('Portrait image', 'portrait-image')
-                ->rules('nullable'),
+                ->rules('nullable')
+                ->singleImageRules('mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)),
 
             HasMany::make('Books'),
 
