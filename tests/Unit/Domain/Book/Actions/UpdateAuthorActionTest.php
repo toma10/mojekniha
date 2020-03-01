@@ -9,6 +9,7 @@ use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Nationality;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Mockery;
 use Tests\TestCase;
@@ -33,8 +34,8 @@ class UpdateAuthorActionTest extends TestCase
         $author = app(UpdateAuthorAction::class)->execute($author, $authorData);
 
         $this->assertEquals($authorData->name, $author->name);
-        $this->assertEquals($authorData->birth_date, $author->birth_date);
-        $this->assertEquals($authorData->death_date, $author->death_date);
+        $this->assertEquals(Carbon::make($authorData->birth_date), $author->birth_date);
+        $this->assertEquals(Carbon::make($authorData->death_date), $author->death_date);
         $this->assertEquals($authorData->biography, $author->biography);
     }
 

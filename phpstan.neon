@@ -1,0 +1,28 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+
+    level: 8
+
+    ignoreErrors:
+        -
+            message: '#Property App\\Nova\\[A-z]+::\$model has no typehint specified\.#'
+            paths:
+                - app/Nova/*
+        -
+            message: '#Property App\\Domain\\[A-Z][a-z]+\\Models\\[A-Z][a-z]+::\$dates has no typehint specified.#'
+            paths:
+                - app/Domain/*/Models/*
+
+        -
+            message: '#Call to an undefined method Illuminate\\Auth\\AuthManager::[A-z]+().#'
+            paths:
+                - app/Domain/*/Actions/*
+    excludes_analyse:
+        - app/Http/Middleware/*
+        - app/Nova/Resource.php
+
+    checkMissingIterableValueType: true

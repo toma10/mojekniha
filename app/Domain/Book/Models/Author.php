@@ -13,6 +13,11 @@ class Author extends BaseModel implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
+    protected $dates = [
+        'birth_date',
+        'death_date',
+    ];
+
     public function registerMediaCollections(): void
     {
         $this

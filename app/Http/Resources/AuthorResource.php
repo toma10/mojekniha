@@ -20,8 +20,8 @@ class AuthorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'birth_date' => $this->birth_date,
-            'death_date' => $this->death_date,
+            'birth_date' => $this->birth_date->format('Y-m-d'),
+            'death_date' => optional($this->death_date)->format('Y-m-d'),
             'biography' => $this->biography,
             'nationality' => new NationalityResource($this->nationality),
             'portrait_image_path' => $this->getFirstMediaUrl('portrait-image'),

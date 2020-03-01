@@ -13,7 +13,7 @@ class UploadAuthorPortraitImageAction
             ->addMedia($image)
             ->usingName($author->name)
             ->usingFileName("{$author->name}.jpg")
-            ->sanitizingFileName(static function ($fileName) {
+            ->sanitizingFileName(static function (string $fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
             })
             ->toMediaCollection('portrait-image');

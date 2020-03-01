@@ -13,7 +13,7 @@ class UploadEditionCoverImageAction
             ->addMedia($image)
             ->usingName($edition->isbn)
             ->usingFileName("{$edition->isbn}.jpg")
-            ->sanitizingFileName(static function ($fileName) {
+            ->sanitizingFileName(static function (string $fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
             })
             ->toMediaCollection('cover-image');

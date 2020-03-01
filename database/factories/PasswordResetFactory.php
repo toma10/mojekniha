@@ -1,6 +1,6 @@
 <?php
 
-use App\Domain\Book\Models\PasswordReset;
+use App\Domain\Auth\Models\PasswordReset;
 use Faker\Generator as Faker;
 
 $factory->define(PasswordReset::class, function (Faker $faker) {

@@ -11,6 +11,7 @@ use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
 use ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff;
+use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
@@ -83,6 +84,7 @@ return [
         ForbiddenNormalClasses::class,
         ForbiddenTraits::class,
         ForbiddenPublicPropertySniff::class,
+        OrderedClassElementsFixer::class,
     ],
 
     'config' => [
@@ -100,28 +102,33 @@ return [
             'exclude' => [
                 'app/Http/Middleware',
                 'app/Http/Resources',
+                'app/Nova',
             ],
         ],
         ReturnTypeHintSniff::class => [
             'exclude' => [
                 'app/Http/Middleware',
+                'app/Nova',
             ],
         ],
         PropertyTypeHintSniff::class => [
             'exclude' => [
                 'app/Console/Kernel.php',
+                'app/Domain/Book/Models',
                 'app/Exceptions/Handler.php',
                 'app/Domain/Auth/Models',
                 'app/Domain/Shared/Models',
                 'app/Http/Kernel',
                 'app/Http/Middleware',
                 'app/Providers',
+                'app/Nova',
             ],
         ],
         UnusedParameterSniff::class => [
             'exclude' => [
                 'app/Console/Kernel.php',
                 'app/Http/Resources',
+                'app/Nova',
             ],
         ],
     ],

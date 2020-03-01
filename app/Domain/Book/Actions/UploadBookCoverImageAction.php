@@ -13,7 +13,7 @@ class UploadBookCoverImageAction
             ->addMedia($image)
             ->usingName($book->original_name)
             ->usingFileName("{$book->original_name}.jpg")
-            ->sanitizingFileName(static function ($fileName) {
+            ->sanitizingFileName(static function (string $fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
             })
             ->toMediaCollection('cover-image');

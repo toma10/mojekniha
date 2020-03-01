@@ -4,6 +4,7 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('storage')
     ->exclude('bootstrap/cache')
+    ->exclude('nova')
     ->in(__DIR__)
 ;
 
