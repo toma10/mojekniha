@@ -24,6 +24,8 @@ class Book extends Resource
     public static $model = BookModel::class;
 
     public static $title = 'name';
+    public static $group = 'Books';
+
 
     /** @var array<string> */
     public static $search = [

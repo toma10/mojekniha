@@ -21,6 +21,8 @@ class Edition extends Resource
     public static $model = EditionModel::class;
 
     public static $title = 'isbn';
+    public static $group = 'Books';
+
 
     /** @var array<string> */
     public static $search = [

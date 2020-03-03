@@ -18,6 +18,8 @@ class Series extends Resource
 {
     public static $model = SeriesModel::class;
 
+    public static $group = 'Books';
+
     public static $title = 'id';
 
     /** @var array<string> */

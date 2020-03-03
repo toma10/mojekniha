@@ -23,6 +23,8 @@ class Author extends Resource
     public static $model = AuthorModel::class;
 
     public static $title = 'name';
+    public static $group = 'Books';
+
 
     /** @var array<string> */
     public static $search = [

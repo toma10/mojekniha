@@ -17,6 +17,8 @@ class Nationality extends Resource
 {
     public static $model = NationalityModel::class;
 
+    public static $group = 'Books';
+
     public static $title = 'name';
 
     /** @var array<string> */

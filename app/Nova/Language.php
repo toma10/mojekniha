@@ -17,6 +17,8 @@ class Language extends Resource
 {
     public static $model = LanguageModel::class;
 
+    public static $group = 'Books';
+
     public static $title = 'name';
 
     /** @var array<string> */

@@ -17,6 +17,8 @@ class Tag extends Resource
 {
     public static $model = TagModel::class;
 
+    public static $group = 'Books';
+
     public static $title = 'name';
 
     /** @var array<string> */

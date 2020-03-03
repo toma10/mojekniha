@@ -16,6 +16,8 @@ class BookBinding extends Resource
 {
     public static $model = BookBindingModel::class;
 
+    public static $group = 'Books';
+
     public static $title = 'name';
 
     /** @var array<string> */
