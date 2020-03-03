@@ -48,7 +48,7 @@ class Author extends Resource
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Date::make('Death date', 'death_date')
+            Date::make('Death date')
                 ->sortable()
                 ->rules('nullable', 'date'),
 
