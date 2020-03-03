@@ -20,7 +20,14 @@ class Series extends Resource
 
     public static $group = 'Books';
 
-    public static $title = 'id';
+    public function title()
+    {
+        return sprintf(
+            '%s (%s)',
+            $this->name,
+            $this->author->name
+        );
+    }
 
     /** @var array<string> */
     public static $search = [

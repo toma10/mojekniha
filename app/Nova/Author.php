@@ -22,9 +22,17 @@ class Author extends Resource
 {
     public static $model = AuthorModel::class;
 
-    public static $title = 'name';
     public static $group = 'Books';
 
+    public function title()
+    {
+        return sprintf(
+            '%s (%s - %s)',
+            $this->name,
+            $this->birth_date->format('Y-m-d'),
+            optional($this->death_date)->format('Y-m-d') ?? 'now'
+        );
+    }
 
     /** @var array<string> */
     public static $search = [

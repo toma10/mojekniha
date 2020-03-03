@@ -20,9 +20,16 @@ class Edition extends Resource
 {
     public static $model = EditionModel::class;
 
-    public static $title = 'isbn';
     public static $group = 'Books';
 
+    public function title()
+    {
+        return sprintf(
+            '%s (%s)',
+            $this->isbn,
+            $this->author->name
+        );
+    }
 
     /** @var array<string> */
     public static $search = [
