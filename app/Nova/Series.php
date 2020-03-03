@@ -48,6 +48,7 @@ class Series extends Resource
                 ->rules('required'),
 
             BelongsTo::make('Author')
+                ->searchable()
                 ->withoutTrashed(),
 
             HasMany::make('Books'),

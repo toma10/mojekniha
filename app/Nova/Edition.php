@@ -46,6 +46,7 @@ class Edition extends Resource
             ID::make()->sortable(),
 
             BelongsTo::make('Book')
+                ->searchable()
                 ->withoutTrashed(),
 
             Text::make('ISBN')

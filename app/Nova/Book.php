@@ -58,16 +58,18 @@ class Book extends Resource
                 ->rules('required', 'max:255'),
 
             Textarea::make('Description')
-                ->rules('nullable', 'string'),
+                ->rules('required'),
 
             Number::make('Release year')->min(0)->step(1)
                 ->rules('required', ' numeric', 'min:0'),
 
             BelongsTo::make('Author')
+                ->searchable()
                 ->withoutTrashed(),
 
             BelongsTo::make('Series')
-                ->nullable(),
+                ->searchable()
+                ->rules('nullable'),
 
             Images::make('Cover image', 'cover-image')
                 ->rules('nullable')
@@ -75,9 +77,11 @@ class Book extends Resource
 
             HasMany::make('Editions'),
 
-            BelongsToMany::make('Genres'),
+            BelongsToMany::make('Genres')
+                ->searchable(),
 
-            BelongsToMany::make('Tags'),
+            BelongsToMany::make('Tags')
+                ->searchable(),
         ];
     }
 

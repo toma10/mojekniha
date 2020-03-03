@@ -61,10 +61,11 @@ class Author extends Resource
                 ->rules('nullable', 'date'),
 
             Textarea::make('Biography')
-                ->rules('nullable', 'string'),
+                ->rules('nullable'),
 
             BelongsTo::make('Nationality')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
 
             Images::make('Portrait image', 'portrait-image')
                 ->rules('nullable')
