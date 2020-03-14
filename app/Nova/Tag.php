@@ -17,9 +17,22 @@ class Tag extends Resource
 {
     public static $model = TagModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public static $title = 'name';
+
+    public static function label()
+    {
+        return __('Tags');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Tag');
+    }
 
     /** @var array<string> */
     public static $search = [
@@ -35,11 +48,11 @@ class Tag extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required', 'unique:tags,name'),
 
-            BelongsToMany::make('Books'),
+            BelongsToMany::make(__('Books'), 'books', Book::class),
         ];
     }
 

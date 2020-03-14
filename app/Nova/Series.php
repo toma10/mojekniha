@@ -18,7 +18,10 @@ class Series extends Resource
 {
     public static $model = SeriesModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public function title()
     {
@@ -27,6 +30,16 @@ class Series extends Resource
             $this->name,
             $this->author->name
         );
+    }
+
+    public static function label()
+    {
+        return __('Series');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Serie');
     }
 
     /** @var array<string> */
@@ -43,15 +56,15 @@ class Series extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required'),
 
-            BelongsTo::make('Author')
+            BelongsTo::make(__('Author'), 'author', Author::class)
                 ->searchable()
                 ->withoutTrashed(),
 
-            HasMany::make('Books'),
+            HasMany::make(__('Books'), 'books', Book::class),
         ];
     }
 

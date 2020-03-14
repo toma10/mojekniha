@@ -17,9 +17,22 @@ class Language extends Resource
 {
     public static $model = LanguageModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public static $title = 'name';
+
+    public static function label()
+    {
+        return __('Languages');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Language');
+    }
 
     /** @var array<string> */
     public static $search = [
@@ -35,10 +48,10 @@ class Language extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable(),
 
-            HasMany::make('Editions'),
+            HasMany::make(__('Editions'), 'editions', Edition::class),
         ];
     }
 

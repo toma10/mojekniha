@@ -20,7 +20,10 @@ class Edition extends Resource
 {
     public static $model = EditionModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public function title()
     {
@@ -29,6 +32,16 @@ class Edition extends Resource
             $this->isbn,
             $this->author->name
         );
+    }
+
+    public static function label()
+    {
+        return __('Editions');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Edition');
     }
 
     /** @var array<string> */
@@ -45,31 +58,37 @@ class Edition extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Book')
+            BelongsTo::make(__('Book'), 'book', Book::class)
                 ->searchable()
                 ->withoutTrashed(),
 
             Text::make('ISBN')
                 ->rules('required', 'max:255'),
 
-            Number::make('Release year')->min(0)->step(1)
+            Number::make(__('Release year'), 'release_year')
+                ->min(0)
+                ->step(1)
                 ->rules('required', ' numeric', 'min:0'),
 
-            BelongsTo::make('Language'),
+            BelongsTo::make(__('Language'), 'language', Language::class),
 
-            Number::make('Number of pages')->min(0)->step(1)
+            Number::make(__('Number of pages'), 'number_of_pages')
+                ->min(0)
+                ->step(1)
                 ->rules('required', ' numeric', 'min:0')
                 ->hideFromIndex(),
 
-            Number::make('Number of copies')->min(0)->step(1)
+            Number::make(__('Number of copies'), 'number_of_copies')
+                ->min(0)
+                ->step(1)
                 ->rules('required', ' numeric', 'min:0')
                 ->hideFromIndex(),
 
-            Images::make('Cover image', 'cover-image')
+            Images::make(__('Cover image'), 'cover-image')
                 ->rules('nullable')
                 ->singleImageRules('mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)),
 
-            BelongsTo::make('BookBinding')
+            BelongsTo::make(__('Book Binding'), 'bookBinding', BookBinding::class)
                 ->hideFromIndex(),
         ];
     }

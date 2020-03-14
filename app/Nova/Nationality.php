@@ -17,7 +17,10 @@ class Nationality extends Resource
 {
     public static $model = NationalityModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public static $title = 'name';
 
@@ -27,6 +30,16 @@ class Nationality extends Resource
         'name',
     ];
 
+    public static function label()
+    {
+        return __('Nationalities');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Nationality');
+    }
+
     /**
      * @return array<Field>
      */
@@ -35,10 +48,10 @@ class Nationality extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable(),
 
-            HasMany::make('Authors'),
+            HasMany::make(__('Authors'), 'authors', Author::class),
         ];
     }
 

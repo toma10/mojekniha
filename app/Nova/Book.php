@@ -23,7 +23,10 @@ class Book extends Resource
 {
     public static $model = BookModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public function title()
     {
@@ -32,6 +35,16 @@ class Book extends Resource
             $this->name,
             $this->author->name
         );
+    }
+
+    public static function label()
+    {
+        return __('Books');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Book');
     }
 
     /** @var array<string> */
@@ -49,38 +62,38 @@ class Book extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Original name')
+            Text::make(__('Original name'), 'original_name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Textarea::make('Description')
+            Textarea::make(__('Description'), 'description')
                 ->rules('required'),
 
-            Number::make('Release year')->min(0)->step(1)
+            Number::make(__('Release year'), 'release_year')->min(0)->step(1)
                 ->rules('required', ' numeric', 'min:0'),
 
-            BelongsTo::make('Author')
+            BelongsTo::make(__('Author'), 'author', Author::class)
                 ->searchable()
                 ->withoutTrashed(),
 
-            BelongsTo::make('Series')
+            BelongsTo::make(__('Series'), 'series', Series::class)
                 ->searchable()
                 ->rules('nullable'),
 
-            Images::make('Cover image', 'cover-image')
+            Images::make(__('Cover image'), 'cover-image')
                 ->rules('nullable')
                 ->singleImageRules('mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)),
 
-            HasMany::make('Editions'),
+            HasMany::make(__('Editions'), 'editions', Edition::class),
 
-            BelongsToMany::make('Genres')
+            BelongsToMany::make(__('Genres'), 'genres', Genre::class)
                 ->searchable(),
 
-            BelongsToMany::make('Tags')
+            BelongsToMany::make(__('Tags'), 'tags', Tag::class)
                 ->searchable(),
         ];
     }

@@ -16,9 +16,22 @@ class BookBinding extends Resource
 {
     public static $model = BookBindingModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public static $title = 'name';
+
+    public static function label()
+    {
+        return __('Book Bindings');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Book Binding');
+    }
 
     /** @var array<string> */
     public static $search = [
@@ -34,7 +47,7 @@ class BookBinding extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required', 'unique:book_bindings,name'),
         ];

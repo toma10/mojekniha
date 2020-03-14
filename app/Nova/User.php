@@ -19,7 +19,22 @@ class User extends Resource
 {
     public static $model = UserModel::class;
 
+    public static function group()
+    {
+        return __('Other');
+    }
+
     public static $title = 'name';
+
+    public static function label()
+    {
+        return __('Users');
+    }
+
+    public static function singularLabel()
+    {
+        return __('User');
+    }
 
     /** @var array<string> */
     public static $search = [
@@ -38,21 +53,21 @@ class User extends Resource
 
             Gravatar::make(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('username')
+            Text::make(__('Username'), 'username')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Email')
+            Text::make(__('Email'), 'email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Password::make('Password')
+            Password::make(__('Password'), 'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),

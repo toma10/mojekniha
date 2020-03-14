@@ -22,7 +22,10 @@ class Author extends Resource
 {
     public static $model = AuthorModel::class;
 
-    public static $group = 'Books';
+    public static function group()
+    {
+        return __('Books');
+    }
 
     public function title()
     {
@@ -32,6 +35,16 @@ class Author extends Resource
             $this->birth_date->format('Y-m-d'),
             optional($this->death_date)->format('Y-m-d') ?? 'now'
         );
+    }
+
+    public static function label()
+    {
+        return __('Authors');
+    }
+
+    public static function singularLabel()
+    {
+        return __('Author');
     }
 
     /** @var array<string> */
@@ -48,32 +61,32 @@ class Author extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Text::make(__('Name'), 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Date::make('Birth date')
+            Date::make(__('Birth date'), 'birth_date')
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Date::make('Death date')
+            Date::make(__('Death date'), 'death_date')
                 ->sortable()
                 ->rules('nullable', 'date'),
 
-            Textarea::make('Biography')
+            Textarea::make(__('Biography'), 'biography')
                 ->rules('nullable'),
 
-            BelongsTo::make('Nationality')
+            BelongsTo::make(__('Nationality'), 'nationality', Nationality::class)
                 ->sortable()
                 ->searchable(),
 
-            Images::make('Portrait image', 'portrait-image')
+            Images::make(__('Portrait image'), 'portrait-image')
                 ->rules('nullable')
                 ->singleImageRules('mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)),
 
-            HasMany::make('Books'),
+            HasMany::make(__('Books'), 'books', Book::class),
 
-            HasMany::make('Series'),
+            HasMany::make(__('Series'), 'series', Series::class),
         ];
     }
 
