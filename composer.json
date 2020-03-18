@@ -17,6 +17,7 @@
         "php": "^7.2",
         "ebess/advanced-nova-media-library": "^2.9",
         "fideloper/proxy": "^4.0",
+        "inertiajs/inertia-laravel": "^0.2.5",
         "laravel/framework": "^6.2",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
