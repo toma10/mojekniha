@@ -1,21 +1,21 @@
 <?php
 
-use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\MeController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResendEmailVerificationController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\UpdateProfileController;
-use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\AuthorsController;
-use App\Http\Controllers\BookBindingsController;
-use App\Http\Controllers\BooksController;
-use App\Http\Controllers\EditionsController;
-use App\Http\Controllers\GenresController;
-use App\Http\Controllers\SeriesController;
-use App\Http\Controllers\TagsController;
+use App\Http\Controllers\Api\Auth\ChangePasswordController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Auth\MeController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\ResendEmailVerificationController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Auth\UpdateProfileController;
+use App\Http\Controllers\Api\Auth\VerifyEmailController;
+use App\Http\Controllers\Api\AuthorsController;
+use App\Http\Controllers\Api\BookBindingsController;
+use App\Http\Controllers\Api\BooksController;
+use App\Http\Controllers\Api\EditionsController;
+use App\Http\Controllers\Api\GenresController;
+use App\Http\Controllers\Api\SeriesController;
+use App\Http\Controllers\Api\TagsController;
 
 Route::post('auth/register', RegisterController::class)->middleware('guest:api');
 Route::post('auth/login', LoginController::class);

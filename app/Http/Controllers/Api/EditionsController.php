@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Domain\Book\Actions\CreateEditionAction;
 use App\Domain\Book\Actions\DeleteEditionAction;
