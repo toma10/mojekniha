@@ -1,9 +1,17 @@
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
+import route from 'ziggy'
+import { Ziggy } from './routes'
 
 Vue.use(InertiaApp)
 Vue.use(VueMeta)
+
+Vue.mixin({
+  methods: {
+    route: (name, params, absolute) => route(name, params, absolute, Ziggy),
+  }
+})
 
 const app = document.getElementById('app')
 

@@ -4,6 +4,7 @@
 /public/css
 /public/js
 /public/mix-manifest.json
+/resources/js/routes.js
 /storage/*.key
 /vendor
 /nova

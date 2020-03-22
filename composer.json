@@ -23,6 +23,7 @@
         "laravel/tinker": "^1.0",
         "spatie/data-transfer-object": "^1.10",
         "spatie/laravel-medialibrary": "^7.0.0",
+        "tightenco/ziggy": "^0.9.0",
         "tymon/jwt-auth": "1.0.0-rc.5"
     },
     "require-dev": {
