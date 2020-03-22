@@ -13,10 +13,21 @@ parameters:
             paths:
                 - app/Nova/*
         -
+            message: '#Method App\\Nova\\[A-z]+::(group|label|singularLabel)\(\) should return string but returns array\|string\|null.#'
+            paths:
+                - app/Nova/*
+        -
+            message: '#Call to an undefined method Ebess\\AdvancedNovaMediaLibrary\\Fields\\Media::singleImageRules().#'
+            paths:
+                - app/Nova/*
+        -
+            message: '#Access to an undefined property App\\Nova\\[A-z]+::\$[A-z]+.#'
+            paths:
+                - app/Nova/*
+        -
             message: '#Property App\\Domain\\[A-Z][a-z]+\\Models\\[A-Z][a-z]+::\$dates has no typehint specified.#'
             paths:
                 - app/Domain/*/Models/*
-
         -
             message: '#Call to an undefined method Illuminate\\Auth\\AuthManager::[A-z]+().#'
             paths:
