@@ -2,20 +2,40 @@
 
 namespace Tests\Unit\Domain\Auth\Actions;
 
-use App\Domain\Auth\Actions\LoginAction;
+use App\Domain\Auth\Actions\LoginWebAction;
 use App\Domain\Auth\DataTransferObjects\LoginData;
 use App\Domain\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
-class LoginActionTest extends TestCase
+class LoginWebActionTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function it_logs_in_a_user()
+    public function it_logs_in_an_admin()
+    {
+        $user = factory(User::class)->state('admin')->create([
+            'email' => 'johndoe@examlple.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        $loginData = new LoginData([
+            'email' => 'johndoe@examlple.com',
+            'password' => 'password',
+            'remember' => true,
+        ]);
+
+        (new LoginWebAction())->execute($loginData);
+
+        $this->assertAuthenticatedAs($user, 'web');
+    }
+
+    /** @test */
+    public function user_must_be_admin()
     {
         $user = factory(User::class)->create([
             'email' => 'johndoe@examlple.com',
@@ -25,17 +45,24 @@ class LoginActionTest extends TestCase
         $loginData = new LoginData([
             'email' => 'johndoe@examlple.com',
             'password' => 'password',
+            'remember' => true,
         ]);
 
-        (new LoginAction())->execute($loginData);
+        try {
+            (new LoginWebAction())->execute($loginData);
+        } catch (HttpException $e) {
+            $this->assertEquals(403, $e->getStatusCode());
 
-        $this->assertAuthenticatedAs($user);
+            return;
+        }
+
+        $this->fail('HttpException should be thrown, but was not.');
     }
 
     /** @test */
     public function it_throws_validation_exception_if_invalid_credentials_provided()
     {
-        $user = factory(User::class)->create([
+        $user = factory(User::class)->state('admin')->create([
             'email' => 'johndoe@examlple.com',
             'password' => Hash::make('password'),
         ]);
@@ -43,10 +70,11 @@ class LoginActionTest extends TestCase
         $loginData = new LoginData([
             'email' => 'johndoe@examlple.com',
             'password' => 'not-a-valid-password',
+            'remember' => true,
         ]);
 
         try {
-            (new LoginAction())->execute($loginData);
+            (new LoginWebAction())->execute($loginData);
         } catch (ValidationException $e) {
             $this->assertArrayHasKey('email', $e->errors());
 

@@ -5,11 +5,13 @@ namespace App\Domain\Auth\Actions;
 use App\Domain\Auth\DataTransferObjects\LoginData;
 use Illuminate\Validation\ValidationException;
 
-class LoginAction
+class LoginApiAction
 {
     public function execute(LoginData $loginData): string
     {
-        $token = auth()->attempt($loginData->all());
+        $token = auth()->attempt(
+            $loginData->only('email', 'password')->toArray()
+        );
 
         if (! $token) {
             throw ValidationException::withMessages(
