@@ -23,7 +23,8 @@ class LogoutTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->login($user)->postJson('api/auth/logout');
+        auth()->login($user);
+        $response = $this->postJson('api/auth/logout');
 
         $response->assertOk();
     }

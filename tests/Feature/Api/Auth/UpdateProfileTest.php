@@ -27,7 +27,7 @@ class UpdateProfileTest extends TestCase
             'username' => 'johndoe',
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertOk();
         $response->assertJson([
@@ -48,7 +48,7 @@ class UpdateProfileTest extends TestCase
             'username' => 'johndoe',
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertJsonValidationErrors('name');
     }
@@ -62,7 +62,7 @@ class UpdateProfileTest extends TestCase
             'username' => null,
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertJsonValidationErrors('username');
     }
@@ -78,7 +78,7 @@ class UpdateProfileTest extends TestCase
             'username' => 'johndoe',
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertJsonValidationErrors('username');
     }
@@ -92,7 +92,7 @@ class UpdateProfileTest extends TestCase
             'username' => 'johndoe',
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertJsonMissingValidationErrors('username');
     }
@@ -107,7 +107,7 @@ class UpdateProfileTest extends TestCase
             'email' => 'johnnyd@example.com',
         ];
 
-        $response = $this->login($me->fresh())->putJson('api/auth/me', $data);
+        $response = $this->actingAs($me->fresh())->putJson('api/auth/me', $data);
 
         $response->assertOk();
         $this->assertEquals('johndoe@example.com', $me->email);

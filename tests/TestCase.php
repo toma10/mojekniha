@@ -24,11 +24,4 @@ abstract class TestCase extends BaseTestCase
             });
         });
     }
-
-    public function login(User $user): self
-    {
-        auth()->login($user);
-
-        return $this;
-    }
 }

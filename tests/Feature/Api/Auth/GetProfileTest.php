@@ -23,7 +23,7 @@ class GetProfileTest extends TestCase
     {
         $me = factory(User::class)->create();
 
-        $response = $this->login($me->fresh())->getJson('api/auth/me');
+        $response = $this->actingAs($me->fresh())->getJson('api/auth/me');
 
         $response->assertOk();
         $response->assertExactJson([

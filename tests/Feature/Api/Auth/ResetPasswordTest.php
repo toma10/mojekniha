@@ -19,7 +19,7 @@ class ResetPasswordTest extends TestCase
     {
         $me = factory(User::class)->create();
 
-        $response = $this->login($me)->putJson('api/auth/password');
+        $response = $this->actingAs($me)->postJson('api/auth/password/reset/RESET_TOKEN');
 
         $response->assertForbidden();
     }

@@ -29,7 +29,7 @@ class ChangePasswordTest extends TestCase
             'new_password_confirmation' => 'new-password',
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertNoContent();
     }
@@ -44,7 +44,7 @@ class ChangePasswordTest extends TestCase
             'new_password_confirmation' => 'new-password',
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertJsonValidationErrors('password');
     }
@@ -59,7 +59,7 @@ class ChangePasswordTest extends TestCase
             'new_password_confirmation' => 'new-password',
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertJsonValidationErrors('password');
     }
@@ -73,7 +73,7 @@ class ChangePasswordTest extends TestCase
             'new_password' => null,
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertJsonValidationErrors('new_password');
     }
@@ -88,7 +88,7 @@ class ChangePasswordTest extends TestCase
             'new_password_confirmation' => 'new-password',
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertJsonValidationErrors('new_password');
     }
@@ -103,7 +103,7 @@ class ChangePasswordTest extends TestCase
             'new_password_confirmation' => 'secret',
         ];
 
-        $response = $this->login($me->fresh())->postJson('api/auth/password', $data);
+        $response = $this->actingAs($me->fresh())->postJson('api/auth/password', $data);
 
         $response->assertJsonValidationErrors('new_password');
     }

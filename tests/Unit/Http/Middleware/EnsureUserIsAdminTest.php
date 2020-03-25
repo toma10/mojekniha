@@ -33,7 +33,7 @@ class EnsureUserIsAdminTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->login($user)->getJson('/webhook-test');
+        $response = $this->actingAs($user)->getJson('/webhook-test');
 
         $response->assertForbidden();
     }
@@ -43,7 +43,7 @@ class EnsureUserIsAdminTest extends TestCase
     {
         $admin = factory(User::class)->state('admin')->create();
 
-        $response = $this->login($admin)->getJson('/webhook-test');
+        $response = $this->actingAs($admin)->getJson('/webhook-test');
 
         $response->assertOk();
     }

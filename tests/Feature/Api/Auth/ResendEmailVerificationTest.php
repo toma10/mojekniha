@@ -27,7 +27,7 @@ class ResendEmailVerificationTest extends TestCase
         $me = factory(User::class)->create();
         $data = ['verify_email_url' => 'http://url.dev'];
 
-        $response = $this->login($me)->postJson('api/auth/email/resend', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/resend', $data);
 
         $response->assertNoContent();
     }
@@ -38,7 +38,7 @@ class ResendEmailVerificationTest extends TestCase
         $me = factory(User::class)->create();
         $data = ['verify_email_url' => null];
 
-        $response = $this->login($me)->postJson('api/auth/email/resend', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/resend', $data);
 
         $response->assertJsonValidationErrors('verify_email_url');
     }
@@ -49,7 +49,7 @@ class ResendEmailVerificationTest extends TestCase
         $me = factory(User::class)->create();
         $data = ['verify_email_url' => 'not-a-valid-url'];
 
-        $response = $this->login($me)->postJson('api/auth/email/resend', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/resend', $data);
 
         $response->assertJsonValidationErrors('verify_email_url');
     }

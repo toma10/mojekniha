@@ -16,7 +16,7 @@ class RegisterTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->login($user)->postJson('api/auth/register');
+        $response = $this->actingAs($user)->postJson('api/auth/register');
 
         $response->assertForbidden();
     }

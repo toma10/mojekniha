@@ -27,7 +27,7 @@ class VerifyEmailTest extends TestCase
             'hash' => sha1($me->email),
         ];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertNoContent();
     }
@@ -41,7 +41,7 @@ class VerifyEmailTest extends TestCase
             'hash' => sha1($me->email),
         ];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertForbidden();
     }
@@ -52,7 +52,7 @@ class VerifyEmailTest extends TestCase
         $me = factory(User::class)->create();
         $data = ['hash' => 'HASH'];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertJsonValidationErrors('id');
     }
@@ -66,7 +66,7 @@ class VerifyEmailTest extends TestCase
             'hash' => 'HASH',
         ];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertJsonValidationErrors('id');
     }
@@ -77,7 +77,7 @@ class VerifyEmailTest extends TestCase
         $me = factory(User::class)->create();
         $data = ['id' => $me->id];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertJsonValidationErrors('hash');
     }
@@ -91,7 +91,7 @@ class VerifyEmailTest extends TestCase
             'hash' => 123,
         ];
 
-        $response = $this->login($me)->postJson('api/auth/email/verify', $data);
+        $response = $this->actingAs($me)->postJson('api/auth/email/verify', $data);
 
         $response->assertJsonValidationErrors('hash');
     }
