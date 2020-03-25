@@ -18,6 +18,9 @@ class UserType extends BooleanFilter
             ->where('is_admin', ! $value['user']);
     }
 
+    /**
+     * @return array<string,string>
+     */
     public function options(Request $request)
     {
         return [
@@ -26,6 +29,9 @@ class UserType extends BooleanFilter
         ];
     }
 
+    /**
+     * @return array<string,bool>
+     */
     public function default()
     {
         return [
