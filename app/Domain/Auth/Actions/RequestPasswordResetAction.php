@@ -7,6 +7,7 @@ use App\Domain\Auth\Models\PasswordReset;
 use App\Domain\Auth\Models\User;
 use App\Domain\Auth\Notifications\ResetPasswordNotification;
 use Facades\App\Domain\Auth\Support\PasswordResetTokenGenerator;
+use Illuminate\Support\Facades\Route;
 
 class RequestPasswordResetAction
 {
@@ -21,6 +22,15 @@ class RequestPasswordResetAction
             'token' => $token,
         ]);
 
-        $user->notify(new ResetPasswordNotification($token, $data->reset_password_url));
+        $user->notify(new ResetPasswordNotification(
+            $this->buildResetPasswordUrl($data->reset_password_url, $token)
+        ));
+    }
+
+    protected function buildResetPasswordUrl(string $url, string $token): string
+    {
+        return Route::has($url)
+            ? route($url, $token)
+            : sprintf('%s/%s', rtrim($url, '/'), $token);
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ResetPasswordRequest extends FormRequest
+class ForgotPasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,7 +19,12 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email', 'exists:users,email'],
-            'password' => ['min:8', 'confirmed'],
+            'reset_password_url' => [Rule::requiredIf(! $this->isRequestFromAdminArea()), 'url'],
         ];
+    }
+
+    protected function isRequestFromAdminArea(): bool
+    {
+        return $this->route()->getName() === 'admin.auth.password.email';
     }
 }
