@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Auth;
+namespace Tests\Feature\Admin\Auth;
 
 use App\Domain\Auth\Models\PasswordReset;
 use App\Domain\Auth\Models\User;
@@ -12,12 +12,24 @@ class ResetPasswordTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function viewing_login_page()
+    {
+        $me = factory(User::class)->create();
+
+        $this->get('admin/password/reset/RESET_TOKEN')
+            ->assertOk();
+    }
+
+    /** @test */
     public function user_must_be_guest()
     {
         $me = factory(User::class)->create();
 
-        $this->actingAs($me)->postJson('api/auth/password/reset/RESET_TOKEN')
-            ->assertForbidden();
+        $this->actingAs($me, 'web')->get('admin/password/reset/RESET_TOKEN')
+            ->assertRedirect();
+
+        $this->actingAs($me, 'web')->post('admin/password/reset')
+            ->assertRedirect();
     }
 
     /** @test */
@@ -29,14 +41,16 @@ class ResetPasswordTest extends TestCase
             'token' => $token = 'RESET_TOKEN',
         ]);
         $data = [
+            'token' => $token,
             'email' => $me->email,
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson("api/auth/password/reset/{$token}", $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertStatus(202);
+        $response->assertRedirect('admin/login');
+        $response->assertSessionHasFlashMessage('success');
     }
 
     /** @test */
@@ -48,14 +62,16 @@ class ResetPasswordTest extends TestCase
             'token' => 'RESET_TOKEN',
         ]);
         $data = [
+            'token' => 'INVALID_RESET_TOKEN',
             'email' => $me->email,
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/INVALID_RESET_TOKEN', $data);
+        $response = $this->from('admin/password/reset/INVALID_RESET_TOKEN')->post('admin/password/reset', $data);
 
-        $response->assertForbidden();
+        $response->assertRedirect('admin/password/reset/INVALID_RESET_TOKEN');
+        $response->assertSessionHasFlashMessage('error');
     }
 
     /** @test */
@@ -63,42 +79,46 @@ class ResetPasswordTest extends TestCase
     {
         $me = factory(User::class)->create(['email' => 'johndoe@example.com']);
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'johndoe@example.com',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->from('admin/password/reset/RESET_TOKEN')->post('admin/password/reset', $data);
 
-        $response->assertForbidden();
+        $response->assertRedirect('admin/password/reset/RESET_TOKEN');
+        $response->assertSessionHasFlashMessage('error');
     }
 
     /** @test */
     public function email_is_required()
     {
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => null,
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('email');
+        $response->assertSessionHasErrors('email');
     }
 
     /** @test */
     public function email_must_be_valid_email_address()
     {
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'not-a-valid-email',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('email');
+        $response->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -106,14 +126,15 @@ class ResetPasswordTest extends TestCase
     {
         factory(User::class)->create(['email' => 'johndoe@example.com']);
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'johndoe@gmail.com',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('email');
+        $response->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -121,13 +142,14 @@ class ResetPasswordTest extends TestCase
     {
         factory(User::class)->create(['email' => 'johndoe@example.com']);
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'johndoe@example.com',
             'password' => null,
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('password');
+        $response->assertSessionHasErrors('password');
     }
 
     /** @test */
@@ -135,14 +157,15 @@ class ResetPasswordTest extends TestCase
     {
         factory(User::class)->create(['email' => 'johndoe@example.com']);
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'johndoe@example.com',
             'password' => 'abcdefg',
             'password_confirmation' => 'abcdefg',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('password');
+        $response->assertSessionHasErrors('password');
     }
 
     /** @test */
@@ -150,13 +173,46 @@ class ResetPasswordTest extends TestCase
     {
         factory(User::class)->create(['email' => 'johndoe@example.com']);
         $data = [
+            'token' => 'RESET_TOKEN',
             'email' => 'johndoe@example.com',
             'password' => 'new-password',
             'password_confirmation' => 'secret',
         ];
 
-        $response = $this->postJson('api/auth/password/reset/RESET_TOKEN', $data);
+        $response = $this->post('admin/password/reset', $data);
 
-        $response->assertJsonValidationErrors('password');
+        $response->assertSessionHasErrors('password');
+    }
+
+    /** @test */
+    public function token_is_required()
+    {
+        factory(User::class)->create(['email' => 'johndoe@example.com']);
+        $data = [
+            'token' => null,
+            'email' => 'johndoe@example.com',
+            'password' => 'new-password',
+            'password_confirmation' => 'secret',
+        ];
+
+        $response = $this->post('admin/password/reset', $data);
+
+        $response->assertSessionHasErrors('token');
+    }
+
+    /** @test */
+    public function token_must_be_string()
+    {
+        factory(User::class)->create(['email' => 'johndoe@example.com']);
+        $data = [
+            'token' => 123456,
+            'email' => 'johndoe@example.com',
+            'password' => 'new-password',
+            'password_confirmation' => 'secret',
+        ];
+
+        $response = $this->post('admin/password/reset', $data);
+
+        $response->assertSessionHasErrors('token');
     }
 }

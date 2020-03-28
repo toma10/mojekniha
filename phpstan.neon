@@ -8,6 +8,7 @@ parameters:
     level: 8
 
     ignoreErrors:
+        - '#Access to an undefined property Spatie\\Flash\\Flash::\$[A-z]+#'
         -
             message: '#Property App\\Nova\\[A-z]+::\$model has no typehint specified\.#'
             paths:

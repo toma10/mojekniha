@@ -1,5 +1,7 @@
-import PrimaryButton from './PrimaryButton'
+import Button from './Button'
+import LoadingButton from './LoadingButton'
 
 export {
-  PrimaryButton,
+  Button,
+  LoadingButton,
 }

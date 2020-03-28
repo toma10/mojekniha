@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Routing\Route;
 use Illuminate\Validation\Rule;
 
 class ForgotPasswordRequest extends FormRequest
@@ -25,6 +26,12 @@ class ForgotPasswordRequest extends FormRequest
 
     protected function isRequestFromAdminArea(): bool
     {
-        return $this->route()->getName() === 'admin.auth.password.email';
+        $route = $this->route();
+
+        if (! $route instanceof Route) {
+            return false;
+        }
+
+        return $route->getName() === 'admin.auth.password.email';
     }
 }

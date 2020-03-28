@@ -3,7 +3,7 @@
     <template v-slot:header>
       <logo />
       <h3-title class="mt-3">
-        Sign in
+        Reset Password
       </h3-title>
     </template>
 
@@ -16,7 +16,6 @@
           type="email"
           label="Email"
           required
-          autofocus
         />
       </form-group>
 
@@ -24,26 +23,27 @@
         <text-input
           id="password"
           v-model="form.password"
+          :errors="errors.password"
           type="password"
           label="Password"
           required
         />
       </form-group>
 
-      <form-group center>
-        <checkbox-input
-          id="remember"
-          v-model="form.remember"
-          label="Remember Me"
+      <form-group>
+        <text-input
+          id="password-confirm"
+          v-model="form.password_confirmation"
+          :errors="errors.password_confirmation"
+          type="password"
+          label="Confirm Password"
+          required
         />
-        <primary-link :href="route('admin.auth.password.forgot')">
-          Forgot your password?
-        </primary-link>
       </form-group>
 
       <form-group>
         <loading-button type="submit" :loading="sending">
-          Sign in
+          Reset Password
         </loading-button>
       </form-group>
     </form>
@@ -54,14 +54,12 @@
 import FormLayout from '@/Shared/FormLayout'
 import Logo from '@/Shared/Logo'
 import { H3Title } from '@/Shared/Title'
-
-import { FormGroup, TextInput, CheckboxInput } from '@/Shared/Form'
+import { FormGroup, TextInput } from '@/Shared/Form'
 import { LoadingButton } from '@/Shared/Button'
-import { PrimaryLink } from '@/Shared/Link'
 
 export default {
   metaInfo: {
-    title: 'Login',
+    title: 'Reset Password',
   },
   components: {
     FormLayout,
@@ -69,13 +67,15 @@ export default {
     H3Title,
     FormGroup,
     TextInput,
-    CheckboxInput,
     LoadingButton,
-    PrimaryLink,
   },
   props: {
     errors: {
       type: Object,
+      required: true,
+    },
+    token: {
+      type: String,
       required: true,
     },
   },
@@ -85,14 +85,17 @@ export default {
       form: {
         email: '',
         password: '',
-        remember: false,
+        password_confirmation: '',
       },
     }
   },
   methods: {
     async submit() {
       this.sending = true
-      await this.$inertia.post(this.route('admin.auth.login'), this.form)
+      await this.$inertia.post(this.route('admin.auth.password.update'), {
+        token: this.token,
+        ...this.form,
+      })
       this.sending = false
     },
   },

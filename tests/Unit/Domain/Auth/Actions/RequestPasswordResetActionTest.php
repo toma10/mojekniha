@@ -28,7 +28,7 @@ class RequestPasswordResetActionTest extends TestCase
         $me = factory(User::class)->create(['email' => 'johndoe@examlple.com']);
         $requestPasswordResetData = new RequestPasswordResetData([
             'email' => $me->email,
-            'reset_password_url' => $resetPasswordUrl = 'http://url.dev',
+            'reset_password_url' => $resetPasswordUrl = 'http://url.dev/password/reset',
         ]);
 
         (new RequestPasswordResetAction())->execute($requestPasswordResetData);
@@ -37,7 +37,7 @@ class RequestPasswordResetActionTest extends TestCase
         $this->assertResetPasswordNotificationSent($me, $token, $resetPasswordUrl);
     }
 
-    protected function assertPasswordResetCreated(User $user, $token)
+    protected function assertPasswordResetCreated(User $user, string $token)
     {
         $this->assertCount(1, PasswordReset::where([
             'email' => $user->email,
@@ -45,15 +45,13 @@ class RequestPasswordResetActionTest extends TestCase
         ])->get());
     }
 
-    protected function assertResetPasswordNotificationSent(User $user, $token, $resetPasswordUrl)
+    protected function assertResetPasswordNotificationSent(User $user, string $token, string $resetPasswordUrl)
     {
         Notification::assertSentTo(
             $user,
             ResetPasswordNotification::class,
             function ($notification, $channels, $notifiable) use ($user, $token, $resetPasswordUrl) {
-                return $notification->token === $token
-                    && $notification->resetPasswordUrl === $resetPasswordUrl
-                    && $notifiable->email === $user->email;
+                return $notification->resetPasswordUrl === sprintf('%s/%s', $resetPasswordUrl, $token);
             }
         );
     }

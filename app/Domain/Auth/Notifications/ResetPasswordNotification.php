@@ -15,9 +15,6 @@ class ResetPasswordNotification extends BaseNotification
         $this->resetPasswordUrl = $resetPasswordUrl;
     }
 
-    /**
-     * @param  mixed $notifiable
-     */
     public function toMail(): MailMessage
     {
         return (new MailMessage())

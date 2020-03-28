@@ -19,11 +19,14 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    public function only_guests_can_view_login_page()
+    public function user_must_be_guest()
     {
         $user = factory(User::class)->state('admin')->create();
 
         $this->actingAs($user, 'web')->get('admin/login')
+            ->assertRedirect();
+
+        $this->actingAs($user, 'web')->post('admin/login')
             ->assertRedirect();
     }
 
