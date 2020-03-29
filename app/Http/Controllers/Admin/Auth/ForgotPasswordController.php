@@ -16,8 +16,10 @@ class ForgotPasswordController
         return Inertia::render('Auth/ForgotPassword');
     }
 
-    public function store(ForgotPasswordRequest $request, RequestPasswordResetAction $requestPasswordResetAction): RedirectResponse
-    {
+    public function store(
+        ForgotPasswordRequest $request,
+        RequestPasswordResetAction $requestPasswordResetAction
+    ): RedirectResponse {
         $requestPasswordResetAction->execute(
             new RequestPasswordResetData([
                 'email' => $request->input('email'),
