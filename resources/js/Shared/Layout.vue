@@ -174,8 +174,9 @@
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
                       >Your Profile</a>
                       <a
-                        href="#"
+                        :href="route('admin.auth.logout')"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
+                        @click.prevent="logout"
                       >Sign out</a>
                     </div>
                   </div>
@@ -204,6 +205,11 @@ export default {
       sidebarOpen: false,
       dropdownOpen: false,
     }
+  },
+  methods: {
+    logout() {
+      this.$inertia.post(this.route('admin.auth.logout'))
+    },
   },
 }
 </script>

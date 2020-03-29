@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Auth;
+namespace Tests\Feature\Admin\Auth;
 
 use App\Domain\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,18 +13,18 @@ class LogoutTest extends TestCase
     /** @test */
     public function user_must_be_authenticated()
     {
-        $this->postJson('api/auth/logout')
-            ->assertUnauthorized();
+        $this->post('admin/logout')
+            ->assertRedirect('admin/login');
     }
 
     /** @test */
     public function it_logs_out_the_user()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
 
-        auth()->login($user);
-        $response = $this->postJson('api/auth/logout');
+        $response = $this->actingAs($user, 'web')->post('admin/logout');
 
-        $response->assertOk();
+        $response->assertRedirect('admin/login');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -16,4 +17,8 @@ Route::middleware('guest:web')->group(static function (): void {
     Route::post('password/reset', [ResetPasswordController::class, 'store'])->name('auth.password.update');
 });
 
-Route::get('/', DashboardController::class)->middleware('auth:web')->name('dashboard');
+Route::middleware('auth:web')->group(static function (): void {
+    Route::post('logout', LogoutController::class)->name('auth.logout');
+
+    Route::get('/', DashboardController::class)->name('dashboard');
+});

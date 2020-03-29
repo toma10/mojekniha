@@ -4,12 +4,12 @@ namespace App\Domain\Auth\Actions;
 
 class LogoutAction
 {
-    public function execute(): void
+    public function execute(string $guard = 'api'): void
     {
-        if (! auth()->check()) {
+        if (! auth()->guard($guard)->check()) {
             return;
         }
 
-        auth()->logout();
+        auth()->guard($guard)->logout();
     }
 }
