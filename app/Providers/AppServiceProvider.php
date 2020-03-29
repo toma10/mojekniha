@@ -42,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
                         'name' => $user->name,
                         'email' => $user->email,
                         'username' => $user->username,
+                        'avatar_url' => $user->avatarUrl(),
                     ] : null,
                 ];
             },

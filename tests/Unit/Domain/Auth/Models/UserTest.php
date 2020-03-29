@@ -21,6 +21,17 @@ class UserTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_avatar_url()
+    {
+        $user = factory(User::class)->make(['email' => 'johndoe@example.com']);
+        $emailMd5 = md5('johndoe@example.com');
+
+        $avatarUrl = $user->avatarUrl(150);
+
+        $this->assertEquals("https://www.gravatar.com/avatar/${emailMd5}?d=mp&s=150", $avatarUrl);
+    }
+
+    /** @test */
     public function it_can_determine_if_is_admin()
     {
         $user = factory(User::class)->create(['is_admin' => false]);

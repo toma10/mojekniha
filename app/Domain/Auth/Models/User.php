@@ -44,6 +44,16 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         return [];
     }
 
+    public function avatarUrl(int $size = 150): string
+    {
+        return sprintf(
+            '%s/%s?d=mp&s=%s',
+            'https://www.gravatar.com/avatar',
+            md5(strtolower(trim($this->email))),
+            $size
+        );
+    }
+
     public function isAdmin(): bool
     {
         return $this->is_admin;
