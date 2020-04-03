@@ -15,7 +15,7 @@ class RedirectIfAuthenticated
                 return response()->json([], Response::HTTP_FORBIDDEN);
             }
 
-            return redirect('/home');
+            return redirect()->route('admin.dashboard');
         }
 
         return $next($request);
