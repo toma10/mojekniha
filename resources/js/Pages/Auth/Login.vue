@@ -36,9 +36,9 @@
           v-model="form.remember"
           label="Remember Me"
         />
-        <primary-link :href="route('admin.auth.password.forgot')">
+        <x-link :href="route('admin.auth.password.forgot')">
           Forgot your password?
-        </primary-link>
+        </x-link>
       </form-group>
 
       <form-group>
@@ -57,7 +57,7 @@ import { H3Title } from '@/Shared/Title'
 
 import { FormGroup, TextInput, CheckboxInput } from '@/Shared/Form'
 import { LoadingButton } from '@/Shared/Button'
-import { PrimaryLink } from '@/Shared/Link'
+import XLink from '@/Shared/XLink'
 
 export default {
   metaInfo: {
@@ -71,7 +71,7 @@ export default {
     TextInput,
     CheckboxInput,
     LoadingButton,
-    PrimaryLink,
+    XLink,
   },
   props: {
     errors: {

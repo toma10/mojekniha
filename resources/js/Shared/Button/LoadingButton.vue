@@ -1,5 +1,8 @@
 <template>
-  <x-button :class="{'pointer-events-none': loading}">
+  <x-button
+    :class="{'pointer-events-none': loading}"
+    v-bind="$attrs"
+  >
     <span
       v-if="loading"
       class="mr-2"
@@ -27,7 +30,7 @@
 </template>
 
 <script>
-import XButton from './Button'
+import XButton from './XButton'
 
 export default {
   components: {

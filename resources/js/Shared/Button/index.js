@@ -1,7 +1,7 @@
-import Button from './Button'
+import XButton from './XButton'
 import LoadingButton from './LoadingButton'
 
 export {
-  Button,
+  XButton,
   LoadingButton,
 }
