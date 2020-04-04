@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import FormLayout from '@/Shared/FormLayout'
-import Logo from '@/Shared/Logo'
+import { FormLayout } from '@/Shared/Layout'
+
 import { H3Title } from '@/Shared/Title'
 import { FormGroup, TextInput } from '@/Shared/Form'
 import { LoadingButton } from '@/Shared/Button'

@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import FormLayout from '@/Shared/FormLayout'
+import { FormLayout } from '@/Shared/Layout'
 import Logo from '@/Shared/Logo'
 import { H3Title } from '@/Shared/Title'
 
