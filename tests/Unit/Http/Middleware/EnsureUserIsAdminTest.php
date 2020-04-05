@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\Auth\Listeners;
+namespace Tests\Unit\Http\Middleware;
 
 use App\Domain\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

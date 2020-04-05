@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Book\Book;
+namespace Tests\Feature\Api\Book;
 
 use App\Domain\Book\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
