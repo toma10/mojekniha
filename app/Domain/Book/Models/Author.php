@@ -6,12 +6,12 @@ use App\Domain\Shared\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Author extends BaseModel implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, InteractsWithMedia;
 
     protected $dates = [
         'birth_date',

@@ -4,12 +4,12 @@ namespace App\Domain\Book\Models;
 
 use App\Domain\Shared\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Edition extends BaseModel implements HasMedia
 {
-    use HasMediaTrait;
+    use InteractsWithMedia;
 
     public function registerMediaCollections(): void
     {

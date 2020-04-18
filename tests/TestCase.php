@@ -3,9 +3,9 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Collection;
-use PHPUnit\Framework\Assert;
+use Illuminate\Testing\Assert;
+use Illuminate\Testing\TestResponse;
 
 abstract class TestCase extends BaseTestCase
 {
