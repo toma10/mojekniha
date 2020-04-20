@@ -14,11 +14,9 @@ class AddSeriesIdColumnToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->unsignedBigInteger('series_id')->nullable();
-
-            $table->foreign('series_id')
-                ->references('id')
-                ->on('series')
+            $table->foreignId('series_id')
+                ->nullable()
+                ->constrained()
                 ->onDelete('set null');
         });
     }

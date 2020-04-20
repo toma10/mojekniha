@@ -14,11 +14,8 @@ class AddBookBindingIdColumnToEditionsTable extends Migration
     public function up()
     {
         Schema::table('editions', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_binding_id');
-
-            $table->foreign('book_binding_id')
-                ->references('id')
-                ->on('book_bindings')
+            $table->foreignId('book_binding_id')
+                ->constrained()
                 ->onDelete('cascade');
         });
     }

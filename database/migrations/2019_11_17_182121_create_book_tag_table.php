@@ -14,17 +14,12 @@ class CreateBookTagTable extends Migration
     public function up()
     {
         Schema::create('book_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('tag_id');
-
-            $table->foreign('book_id')
-                ->references('id')
-                ->on('books')
+            $table->foreignId('book_id')
+                ->constrained()
                 ->onDelete('cascade');
 
-            $table->foreign('tag_id')
-                ->references('id')
-                ->on('tags')
+            $table->foreignId('tag_id')
+                ->constrained()
                 ->onDelete('cascade');
         });
     }

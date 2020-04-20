@@ -14,17 +14,12 @@ class CreateBookGenreTable extends Migration
     public function up()
     {
         Schema::create('book_genre', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('genre_id');
-
-            $table->foreign('book_id')
-                ->references('id')
-                ->on('books')
+            $table->foreignId('book_id')
+                ->constrained()
                 ->onDelete('cascade');
 
-            $table->foreign('genre_id')
-                ->references('id')
-                ->on('genres')
+            $table->foreignId('genre_id')
+                ->constrained()
                 ->onDelete('cascade');
         });
     }

@@ -16,13 +16,10 @@ class CreateSeriesTable extends Migration
         Schema::create('series', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('author_id');
-            $table->timestamps();
-
-            $table->foreign('author_id')
-                ->references('id')
-                ->on('authors')
+            $table->foreignId('author_id')
+                ->constrained()
                 ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

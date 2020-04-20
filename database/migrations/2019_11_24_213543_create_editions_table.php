@@ -15,23 +15,17 @@ class CreateEditionsTable extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('book_id');
+            $table->foreignId('book_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->string('isbn');
             $table->unsignedSmallInteger('release_year');
-            $table->unsignedBigInteger('language_id');
+            $table->foreignId('language_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->unsignedSmallInteger('number_of_pages');
             $table->unsignedBigInteger('number_of_copies');
             $table->timestamps();
-
-            $table->foreign('book_id')
-                ->references('id')
-                ->on('books')
-                ->onDelete('cascade');
-
-            $table->foreign('language_id')
-                ->references('id')
-                ->on('languages')
-                ->onDelete('cascade');
         });
     }
 

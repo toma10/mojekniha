@@ -14,11 +14,8 @@ class AddNationalityIdColumnToAuthorsTable extends Migration
     public function up()
     {
         Schema::table('authors', function (Blueprint $table) {
-            $table->unsignedBigInteger('nationality_id');
-
-            $table->foreign('nationality_id')
-                ->references('id')
-                ->on('nationalities')
+            $table->foreignId('nationality_id')
+                ->constrained()
                 ->onDelete('cascade');
         });
     }
