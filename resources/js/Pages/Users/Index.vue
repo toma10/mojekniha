@@ -33,12 +33,8 @@
                 >
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                        <img
-                          class="h-10 w-10 rounded-full"
-                          :src="user.avatar_url"
-                          alt="Avatar image"
-                        >
+                      <div class="flex-shrink-0">
+                        <avatar :url="user.avatar_url" />
                       </div>
                       <div class="ml-4">
                         <div class="text-sm leading-5 font-medium text-gray-900">
@@ -56,42 +52,21 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <span
-                      v-if="user.is_verified"
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                    >
-                      Verified
-                    </span>
-                    <span
-                      v-else
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                    >
-                      Unverified
-                    </span>
+                    <verified-tag :is-verified="user.is_verified" />
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                    <span v-if="user.is_admin">Admin</span>
-                    <span v-else>User</span>
+                    <role :user="user" />
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium space-x-1">
-                    <a
-                      href="#"
-                      class="text-indigo-600 hover:text-indigo-900"
-                    >
+                    <x-link :href="route('admin.users.show', user.id)">
                       Show
-                    </a>
-                    <a
-                      href="#"
-                      class="text-indigo-600 hover:text-indigo-900"
-                    >
+                    </x-link>
+                    <x-link href="#">
                       Edit
-                    </a>
-                    <a
-                      href="#"
-                      class="text-indigo-600 hover:text-indigo-900"
-                    >
+                    </x-link>
+                    <x-link href="#">
                       Delete
-                    </a>
+                    </x-link>
                   </td>
                 </tr>
               </tbody>
@@ -111,6 +86,10 @@
 <script>
 import Layout, { XContent } from '@/Shared/Layout'
 import { H2Title } from '@/Shared/Title'
+import XLink from '@/Shared/XLink'
+import Avatar from '@/Shared/Avatar'
+import VerifiedTag from './Components/VerifiedTag'
+import Role from './Components/Role'
 import Pagination from '@/Shared/Pagination'
 
 export default {
@@ -118,6 +97,10 @@ export default {
     Layout,
     XContent,
     H2Title,
+    XLink,
+    Avatar,
+    VerifiedTag,
+    Role,
     Pagination,
   },
   props: {

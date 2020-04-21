@@ -23,8 +23,9 @@ class UsersController
     {
     }
 
-    public function show()
+    public function show(User $user)
     {
+        return Inertia::render('Users/Show', compact('user'));
     }
 
     public function edit()
