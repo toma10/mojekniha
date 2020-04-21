@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="space-y-1">
     <inertia-link
       :href="route('admin.dashboard')"
       class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
@@ -18,7 +18,7 @@
     </inertia-link>
     <inertia-link
       :href="route('admin.users.index')"
-      class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+      class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
       :class="isUrl('admin/users') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
     >
       <svg

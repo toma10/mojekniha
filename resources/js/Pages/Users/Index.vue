@@ -73,7 +73,7 @@
                     <span v-if="user.is_admin">Admin</span>
                     <span v-else>User</span>
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium space-x-1">
                     <a
                       href="#"
                       class="text-indigo-600 hover:text-indigo-900"
@@ -82,13 +82,13 @@
                     </a>
                     <a
                       href="#"
-                      class="ml-1 text-indigo-600 hover:text-indigo-900"
+                      class="text-indigo-600 hover:text-indigo-900"
                     >
                       Edit
                     </a>
                     <a
                       href="#"
-                      class="ml-1 text-indigo-600 hover:text-indigo-900"
+                      class="text-indigo-600 hover:text-indigo-900"
                     >
                       Delete
                     </a>
