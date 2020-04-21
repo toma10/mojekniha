@@ -26,9 +26,9 @@ class UserTest extends TestCase
         $user = factory(User::class)->make(['email' => 'johndoe@example.com']);
         $emailMd5 = md5('johndoe@example.com');
 
-        $avatarUrl = $user->avatarUrl(150);
-
-        $this->assertEquals("https://www.gravatar.com/avatar/${emailMd5}?d=mp&s=150", $avatarUrl);
+        $this->assertEquals("https://www.gravatar.com/avatar/${emailMd5}?d=mp&s=150", $user->avatarUrl(150));
+        $this->assertEquals("https://www.gravatar.com/avatar/${emailMd5}?d=mp&s=300", $user->avatarUrl(300));
+        $this->assertEquals("https://www.gravatar.com/avatar/${emailMd5}?d=mp&s=150", $user->avatarUrl);
     }
 
     /** @test */
@@ -48,6 +48,8 @@ class UserTest extends TestCase
         $verifiedUser = factory(User::class)->create(['email_verified_at' => now()]);
 
         $this->assertFalse($unverifiedUser->hasVerifiedEmail());
+        $this->assertFalse($unverifiedUser->is_verified);
         $this->assertTrue($verifiedUser->hasVerifiedEmail());
+        $this->assertTrue($verifiedUser->is_verified);
     }
 }

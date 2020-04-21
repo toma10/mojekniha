@@ -57,27 +57,7 @@
               </h1>
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
-              <nav class="px-2">
-                <a
-                  href="#"
-                  class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-indigo-900 focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150"
-                >
-                  <svg
-                    class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"
-                    />
-                  </svg>
-                  Dashboard
-                </a>
-              </nav>
+              <navigation class="px-2" />
             </div>
           </div>
         </transition>
@@ -88,7 +68,12 @@
 </template>
 
 <script>
+import Navigation from './Navigation'
+
 export default {
+  components: {
+    Navigation,
+  },
   props: {
     open: {
       type: Boolean,

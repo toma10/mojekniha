@@ -1,21 +1,22 @@
 <template>
   <layout>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-      <h2 class="text-2xl font-semibold text-gray-900">
+    <x-content>
+      <h2-title class="text-2xl font-semibold text-gray-900">
         Dashboard
-      </h2>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-      Content
-    </div>
+      </h2-title>
+    </x-content>
   </layout>
 </template>
 
 <script>
-import Layout from '@/Shared/Layout'
+import Layout, { XContent } from '@/Shared/Layout'
+import { H2Title } from '@/Shared/Title'
+
 export default {
   components: {
     Layout,
+    XContent,
+    H2Title,
   },
 }
 </script>

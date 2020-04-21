@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UsersController;
 
 Route::middleware('guest:web')->group(static function (): void {
     Route::get('login', [LoginController::class, 'index'])->name('auth.login');
@@ -17,8 +18,9 @@ Route::middleware('guest:web')->group(static function (): void {
     Route::post('password/reset', [ResetPasswordController::class, 'store'])->name('auth.password.update');
 });
 
-Route::middleware('auth:web')->group(static function (): void {
+Route::middleware(['auth:web', 'admin'])->group(static function (): void {
     Route::post('logout', LogoutController::class)->name('auth.logout');
 
     Route::get('/', DashboardController::class)->name('dashboard');
+    Route::resource('users', UsersController::class);
 });

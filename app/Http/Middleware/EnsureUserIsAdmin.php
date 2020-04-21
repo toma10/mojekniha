@@ -10,7 +10,11 @@ class EnsureUserIsAdmin
     public function handle($request, Closure $next)
     {
         if (! $request->user() || ! $request->user()->isAdmin()) {
-            throw new AuthorizationException();
+            if ($request->expectsJson()) {
+                throw new AuthorizationException();
+            }
+
+            return redirect()->route('admin.auth.login');
         }
 
         return $next($request);

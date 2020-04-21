@@ -15,15 +15,19 @@ class EnsureUserIsAdminTest extends TestCase
     {
         parent::setUp();
 
-        Route::get('/webhook-test', function () {
+        Route::get('webhook-test', function () {
             return response()->json();
+        })->middleware('admin');
+
+        Route::get('view', function () {
+            return response()->noContent();
         })->middleware('admin');
     }
 
     /** @test */
     public function it_403s_if_user_is_not_authenticated()
     {
-        $response = $this->getJson('/webhook-test');
+        $response = $this->getJson('webhook-test');
 
         $response->assertForbidden();
     }
@@ -33,9 +37,19 @@ class EnsureUserIsAdminTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->getJson('/webhook-test');
+        $response = $this->actingAs($user)->getJson('webhook-test');
 
         $response->assertForbidden();
+    }
+
+    /** @test */
+    public function it_redirects_to_admin_login_page_if_not_json_request()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->get('view');
+
+        $response->assertRedirect('admin/login');
     }
 
     /** @test */
@@ -43,7 +57,7 @@ class EnsureUserIsAdminTest extends TestCase
     {
         $admin = factory(User::class)->state('admin')->create();
 
-        $response = $this->actingAs($admin)->getJson('/webhook-test');
+        $response = $this->actingAs($admin)->getJson('webhook-test');
 
         $response->assertOk();
     }

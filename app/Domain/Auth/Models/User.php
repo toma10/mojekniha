@@ -17,10 +17,16 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     /** @var array<string> */
     protected $guarded = [];
 
-    /** @var array<string> */
+    /** @var array<string,string> */
     protected $casts = [
         'is_admin' => 'bool',
         'email_verified_at' => 'datetime',
+    ];
+
+    /** @var array<string> */
+    protected $appends = [
+        'avatar_url',
+        'is_verified',
     ];
 
     public static function findByEmail(string $email): User
@@ -44,6 +50,11 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
         return [];
     }
 
+    public function getAvatarUrlAttribute(): string
+    {
+        return $this->avatarUrl();
+    }
+
     public function avatarUrl(int $size = 150): string
     {
         return sprintf(
@@ -57,6 +68,11 @@ class User extends BaseModel implements AuthenticatableContract, AuthorizableCon
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    public function getIsVerifiedAttribute(): bool
+    {
+        return $this->hasVerifiedEmail();
     }
 
     public function hasVerifiedEmail(): bool
