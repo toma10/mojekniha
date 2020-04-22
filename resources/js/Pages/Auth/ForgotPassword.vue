@@ -1,5 +1,5 @@
 <template>
-  <form-layout>
+  <layout>
     <template v-slot:header>
       <logo />
       <h3-title class="mt-3">
@@ -16,6 +16,7 @@
           type="email"
           label="Email"
           required
+          autofocus
         />
       </form-group>
 
@@ -25,14 +26,14 @@
         </loading-button>
       </form-group>
     </form>
-  </form-layout>
+  </layout>
 </template>
 
 <script>
-import { FormLayout } from '@/Shared/Layout'
+import Layout from './Components/Layout'
 import Logo from '@/Shared/Logo'
 import { H3Title } from '@/Shared/Title'
-import { FormGroup, TextInput } from '@/Shared/Form'
+import { FormGroup, TextInput } from './Components/Form'
 import { LoadingButton } from '@/Shared/Button'
 
 export default {
@@ -40,7 +41,7 @@ export default {
     title: 'Reset Password',
   },
   components: {
-    FormLayout,
+    Layout,
     Logo,
     H3Title,
     FormGroup,

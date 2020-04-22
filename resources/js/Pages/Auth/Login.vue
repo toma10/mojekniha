@@ -1,5 +1,5 @@
 <template>
-  <form-layout>
+  <layout>
     <template v-slot:header>
       <logo />
       <h3-title class="mt-3">
@@ -47,15 +47,14 @@
         </loading-button>
       </form-group>
     </form>
-  </form-layout>
+  </layout>
 </template>
 
 <script>
-import { FormLayout } from '@/Shared/Layout'
+import Layout from './Components/Layout'
 import Logo from '@/Shared/Logo'
 import { H3Title } from '@/Shared/Title'
-
-import { FormGroup, TextInput, CheckboxInput } from '@/Shared/Form'
+import { FormGroup, TextInput, CheckboxInput } from './Components/Form'
 import { LoadingButton } from '@/Shared/Button'
 import XLink from '@/Shared/XLink'
 
@@ -64,7 +63,7 @@ export default {
     title: 'Login',
   },
   components: {
-    FormLayout,
+    Layout,
     Logo,
     H3Title,
     FormGroup,
