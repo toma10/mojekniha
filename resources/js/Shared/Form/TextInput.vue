@@ -1,31 +1,32 @@
 <template>
-  <div>
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
     <label
-      v-if="hasLabel"
       :for="id"
-      class="block text-sm font-medium leading-5 text-gray-700"
+      class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
     >
       {{ label }}
     </label>
-    <div
-      class="rounded-md shadow-sm"
-      :class="{ 'mt-1': hasLabel }"
-    >
-      <input
-        :id="id"
-        :type="type"
-        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-        v-bind="$attrs"
-        :value="value"
-        @change="$emit('input', $event.target.value)"
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div
+        class="rounded-md shadow-sm"
+        :class="wider ? 'max-w-lg' : 'max-w-xs'"
       >
+        <input
+          :id="id"
+          :type="type"
+          class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          v-bind="$attrs"
+          :value="value"
+          @change="$emit('input', $event.target.value)"
+        >
+        <p
+          v-if="errors.length"
+          class="mt-1 text-red-500 text-xs italic"
+        >
+          {{ errors[0] }}
+        </p>
+      </div>
     </div>
-    <p
-      v-if="errors.length"
-      class="mt-1 text-red-500 text-xs italic"
-    >
-      {{ errors[0] }}
-    </p>
   </div>
 </template>
 
@@ -55,10 +56,10 @@ export default {
       required: false,
       default: () => [],
     },
-  },
-  computed: {
-    hasLabel() {
-      return !! this.label
+    wider: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 }
