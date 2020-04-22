@@ -17,10 +17,20 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => ['required'],
-            'username' => ['required', Rule::unique('users')->ignore($this->user->id)],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user->id)],
+            'username' => ['required'],
+            'email' => ['required', 'email'],
         ];
+
+        if ($this->user) {
+            $rules['username'][] = Rule::unique('users')->ignore($this->user->id);
+            $rules['email'][] = Rule::unique('users')->ignore($this->user->id);
+        } else {
+            $rules['username'][] = Rule::unique('users');
+            $rules['email'][] = Rule::unique('users');
+        }
+
+        return $rules;
     }
 }

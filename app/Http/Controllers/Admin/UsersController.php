@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domain\Auth\Actions\CreateUserAction;
 use App\Domain\Auth\Actions\UpdateUserAction;
 use App\Domain\Auth\DataTransferObjects\UserData;
 use App\Domain\Auth\Models\User;
@@ -19,12 +20,20 @@ class UsersController
         return Inertia::render('Users/Index', compact('users'));
     }
 
-    public function create()
+    public function create(): Response
     {
+        return Inertia::render('Users/Create');
     }
 
-    public function store()
+    public function store(UserRequest $request, CreateUserAction $createUserAction): RedirectResponse
     {
+        $createUserAction->execute(
+            new UserData($request->validated())
+        );
+
+        flash()->success(trans('messages.user.created'));
+
+        return redirect()->route('admin.users.index');
     }
 
     public function show(User $user): Response

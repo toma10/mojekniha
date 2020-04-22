@@ -1,8 +1,14 @@
 <template>
   <layout>
-    <h2-title class="text-2xl font-semibold text-gray-900">
-      Users
-    </h2-title>
+    <horizontal-spacer>
+      <h2-title class="text-2xl font-semibold text-gray-900">
+        Users
+      </h2-title>
+
+      <button-link :href="route('admin.users.create')">
+        Create user
+      </button-link>
+    </horizontal-spacer>
 
     <div class="mt-5 flex flex-col">
       <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -82,8 +88,9 @@
 </template>
 
 <script>
-import Layout from '@/Shared/Layout'
+import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import { H2Title } from '@/Shared/Title'
+import ButtonLink from '@/Shared/ButtonLink'
 import XLink from '@/Shared/XLink'
 import Avatar from '@/Shared/Avatar'
 import VerifiedTag from './Components/VerifiedTag'
@@ -93,7 +100,9 @@ import Pagination from '@/Shared/Pagination'
 export default {
   components: {
     Layout,
+    HorizontalSpacer,
     H2Title,
+    ButtonLink,
     XLink,
     Avatar,
     VerifiedTag,
