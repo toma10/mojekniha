@@ -1,28 +1,25 @@
 <template>
   <span
     class="inline-flex rounded-md shadow-sm"
-    :class="{'w-full': fullWidth}"
   >
-    <button
-      :type="type"
+    <inertia-link
+      :href="href"
       class="inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150"
       :class="classes"
     >
       <slot />
-    </button>
+    </inertia-link>
   </span>
 </template>
 
 <script>
-import cn from 'classnames'
-import COLORS from './colors'
+import COLORS from '@/Shared/Button/colors'
 
 export default {
   props: {
-    type: {
+    href: {
       type: String,
-      required: false,
-      default: 'button',
+      required: true,
     },
     color: {
       type: String,
@@ -30,15 +27,10 @@ export default {
       required: false,
       default: 'primary',
     },
-    fullWidth: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
   },
   computed: {
     classes() {
-      return cn(COLORS[this.color], { 'w-full justify-center': this.fullWidth })
+      return COLORS[this.color]
     },
   },
 }

@@ -42,7 +42,7 @@
       </form-group>
 
       <form-group>
-        <loading-button type="submit" :loading="sending">
+        <loading-button type="submit" :loading="sending" full-width>
           Sign in
         </loading-button>
       </form-group>

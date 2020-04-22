@@ -20,7 +20,7 @@
       </form-group>
 
       <form-group>
-        <loading-button type="submit" :loading="sending">
+        <loading-button type="submit" :loading="sending" full-width>
           Send Password Reset Link
         </loading-button>
       </form-group>
