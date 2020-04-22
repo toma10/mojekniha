@@ -26,9 +26,8 @@ class SendEmailVerificationNotificationTest extends TestCase
         Notification::assertSentTo(
             $user,
             VerifyEmailNotification::class,
-            function ($notification, $channels, $notifiable) use ($user, $verifyEmailUrl) {
-                return  $notifiable->email === $user->email
-                    &&  $notification->verifyEmailUrl === $verifyEmailUrl;
+            function ($notification) use ($user, $verifyEmailUrl) {
+                return $notification->verifyEmailUrl === $verifyEmailUrl;
             }
         );
     }

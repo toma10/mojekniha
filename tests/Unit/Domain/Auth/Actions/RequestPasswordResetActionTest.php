@@ -33,24 +33,15 @@ class RequestPasswordResetActionTest extends TestCase
 
         (new RequestPasswordResetAction())->execute($requestPasswordResetData);
 
-        $this->assertPasswordResetCreated($me, $token);
-        $this->assertResetPasswordNotificationSent($me, $token, $resetPasswordUrl);
-    }
-
-    protected function assertPasswordResetCreated(User $user, string $token)
-    {
         $this->assertCount(1, PasswordReset::where([
-            'email' => $user->email,
+            'email' => $me->email,
             'token' => $token,
         ])->get());
-    }
 
-    protected function assertResetPasswordNotificationSent(User $user, string $token, string $resetPasswordUrl)
-    {
         Notification::assertSentTo(
-            $user,
+            $me,
             ResetPasswordNotification::class,
-            function ($notification, $channels, $notifiable) use ($user, $token, $resetPasswordUrl) {
+            function ($notification) use ($resetPasswordUrl, $token) {
                 return $notification->resetPasswordUrl === sprintf('%s/%s', $resetPasswordUrl, $token);
             }
         );

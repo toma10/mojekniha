@@ -30,15 +30,14 @@ class ResendEmailVerificationActionTest extends TestCase
         Notification::assertSentTo(
             $me,
             VerifyEmailNotification::class,
-            function ($notification, $channels, $notifiable) use ($me, $verifyEmailUrl) {
-                return  $notifiable->email === $me->email
-                    &&  $notification->verifyEmailUrl === $verifyEmailUrl;
+            function ($notification) use ($verifyEmailUrl) {
+                return $notification->verifyEmailUrl === $verifyEmailUrl;
             }
         );
     }
 
     /** @test */
-    public function id_doesn_t_send_notification_if_email_is_already_verified()
+    public function it_doesn_t_send_notification_if_email_is_already_verified()
     {
         Notification::fake();
 
