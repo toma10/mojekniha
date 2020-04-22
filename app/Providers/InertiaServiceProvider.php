@@ -50,7 +50,7 @@ class InertiaServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function registerLengthAwarePaginator()
+    protected function registerLengthAwarePaginator(): void
     {
         $this->app->bind(LengthAwarePaginator::class, function ($app, $values) {
             return new class(...array_values($values)) extends LengthAwarePaginator {
@@ -117,7 +117,7 @@ class InertiaServiceProvider extends ServiceProvider
                             'label' => 'Previous',
                             'active' => false,
                         ],
-                        'next' =>   [
+                        'next' => [
                             'url' => $this->nextPageUrl(),
                             'label' => 'Next',
                             'active' => false,

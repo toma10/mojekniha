@@ -67,7 +67,7 @@ return [
     */
 
     'exclude' => [
-        //  'path/to/directory-or-file'
+        'app/Providers/InertiaServiceProvider.php',
     ],
 
     'add' => [
