@@ -31,7 +31,13 @@
         </div>
       </div>
       <main class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none">
-        <slot />
+        <x-content>
+          <flash-message />
+
+          <div :class="{'mt-4': $page.flash}">
+            <slot />
+          </div>
+        </x-content>
       </main>
     </div>
   </div>
@@ -41,12 +47,16 @@
 import MobileMenu from './MobileMenu'
 import DesktopMenu from './DesktopMenu'
 import UserDropdown from './UserDropdown'
+import XContent from './XContent'
+import FlashMessage from '@/Shared/FlashMessage'
 
 export default {
   components: {
     MobileMenu,
     DesktopMenu,
     UserDropdown,
+    XContent,
+    FlashMessage,
   },
   data() {
     return {
