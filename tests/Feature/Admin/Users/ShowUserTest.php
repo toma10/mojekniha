@@ -31,6 +31,9 @@ class ShowUserTest extends InertiaTestCase
 
         $this->actingAs($admin, 'web')->get("admin/users/{$user->id}")
             ->assertOk()
-            ->assertHasProp('user');
+            ->assertHasProp('user')
+            ->assertPropValue('user', function ($givenUser) use ($user) {
+                $this->assertEquals($user->id, $givenUser['id']);
+            });
     }
 }
