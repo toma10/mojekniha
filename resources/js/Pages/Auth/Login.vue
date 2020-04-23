@@ -56,7 +56,7 @@ import Logo from '@/Shared/Logo'
 import { H3Title } from '@/Shared/Title'
 import { FormGroup, TextInput, CheckboxInput } from './Components/Form'
 import { LoadingButton } from '@/Shared/Button'
-import XLink from '@/Shared/XLink'
+import { XLink } from '@/Shared/Link'
 
 export default {
   metaInfo: {

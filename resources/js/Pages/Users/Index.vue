@@ -88,8 +88,8 @@
 <script>
 import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import { H2Title } from '@/Shared/Title'
-import ButtonLink from '@/Shared/ButtonLink'
-import XLink from '@/Shared/XLink'
+import { ButtonLink } from '@/Shared/Link'
+import { XLink } from '@/Shared/Link'
 import Avatar from '@/Shared/Avatar'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'

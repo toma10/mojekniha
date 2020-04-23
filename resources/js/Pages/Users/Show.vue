@@ -57,7 +57,7 @@ import { H4Title } from '@/Shared/Title'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'
 import DeleteUserLink from './Components/DeleteUserLink'
-import XLink from '@/Shared/XLink'
+import { XLink } from '@/Shared/Link'
 import Avatar from '@/Shared/Avatar'
 
 export default {

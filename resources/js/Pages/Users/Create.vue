@@ -59,7 +59,7 @@ import Layout from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
 import { FormContent, IdInput, TextInput, AvatarInput, ButtonGroup } from '@/Shared/Form'
-import ButtonLink from '@/Shared/ButtonLink'
+import { ButtonLink } from '@/Shared/Link'
 import { LoadingButton } from '@/Shared/Button'
 
 export default {
