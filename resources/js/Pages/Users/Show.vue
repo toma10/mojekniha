@@ -42,12 +42,10 @@
         </div>
         <div>
           <div>Role</div>
-          <role
+          <user-role
             :user="user"
             class="text-gray-500"
-          >
-            {{ user.email }}
-          </role>
+          />
         </div>
       </div>
     </panel>
@@ -59,7 +57,7 @@ import Layout from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
 import VerifiedTag from './Components/VerifiedTag'
-import Role from './Components/Role'
+import UserRole from './Components/UserRole'
 import XLink from '@/Shared/XLink'
 import Avatar from '@/Shared/Avatar'
 
@@ -69,7 +67,7 @@ export default {
     Panel,
     H4Title,
     VerifiedTag,
-    Role,
+    UserRole,
     XLink,
     Avatar,
   },

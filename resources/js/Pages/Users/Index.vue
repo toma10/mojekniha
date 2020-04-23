@@ -60,7 +60,7 @@
                   <verified-tag :is-verified="user.is_verified" />
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                  <role :user="user" />
+                  <user-role :user="user" />
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium space-x-1">
                   <x-link :href="route('admin.users.show', user.id)">
@@ -94,7 +94,7 @@ import ButtonLink from '@/Shared/ButtonLink'
 import XLink from '@/Shared/XLink'
 import Avatar from '@/Shared/Avatar'
 import VerifiedTag from './Components/VerifiedTag'
-import Role from './Components/Role'
+import UserRole from './Components/UserRole'
 import Pagination from '@/Shared/Pagination'
 
 export default {
@@ -106,7 +106,7 @@ export default {
     XLink,
     Avatar,
     VerifiedTag,
-    Role,
+    UserRole,
     Pagination,
   },
   props: {
