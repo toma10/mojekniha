@@ -69,9 +69,7 @@
                   <x-link :href="route('admin.users.edit', user.id)">
                     Edit
                   </x-link>
-                  <x-link href="#">
-                    Delete
-                  </x-link>
+                  <delete-user-link :user="user" />
                 </td>
               </tr>
             </tbody>
@@ -95,6 +93,7 @@ import XLink from '@/Shared/XLink'
 import Avatar from '@/Shared/Avatar'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'
+import DeleteUserLink from './Components/DeleteUserLink'
 import Pagination from '@/Shared/Pagination'
 
 export default {
@@ -107,6 +106,7 @@ export default {
     Avatar,
     VerifiedTag,
     UserRole,
+    DeleteUserLink,
     Pagination,
   },
   props: {

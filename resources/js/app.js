@@ -1,11 +1,13 @@
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
+import PortalVue from 'portal-vue'
 import route from 'ziggy'
 import { Ziggy } from './routes'
 
 Vue.use(InertiaApp)
 Vue.use(VueMeta)
+Vue.use(PortalVue)
 
 Vue.mixin({
   methods: {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Domain\Auth\Actions\CreateUserAction;
+use App\Domain\Auth\Actions\DeleteUserAction;
 use App\Domain\Auth\Actions\UpdateUserAction;
 use App\Domain\Auth\DataTransferObjects\UserData;
 use App\Domain\Auth\Models\User;
@@ -58,7 +59,12 @@ class UsersController
         return redirect()->route('admin.users.edit', $user);
     }
 
-    public function destroy()
+    public function destroy(User $user, DeleteUserAction $deleteUserAction): RedirectResponse
     {
+        $deleteUserAction->execute($user);
+
+        flash()->success(trans('messages.user.deleted'));
+
+        return redirect()->route('admin.users.index');
     }
 }

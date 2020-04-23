@@ -40,6 +40,7 @@
         </x-content>
       </main>
     </div>
+    <portal-target name="modals" />
   </div>
 </template>
 

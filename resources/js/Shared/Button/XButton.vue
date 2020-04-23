@@ -7,6 +7,8 @@
       :type="type"
       class="inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150"
       :class="classes"
+      v-bind="$attrs"
+      @click="$emit('click')"
     >
       <slot />
     </button>

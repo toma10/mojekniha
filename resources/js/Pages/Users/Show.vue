@@ -20,9 +20,7 @@
             <x-link :href="route('admin.users.edit', user.id)">
               Edit
             </x-link>
-            <x-link href="#">
-              Delete
-            </x-link>
+            <delete-user-link :user="user" />
           </div>
         </div>
       </template>
@@ -58,6 +56,7 @@ import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'
+import DeleteUserLink from './Components/DeleteUserLink'
 import XLink from '@/Shared/XLink'
 import Avatar from '@/Shared/Avatar'
 
@@ -68,6 +67,7 @@ export default {
     H4Title,
     VerifiedTag,
     UserRole,
+    DeleteUserLink,
     XLink,
     Avatar,
   },
