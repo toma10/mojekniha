@@ -29,7 +29,9 @@ class UpdateUserTest extends InertiaTestCase
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($admin, 'web')->get("admin/users/{$user->id}/edit")
+        $response = $this->actingAs($admin, 'web')->get("admin/users/{$user->id}/edit");
+
+        $response
             ->assertOk()
             ->assertHasProp('user')
             ->assertPropValue('user', function ($givenUser) use ($user) {

@@ -28,7 +28,9 @@ class ListUsersTest extends InertiaTestCase
         $admin = factory(User::class)->states('admin')->create();
         factory(User::class, 19)->create();
 
-        $this->actingAs($admin, 'web')->get('admin/users')
+        $response = $this->actingAs($admin, 'web')->get('admin/users');
+
+        $response
             ->assertOk()
             ->assertPropCount('users.data', 15)
             ->assertPropCount('users.links.pages', 2);

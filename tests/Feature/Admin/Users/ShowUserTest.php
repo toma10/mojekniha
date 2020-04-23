@@ -29,7 +29,9 @@ class ShowUserTest extends InertiaTestCase
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($admin, 'web')->get("admin/users/{$user->id}")
+        $response = $this->actingAs($admin, 'web')->get("admin/users/{$user->id}");
+
+        $response
             ->assertOk()
             ->assertHasProp('user')
             ->assertPropValue('user', function ($givenUser) use ($user) {
