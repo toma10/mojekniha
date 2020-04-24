@@ -8,4 +8,12 @@ return [
         'deleted' => 'User was succesfully deleted.',
     ],
 
+    'profile' => [
+        'updated' => 'Profile was succesfully updated.',
+    ],
+
+    'password' => [
+        'changed' => 'Password was succesfully changed.',
+    ],
+
 ];

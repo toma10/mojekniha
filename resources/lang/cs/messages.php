@@ -8,4 +8,12 @@ return [
         'deleted' => 'Uživatel byl úspěšně smazán.',
     ],
 
+    'profile' => [
+        'updated' => 'Profil byl úspěšně upraven.',
+    ],
+
+    'password' => [
+        'changed' => 'Heslo bylo úspěšně změněno.',
+    ],
+
 ];

@@ -35,7 +35,7 @@
             type="email"
             label="Email"
             wider
-            required
+            disabled
           />
         </form-content>
 

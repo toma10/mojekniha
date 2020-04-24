@@ -15,6 +15,7 @@
           :id="id"
           :type="type"
           class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          :class="{'text-gray-500 cursor-not-allowed': 'disabled' in $attrs}"
           v-bind="$attrs"
           :value="value"
           @change="$emit('input', $event.target.value)"

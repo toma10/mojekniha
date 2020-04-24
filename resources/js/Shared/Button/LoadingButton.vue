@@ -1,6 +1,7 @@
 <template>
   <x-button
     :class="{'pointer-events-none': loading}"
+    :disabled="loading"
     v-bind="$attrs"
     v-on="$listeners"
   >

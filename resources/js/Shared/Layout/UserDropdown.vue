@@ -31,7 +31,7 @@
           >
             <div class="py-1 rounded-md bg-white shadow-xs">
               <a
-                href="#"
+                :href="route('admin.profile')"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition ease-in-out duration-150"
                 @keydown.esc.exact="open = false"
               >Your Profile</a>
