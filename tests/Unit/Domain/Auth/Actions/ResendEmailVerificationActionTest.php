@@ -4,8 +4,8 @@ namespace Tests\Unit\Domain\Auth\Actions;
 
 use App\Domain\Auth\Actions\ResendEmailVerificationAction;
 use App\Domain\Auth\DataTransferObjects\ResendEmailVerificationData;
-use App\Domain\User\Models\User;
 use App\Domain\Auth\Notifications\VerifyEmailNotification;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;

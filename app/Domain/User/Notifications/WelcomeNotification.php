@@ -2,8 +2,8 @@
 
 namespace App\Domain\User\Notifications;
 
-use App\Domain\User\Models\User;
 use App\Domain\Shared\Notifications\BaseNotification;
+use App\Domain\User\Models\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Lang;
 
