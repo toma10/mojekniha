@@ -1,36 +1,36 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\ChangePasswordController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Auth\MeController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\ResendEmailVerificationController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
-use App\Http\Controllers\Api\Auth\UpdateProfileController;
 use App\Http\Controllers\Api\Auth\VerifyEmailController;
 use App\Http\Controllers\Api\AuthorsController;
 use App\Http\Controllers\Api\BookBindingsController;
 use App\Http\Controllers\Api\BooksController;
+use App\Http\Controllers\Api\ChangePasswordController;
 use App\Http\Controllers\Api\EditionsController;
 use App\Http\Controllers\Api\GenresController;
+use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\TagsController;
+use App\Http\Controllers\Api\UpdateProfileController;
 
 Route::post('auth/register', RegisterController::class)->middleware('guest:api');
 Route::post('auth/login', LoginController::class);
 Route::post('auth/logout', LogoutController::class)->middleware('auth:api');
 
-Route::get('auth/me', MeController::class)->middleware('auth:api');
-Route::put('auth/me', UpdateProfileController::class)->middleware('auth:api');
-
-Route::post('auth/password', ChangePasswordController::class)->middleware('auth:api');
 Route::post('auth/password/reset', ForgotPasswordController::class)->middleware('guest:api');
 Route::post('auth/password/reset/{token}', ResetPasswordController::class)->middleware('guest:api');
 
 Route::post('auth/email/verify', VerifyEmailController::class)->middleware('auth:api');
 Route::post('auth/email/resend', ResendEmailVerificationController::class)->middleware('auth:api');
+
+Route::get('me', MeController::class)->middleware('auth:api');
+Route::put('me', UpdateProfileController::class)->middleware('auth:api');
+Route::post('password', ChangePasswordController::class)->middleware('auth:api');
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
 Route::post('authors', [AuthorsController::class, 'store']);

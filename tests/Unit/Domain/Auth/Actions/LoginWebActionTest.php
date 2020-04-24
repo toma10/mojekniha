@@ -4,7 +4,7 @@ namespace Tests\Unit\Domain\Auth\Actions;
 
 use App\Domain\Auth\Actions\LoginWebAction;
 use App\Domain\Auth\DataTransferObjects\LoginData;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;

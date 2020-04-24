@@ -4,7 +4,7 @@ namespace App\Domain\Auth\Actions;
 
 use App\Domain\Auth\DataTransferObjects\RegisterData;
 use App\Domain\Auth\Events\Registered;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterAction

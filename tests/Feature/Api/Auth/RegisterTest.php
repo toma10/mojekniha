@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api\Auth;
 
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;

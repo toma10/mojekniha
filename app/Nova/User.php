@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Domain\Auth\Models\User as UserModel;
+use App\Domain\User\Models\User as UserModel;
 use App\Nova\Filters\UserType;
 use Illuminate\Http\Request;
 use Laravel\Nova\Actions\Action;

@@ -2,7 +2,7 @@
 
 namespace App\Domain\Auth\Events;
 
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 

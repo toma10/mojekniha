@@ -5,7 +5,7 @@ namespace Tests\Unit\Domain\Auth\Actions;
 use App\Domain\Auth\Actions\RegisterAction;
 use App\Domain\Auth\DataTransferObjects\RegisterData;
 use App\Domain\Auth\Events\Registered;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;

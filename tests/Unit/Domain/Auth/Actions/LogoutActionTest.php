@@ -3,7 +3,7 @@
 namespace Tests\Unit\Domain\Auth\Actions;
 
 use App\Domain\Auth\Actions\LogoutAction;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

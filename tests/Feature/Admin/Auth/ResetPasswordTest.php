@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin\Auth;
 
 use App\Domain\Auth\Models\PasswordReset;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

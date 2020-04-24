@@ -3,7 +3,7 @@
 namespace Tests\Unit\Domain\Auth\Listeners;
 
 use App\Domain\Auth\Events\Registered;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use App\Domain\Auth\Notifications\VerifyEmailNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;

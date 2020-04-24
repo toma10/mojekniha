@@ -3,7 +3,7 @@
 namespace App\Domain\Auth\Actions;
 
 use App\Domain\Auth\DataTransferObjects\ResendEmailVerificationData;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use App\Domain\Auth\Notifications\VerifyEmailNotification;
 
 class ResendEmailVerificationAction

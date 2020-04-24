@@ -5,7 +5,7 @@ namespace Tests\Unit\Domain\Auth\Actions;
 use App\Domain\Auth\Actions\VerifyEmailAction;
 use App\Domain\Auth\DataTransferObjects\VerifyEmailData;
 use App\Domain\Auth\Events\EmailVerified;
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;

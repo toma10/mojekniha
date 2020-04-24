@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Auth;
 
-use App\Domain\Auth\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,7 +20,6 @@ class LogoutTest extends TestCase
     /** @test */
     public function it_logs_out_the_user()
     {
-        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user, 'web')->post('admin/logout');

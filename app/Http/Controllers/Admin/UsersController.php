@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Domain\Auth\Actions\CreateUserAction;
-use App\Domain\Auth\Actions\DeleteUserAction;
-use App\Domain\Auth\Actions\UpdateUserAction;
-use App\Domain\Auth\DataTransferObjects\UserData;
-use App\Domain\Auth\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Domain\User\Actions\CreateUserAction;
+use App\Domain\User\Actions\DeleteUserAction;
+use App\Domain\User\Actions\UpdateUserAction;
+use App\Domain\User\DataTransferObjects\CreateUserData;
+use App\Domain\User\DataTransferObjects\UpdateUserData;
+use App\Domain\User\Models\User;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -26,10 +28,10 @@ class UsersController
         return Inertia::render('Users/Create');
     }
 
-    public function store(UserRequest $request, CreateUserAction $createUserAction): RedirectResponse
+    public function store(CreateUserRequest $request, CreateUserAction $createUserAction): RedirectResponse
     {
         $createUserAction->execute(
-            new UserData($request->validated())
+            new CreateUserData($request->validated())
         );
 
         flash()->success(trans('messages.user.created'));
@@ -47,11 +49,11 @@ class UsersController
         return Inertia::render('Users/Edit', compact('user'));
     }
 
-    public function update(User $user, UserRequest $request, UpdateUserAction $updateUserAction): RedirectResponse
+    public function update(User $user, UpdateUserRequest $request, UpdateUserAction $updateUserAction): RedirectResponse
     {
         $updateUserAction->execute(
             $user,
-            new UserData($request->validated())
+            new UpdateUserData($request->validated())
         );
 
         flash()->success(trans('messages.user.updated'));
