@@ -2,7 +2,7 @@
   <x-button
     :class="{'pointer-events-none': loading}"
     v-bind="$attrs"
-    @click="$emit('click')"
+    v-on="$listeners"
   >
     <span
       v-if="loading"
