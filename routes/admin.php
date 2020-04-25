@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LanguagesController;
+use App\Http\Controllers\Admin\NationalitiesController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UsersController;
 
@@ -29,6 +31,14 @@ Route::middleware(['auth:web', 'admin'])->group(static function (): void {
     Route::post('profile', [ProfileController::class, 'store']);
 
     Route::post('password', ChangePasswordController::class)->name('password');
+
+    Route::prefix('books')->name('books.')->group(static function (): void {
+        Route::get('languages', [LanguagesController::class, 'index'])->name('languages.index');
+        Route::get('languages/{language}', [LanguagesController::class, 'show'])->name('languages.show');
+
+        Route::get('nationalities', [NationalitiesController::class, 'index'])->name('nationalities.index');
+        Route::get('nationalities/{nationality}', [NationalitiesController::class, 'show'])->name('nationalities.show');
+    });
 
     Route::resource('users', UsersController::class);
 });

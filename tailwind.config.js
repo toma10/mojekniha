@@ -10,6 +10,7 @@ module.exports = {
   },
   variants: {
     margin: ['responsive', 'first'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'even'],
   },
   plugins: [
     require('@tailwindcss/ui'),

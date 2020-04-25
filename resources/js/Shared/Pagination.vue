@@ -1,5 +1,8 @@
 <template>
-  <div class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
+  <div
+    v-if="hasPages"
+    class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0"
+  >
     <div class="w-0 flex-1 flex">
       <inertia-link
         v-if="links.previous.url !== null"
@@ -103,6 +106,11 @@ export default {
     links: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    hasPages() {
+      return this.links.pages.length > 1
     },
   },
 }

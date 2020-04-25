@@ -16,6 +16,38 @@
       </svg>
       Dashboard
     </inertia-link>
+    <div>
+      <span
+        class="group flex items-center px-2 py-2 text-base leading-6 font-medium text-indigo-300 rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+      >
+        <svg
+          class="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"
+          />
+        </svg>
+        Books
+      </span>
+      <div class="space-y-1">
+        <inertia-link
+          :href="route('admin.books.languages.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/languages') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Languages
+        </inertia-link>
+        <inertia-link
+          :href="route('admin.books.nationalities.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/nationalities') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Nationalities
+        </inertia-link>
+      </div>
+    </div>
     <inertia-link
       :href="route('admin.users.index')"
       class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"

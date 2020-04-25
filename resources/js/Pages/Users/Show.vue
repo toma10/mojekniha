@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <div class="flex justify-between items-center">
+        <horizontal-spacer>
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <avatar :url="user.avatar_url" />
@@ -22,7 +22,7 @@
             </x-link>
             <delete-user-link :user="user" />
           </div>
-        </div>
+        </horizontal-spacer>
       </template>
 
       <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Layout from '@/Shared/Layout'
+import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
 import VerifiedTag from './Components/VerifiedTag'
@@ -63,6 +63,7 @@ import Avatar from '@/Shared/Avatar'
 export default {
   components: {
     Layout,
+    HorizontalSpacer,
     Panel,
     H4Title,
     VerifiedTag,
