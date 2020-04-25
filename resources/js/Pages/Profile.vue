@@ -68,7 +68,7 @@
             />
 
             <text-input
-              id="password"
+              id="new_password"
               v-model="formChangePassword.new_password"
               :errors="errors.new_password"
               type="password"
@@ -77,7 +77,7 @@
             />
 
             <text-input
-              id="password_confirmation"
+              id="new_password_confirmation"
               v-model="formChangePassword.new_password_confirmation"
               :errors="errors.new_password_confirmation"
               type="password"
