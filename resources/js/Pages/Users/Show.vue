@@ -25,27 +25,19 @@
         </horizontal-spacer>
       </template>
 
-      <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
-        <div>
-          <div>Email</div>
-          <div class="text-gray-500">
-            {{ user.email }}
-          </div>
-        </div>
-        <div>
-          <div>Status</div>
-          <div>
-            <verified-tag :is-verified="user.is_verified" />
-          </div>
-        </div>
-        <div>
-          <div>Role</div>
-          <user-role
-            :user="user"
-            class="text-gray-500"
-          />
-        </div>
-      </div>
+      <data-grid>
+        <data-grid-item title="Email">
+          {{ user.email }}
+        </data-grid-item>
+
+        <data-grid-item title="Status">
+          <verified-tag :is-verified="user.is_verified" />
+        </data-grid-item>
+
+        <data-grid-item title="Role">
+          <user-role :user="user" />
+        </data-grid-item>
+      </data-grid>
     </panel>
   </layout>
 </template>
@@ -54,11 +46,12 @@
 import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
+import Avatar from '@/Shared/Avatar'
+import { XLink } from '@/Shared/Link'
+import DeleteUserLink from './Components/DeleteUserLink'
+import { DataGrid, DataGridItem } from '@/Shared/DataGrid'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'
-import DeleteUserLink from './Components/DeleteUserLink'
-import { XLink } from '@/Shared/Link'
-import Avatar from '@/Shared/Avatar'
 
 export default {
   components: {
@@ -66,11 +59,13 @@ export default {
     HorizontalSpacer,
     Panel,
     H4Title,
+    Avatar,
+    XLink,
+    DeleteUserLink,
+    DataGrid,
+    DataGridItem,
     VerifiedTag,
     UserRole,
-    DeleteUserLink,
-    XLink,
-    Avatar,
   },
   props: {
     user: {

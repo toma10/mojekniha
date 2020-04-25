@@ -7,20 +7,15 @@
         </h4-title>
       </template>
 
-      <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
-        <div>
-          <div>Id</div>
-          <div class="text-gray-500">
-            {{ nationality.id }}
-          </div>
-        </div>
-        <div>
-          <div>Name</div>
-          <div class="text-gray-500">
-            {{ nationality.name }}
-          </div>
-        </div>
-      </div>
+      <data-grid>
+        <data-grid-item title="Id">
+          {{ nationality.id }}
+        </data-grid-item>
+
+        <data-grid-item title="Name">
+          {{ nationality.name }}
+        </data-grid-item>
+      </data-grid>
     </panel>
   </layout>
 </template>
@@ -29,12 +24,15 @@
 import Layout from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
 import { H4Title } from '@/Shared/Title'
+import { DataGrid, DataGridItem } from '@/Shared/DataGrid'
 
 export default {
   components: {
     Layout,
     Panel,
     H4Title,
+    DataGrid,
+    DataGridItem,
   },
   props: {
     nationality: {

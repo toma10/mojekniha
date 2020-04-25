@@ -10,73 +10,55 @@
       </button-link>
     </horizontal-spacer>
 
-    <div class="mt-5 flex flex-col">
-      <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-          <table class="min-w-full">
-            <thead>
-              <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Name
-                </th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Email
-                </th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Role
-                </th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider" />
-              </tr>
-            </thead>
-            <tbody class="bg-white">
-              <tr
-                v-for="user in users.data"
-                :key="user.id"
-              >
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                      <avatar :url="user.avatar_url" />
-                    </div>
-                    <div class="ml-4">
-                      <div class="text-sm leading-5 font-medium text-gray-900">
-                        {{ user.name }}
-                      </div>
-                      <div class="text-sm leading-5 text-gray-500">
-                        {{ user.username }}
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="text-sm leading-5 text-gray-900">
-                    {{ user.email }}
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <verified-tag :is-verified="user.is_verified" />
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                  <user-role :user="user" />
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium space-x-1">
-                  <x-link :href="route('admin.users.show', user.id)">
-                    Show
-                  </x-link>
-                  <x-link :href="route('admin.users.edit', user.id)">
-                    Edit
-                  </x-link>
-                  <delete-user-link :user="user" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <x-table class="mt-5">
+      <thead>
+        <x-tr>
+          <x-th>Name</x-th>
+          <x-th>Email</x-th>
+          <x-th>Status</x-th>
+          <x-th>Role</x-th>
+          <x-th />
+        </x-tr>
+      </thead>
+      <tbody>
+        <x-tr
+          v-for="user in users.data"
+          :key="user.id"
+        >
+          <x-td>
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <avatar :url="user.avatar_url" />
+              </div>
+              <div class="ml-4">
+                <div class="text-sm leading-5 font-medium text-gray-900">
+                  {{ user.name }}
+                </div>
+                <div class="text-sm leading-5 text-gray-500">
+                  {{ user.username }}
+                </div>
+              </div>
+            </div>
+          </x-td>
+          <x-td>{{ user.email }}</x-td>
+          <x-td>
+            <verified-tag :is-verified="user.is_verified" />
+          </x-td>
+          <x-td muted>
+            <user-role :user="user" />
+          </x-td>
+          <x-td links>
+            <x-link :href="route('admin.users.show', user.id)">
+              Show
+            </x-link>
+            <x-link :href="route('admin.users.edit', user.id)">
+              Edit
+            </x-link>
+            <delete-user-link :user="user" />
+          </x-td>
+        </x-tr>
+      </tbody>
+    </x-table>
 
     <pagination
       class="mt-6"
@@ -91,6 +73,7 @@ import { H2Title } from '@/Shared/Title'
 import { ButtonLink } from '@/Shared/Link'
 import { XLink } from '@/Shared/Link'
 import Avatar from '@/Shared/Avatar'
+import { XTable, XTr, XTh, XTd } from '@/Shared/Table'
 import VerifiedTag from './Components/VerifiedTag'
 import UserRole from './Components/UserRole'
 import DeleteUserLink from './Components/DeleteUserLink'
@@ -104,6 +87,10 @@ export default {
     ButtonLink,
     XLink,
     Avatar,
+    XTable,
+    XTr,
+    XTh,
+    XTd,
     VerifiedTag,
     UserRole,
     DeleteUserLink,
