@@ -1,8 +1,6 @@
 <template>
   <layout>
-    <h2-title class="text-2xl font-semibold text-gray-900">
-      Languages
-    </h2-title>
+    <h2-title>Languages</h2-title>
 
     <x-table class="mt-5">
       <thead>

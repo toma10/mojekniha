@@ -1,8 +1,6 @@
 <template>
   <layout>
-    <h2-title class="text-2xl font-semibold text-gray-900">
-      Nationalities
-    </h2-title>
+    <h2-title>Nationalities</h2-title>
 
     <x-table class="mt-5">
       <thead>

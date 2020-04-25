@@ -1,9 +1,7 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title class="text-2xl font-semibold text-gray-900">
-        Users
-      </h2-title>
+      <h2-title>Users</h2-title>
 
       <button-link :href="route('admin.users.create')">
         Create user
