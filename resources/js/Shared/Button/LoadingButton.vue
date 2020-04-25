@@ -38,6 +38,7 @@ export default {
   components: {
     XButton,
   },
+  inheritAttrs: false,
   props: {
     loading: {
       type: Boolean,

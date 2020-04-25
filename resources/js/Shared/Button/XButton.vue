@@ -20,6 +20,7 @@ import cn from 'classnames'
 import COLORS from './colors'
 
 export default {
+  inheritAttrs: false,
   props: {
     type: {
       type: String,
