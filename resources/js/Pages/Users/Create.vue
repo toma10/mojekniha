@@ -1,7 +1,7 @@
 <template>
   <layout>
     <panel>
-      <template v-slot:header>
+      <template #header>
         <h4-title>Create user</h4-title>
       </template>
 

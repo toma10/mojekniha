@@ -1,7 +1,7 @@
 <template>
   <layout>
     <panel>
-      <template v-slot:header>
+      <template #header>
         <div class="flex justify-between items-center">
           <div class="flex items-center">
             <div class="flex-shrink-0">

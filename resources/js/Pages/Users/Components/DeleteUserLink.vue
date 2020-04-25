@@ -8,7 +8,7 @@
       @confirm="confirm"
       @close="modalOpen = false"
     >
-      <template v-slot:title>
+      <template #title>
         Delete user
       </template>
       <template>

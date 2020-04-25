@@ -2,7 +2,7 @@
   <layout>
     <div class="space-y-8">
       <panel>
-        <template v-slot:header>
+        <template #header>
           <h4-title>Edit profile</h4-title>
         </template>
 
@@ -52,7 +52,7 @@
       </panel>
 
       <panel>
-        <template v-slot:header>
+        <template #header>
           <h4-title>Change password</h4-title>
         </template>
 

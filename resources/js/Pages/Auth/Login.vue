@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <template v-slot:header>
+    <template #header>
       <logo />
       <h3-title class="mt-3">
         Sign in
