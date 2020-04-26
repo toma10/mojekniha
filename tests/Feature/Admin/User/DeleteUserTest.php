@@ -23,7 +23,7 @@ class DeleteUserTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_deletes_the_book()
+    public function it_deletes_the_user()
     {
         $admin = factory(User::class)->states('admin')->create();
         $user = factory(User::class)->create();
