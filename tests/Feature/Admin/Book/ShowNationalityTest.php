@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin\User;
+namespace Tests\Feature\Admin\Book;
 
 use App\Domain\Book\Models\Nationality;
 use App\Domain\User\Models\User;

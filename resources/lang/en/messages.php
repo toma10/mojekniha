@@ -16,4 +16,22 @@ return [
         'changed' => 'Password was succesfully changed.',
     ],
 
+    'bookBinding' => [
+        'created' => 'Book binding was succesfully created.',
+        'updated' => 'Book binding was succesfully updated.',
+        'deleted' => 'Book binding was succesfully deleted.',
+    ],
+
+    'genre' => [
+        'created' => 'Genre was succesfully created.',
+        'updated' => 'Genre was succesfully updated.',
+        'deleted' => 'Genre was succesfully deleted.',
+    ],
+
+    'tag' => [
+        'created' => 'Tag was succesfully created.',
+        'updated' => 'Tag was succesfully updated.',
+        'deleted' => 'Tag was succesfully deleted.',
+    ],
+
 ];

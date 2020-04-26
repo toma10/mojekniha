@@ -33,6 +33,20 @@
       </span>
       <div class="space-y-1">
         <inertia-link
+          :href="route('admin.books.genres.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/genres') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Genres
+        </inertia-link>
+        <inertia-link
+          :href="route('admin.books.bookBindings.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/book-bindings') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Book Binding
+        </inertia-link>
+        <inertia-link
           :href="route('admin.books.languages.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/languages') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
@@ -45,6 +59,13 @@
           :class="isUrl('admin/books/nationalities') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
           Nationalities
+        </inertia-link>
+        <inertia-link
+          :href="route('admin.books.tags.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/tags') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Tags
         </inertia-link>
       </div>
     </div>
