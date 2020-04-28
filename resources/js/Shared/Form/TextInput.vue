@@ -5,6 +5,10 @@
       class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
     >
       {{ label }}
+      <span
+        v-if="required"
+        class="text-red-500"
+      >*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div
@@ -61,6 +65,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+  },
+  computed: {
+    required() {
+      return 'required' in this.$attrs
     },
   },
 }
