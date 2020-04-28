@@ -3,7 +3,7 @@
     <span class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Id
     </span>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
+    <div class="mt-2 sm:mt-0 sm:col-span-2">
       <span class="sm:text-sm text-gray-500">{{ id }}</span>
     </div>
   </div>

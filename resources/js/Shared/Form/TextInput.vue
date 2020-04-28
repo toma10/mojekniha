@@ -10,7 +10,7 @@
         class="text-red-500"
       >*</span>
     </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
+    <div class="mt-2 sm:mt-0 sm:col-span-2">
       <div
         class="rounded-md shadow-sm"
         :class="wider ? 'max-w-lg' : 'max-w-xs'"
