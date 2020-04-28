@@ -19,7 +19,7 @@
 
         <button-group>
           <button-link
-            :href="route('admin.books.book-bindings.index')"
+            :href="route('admin.books.bookBindings.index')"
             color="plain"
           >
             Cancel
@@ -75,7 +75,7 @@ export default {
   methods: {
     async submit() {
       this.sending = true
-      const response = await this.$inertia.post(this.route('admin.books.book-bindings.store'), this.form)
+      const response = await this.$inertia.post(this.route('admin.books.bookBindings.store'), this.form)
       this.sending = false
     },
   },
