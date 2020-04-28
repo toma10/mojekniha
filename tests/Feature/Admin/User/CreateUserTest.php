@@ -35,7 +35,6 @@ class CreateUserTest extends InertiaTestCase
     public function it_creates_the_user()
     {
         $admin = factory(User::class)->states('admin')->create();
-
         $data = [
             'name' => 'John Doe',
             'username' => 'johndoe',
