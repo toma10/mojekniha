@@ -24,9 +24,9 @@
           :key="author.id"
           striped
         >
-          <x-td> {{ author.id }}</x-td>
-          <x-td> {{ author.name }}</x-td>
-          <x-td> {{ author.nationality.name }}</x-td>
+          <x-td>{{ author.id }}</x-td>
+          <x-td>{{ author.name }}</x-td>
+          <x-td>{{ author.nationality.name }}</x-td>
           <x-td>
             <avatar :url="author.portrait_url" />
           </x-td>

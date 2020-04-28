@@ -22,8 +22,8 @@
           :key="item.id"
           striped
         >
-          <x-td> {{ item.id }}</x-td>
-          <x-td> {{ item.name }}</x-td>
+          <x-td>{{ item.id }}</x-td>
+          <x-td>{{ item.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.series.show', item.id)">
               Show

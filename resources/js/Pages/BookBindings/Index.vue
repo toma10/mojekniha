@@ -22,8 +22,8 @@
           :key="bookBinding.id"
           striped
         >
-          <x-td> {{ bookBinding.id }}</x-td>
-          <x-td> {{ bookBinding.name }}</x-td>
+          <x-td>{{ bookBinding.id }}</x-td>
+          <x-td>{{ bookBinding.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.bookBindings.show', bookBinding.id)">
               Show

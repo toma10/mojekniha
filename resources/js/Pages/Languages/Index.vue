@@ -16,8 +16,8 @@
           :key="language.id"
           striped
         >
-          <x-td> {{ language.id }}</x-td>
-          <x-td> {{ language.name }}</x-td>
+          <x-td>{{ language.id }}</x-td>
+          <x-td>{{ language.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.languages.show', language.id)">
               Show

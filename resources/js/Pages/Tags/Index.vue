@@ -22,8 +22,8 @@
           :key="tag.id"
           striped
         >
-          <x-td> {{ tag.id }}</x-td>
-          <x-td> {{ tag.name }}</x-td>
+          <x-td>{{ tag.id }}</x-td>
+          <x-td>{{ tag.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.tags.show', tag.id)">
               Show

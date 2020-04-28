@@ -16,8 +16,8 @@
           :key="nationality.id"
           striped
         >
-          <x-td> {{ nationality.id }}</x-td>
-          <x-td> {{ nationality.name }}</x-td>
+          <x-td>{{ nationality.id }}</x-td>
+          <x-td>{{ nationality.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.nationalities.show', nationality.id)">
               Show

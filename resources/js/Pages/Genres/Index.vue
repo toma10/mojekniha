@@ -22,8 +22,8 @@
           :key="genre.id"
           striped
         >
-          <x-td> {{ genre.id }}</x-td>
-          <x-td> {{ genre.name }}</x-td>
+          <x-td>{{ genre.id }}</x-td>
+          <x-td>{{ genre.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.genres.show', genre.id)">
               Show
