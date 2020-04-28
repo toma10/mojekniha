@@ -39,12 +39,13 @@ class CreateAuthorTest extends TestCase
                     'id' => $nationality->id,
                     'name' => $nationality->name,
                 ],
+                'portrait_url' => url(Author::FALLBACK_PORTRAIT_IMAGE),
             ],
         ]);
     }
 
     /** @test */
-    public function portrait_image_path_is_returned_if_portrait_image_is_included()
+    public function portrait_url_is_returned_if_portrait_image_is_included()
     {
         Storage::fake('public');
 
@@ -56,7 +57,7 @@ class CreateAuthorTest extends TestCase
         $this->assertNotNull($author = Author::first());
         $response->assertJson([
             'data' => [
-                'portrait_image_path' => $author->getFirstMediaUrl('portrait-image'),
+                'portrait_url' => $author->getFirstMediaUrl('portrait-image'),
             ],
         ]);
     }
@@ -173,6 +174,7 @@ class CreateAuthorTest extends TestCase
         $data = factory(Author::class)->raw(['portrait_image' => $file]);
 
         $response = $this->postJson('api/authors', $data);
+
         $response->assertJsonValidationErrors('portrait_image');
     }
 

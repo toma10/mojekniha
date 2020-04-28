@@ -16,6 +16,12 @@ return [
         'changed' => 'Heslo bylo úspěšně změněno.',
     ],
 
+    'author' => [
+        'created' => 'Autor byl úspěšně vytvořen.',
+        'updated' => 'Autor byl úspěšně upraven.',
+        'deleted' => 'Autor byl úspěšně smazán.',
+    ],
+
     'bookBinding' => [
         'created' => 'Vazba knihy byla úspěšně vytvořena.',
         'updated' => 'Vazba knihy byla úspěšně upravena.',
@@ -26,6 +32,12 @@ return [
         'created' => 'Žánr byl úspěšně vytvořen.',
         'updated' => 'Žánr byl úspěšně upraven.',
         'deleted' => 'Žánr byl úspěšně smazán.',
+    ],
+
+    'series' => [
+        'created' => 'Série byla úspěšně vytvořena.',
+        'updated' => 'Série byla úspěšně upravena.',
+        'deleted' => 'Série byla úspěšně smazána.',
     ],
 
     'tag' => [

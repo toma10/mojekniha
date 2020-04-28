@@ -12,7 +12,7 @@ class GetAuthorTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_returns_the_author_with_default_portrait_image_path()
+    public function it_returns_the_author_with_default_portrait_url()
     {
         $nationality = factory(Nationality::class)->create(['name' => 'americká']);
         $author = factory(Author::class)->create(['nationality_id' => $nationality]);
@@ -31,7 +31,7 @@ class GetAuthorTest extends TestCase
                     'id' => $nationality->id,
                     'name' => $nationality->name,
                 ],
-                'portrait_image_path' => url('/images/portrait-image.jpg'),
+                'portrait_url' => url(Author::FALLBACK_PORTRAIT_IMAGE),
             ],
         ]);
     }

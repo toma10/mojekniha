@@ -24,7 +24,7 @@ class AuthorResource extends JsonResource
             'death_date' => optional($this->death_date)->format('Y-m-d'),
             'biography' => $this->biography,
             'nationality' => new NationalityResource($this->nationality),
-            'portrait_image_path' => $this->getFirstMediaUrl('portrait-image'),
+            'portrait_url' => $this->portrait_url,
         ];
     }
 }

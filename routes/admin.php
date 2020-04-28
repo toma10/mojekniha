@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\AuthorsController;
 use App\Http\Controllers\Admin\BookBindingsController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\GenresController;
 use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\NationalitiesController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\UsersController;
 
@@ -36,6 +38,8 @@ Route::middleware(['auth:web', 'admin'])->group(static function (): void {
     Route::post('password', ChangePasswordController::class)->name('password');
 
     Route::prefix('books')->name('books.')->group(static function (): void {
+        Route::resource('authors', AuthorsController::class);
+
         Route::resource('book-bindings', BookBindingsController::class)->names('bookBindings');
 
         Route::resource('genres', GenresController::class);
@@ -45,6 +49,8 @@ Route::middleware(['auth:web', 'admin'])->group(static function (): void {
 
         Route::get('nationalities', [NationalitiesController::class, 'index'])->name('nationalities.index');
         Route::get('nationalities/{nationality}', [NationalitiesController::class, 'show'])->name('nationalities.show');
+
+        Route::resource('series', SeriesController::class);
 
         Route::resource('tags', TagsController::class);
     });

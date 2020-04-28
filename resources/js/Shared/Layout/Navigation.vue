@@ -33,6 +33,13 @@
       </span>
       <div class="space-y-1">
         <inertia-link
+          :href="route('admin.books.authors.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/authors') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Authors
+        </inertia-link>
+        <inertia-link
           :href="route('admin.books.genres.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/genres') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
@@ -59,6 +66,13 @@
           :class="isUrl('admin/books/nationalities') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
           Nationalities
+        </inertia-link>
+        <inertia-link
+          :href="route('admin.books.series.index')"
+          class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
+          :class="isUrl('admin/books/series') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
+        >
+          Series
         </inertia-link>
         <inertia-link
           :href="route('admin.books.tags.index')"

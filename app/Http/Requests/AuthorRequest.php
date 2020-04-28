@@ -22,8 +22,20 @@ class AuthorRequest extends FormRequest
             'birth_date' => ['required', 'date'],
             'death_date' => ['nullable', 'date'],
             'biography' => ['nullable', 'string'],
-            'nationality_id' => ['required', 'exists:nationalities,id'],
+            'nationality_id' => ['required', 'integer', 'exists:nationalities,id'],
             'portrait_image' => ['nullable', 'image', 'mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)],
         ];
+    }
+
+    /**
+     * @return array<array<string, mixed>>
+     */
+    public function validated(): array
+    {
+        return transform(parent::validated(), function ($data) {
+            $data['nationality_id'] = (int) $data['nationality_id'];
+
+            return $data;
+        });
     }
 }

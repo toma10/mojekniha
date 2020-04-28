@@ -16,6 +16,12 @@ return [
         'changed' => 'Password was succesfully changed.',
     ],
 
+    'author' => [
+        'created' => 'Author was succesfully created.',
+        'updated' => 'Author was succesfully updated.',
+        'deleted' => 'Author was succesfully deleted.',
+    ],
+
     'bookBinding' => [
         'created' => 'Book binding was succesfully created.',
         'updated' => 'Book binding was succesfully updated.',
@@ -26,6 +32,12 @@ return [
         'created' => 'Genre was succesfully created.',
         'updated' => 'Genre was succesfully updated.',
         'deleted' => 'Genre was succesfully deleted.',
+    ],
+
+    'series' => [
+        'created' => 'Series was succesfully created.',
+        'updated' => 'Series was succesfully updated.',
+        'deleted' => 'Series was succesfully deleted.',
     ],
 
     'tag' => [
