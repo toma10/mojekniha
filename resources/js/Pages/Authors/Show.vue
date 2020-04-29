@@ -28,7 +28,9 @@
         </data-grid-item>
 
         <data-grid-item title="Nationality">
-          {{ author.nationality.name }}
+          <x-link :href="route('admin.books.nationalities.show', author.nationality.id)">
+            {{ author.nationality.name }}
+          </x-link>
         </data-grid-item>
 
         <data-grid-item title="Date of birth">
@@ -58,11 +60,11 @@
 <script>
 import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
+import { H4Title } from '@/Shared/Title'
+import Avatar from '@/Shared/Avatar'
 import { XLink } from '@/Shared/Link'
 import DeleteAuthorLink from './Components/DeleteAuthorLink'
-import { H4Title } from '@/Shared/Title'
 import { DataGrid, DataGridItem } from '@/Shared/DataGrid'
-import Avatar from '@/Shared/Avatar'
 
 export default {
   components: {
@@ -70,11 +72,11 @@ export default {
     HorizontalSpacer,
     Panel,
     H4Title,
+    Avatar,
     XLink,
     DeleteAuthorLink,
     DataGrid,
     DataGridItem,
-    Avatar,
   },
   props: {
     author: {
