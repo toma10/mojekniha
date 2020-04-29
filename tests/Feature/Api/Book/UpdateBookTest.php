@@ -4,6 +4,7 @@ namespace Tests\Feature\Api\Book;
 
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
+use App\Domain\Book\Models\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +19,14 @@ class UpdateBookTest extends TestCase
     {
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
+        $series = factory(Series::class)->create();
         $data = [
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
             'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
             'release_year' => 1961,
             'author_id' => $author->id,
+            'series_id' => $series->id,
         ];
 
         $response = $this->putJson("api/books/{$book->id}", $data);
@@ -36,6 +39,7 @@ class UpdateBookTest extends TestCase
                 'original_name' => $data['original_name'],
                 'description' => $data['description'],
                 'release_year' => $data['release_year'],
+                'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
             ],
         ]);
     }
@@ -53,7 +57,7 @@ class UpdateBookTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                'cover_image_path' => $book->getFirstMediaUrl('cover-image'),
+                'cover_url' => $book->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -111,10 +115,10 @@ class UpdateBookTest extends TestCase
     }
 
     /** @test */
-    public function release_year_must_be_numeric()
+    public function release_year_must_be_integer()
     {
         $book = factory(Book::class)->create();
-        $data = factory(Book::class)->raw(['release_year' => 'not-a-valid-number']);
+        $data = factory(Book::class)->raw(['release_year' => 2000.5]);
 
         $response = $this->putJson("api/books/{$book->id}", $data);
 
@@ -152,6 +156,28 @@ class UpdateBookTest extends TestCase
         $response = $this->putJson("api/books/{$book->id}", $data);
 
         $response->assertJsonValidationErrors('author_id');
+    }
+
+    /** @test */
+    public function series_id_must_exist()
+    {
+        $book = factory(Book::class)->create();
+        $data = factory(Book::class)->raw(['series_id' => 999]);
+
+        $response = $this->putJson("api/books/{$book->id}", $data);
+
+        $response->assertJsonValidationErrors('series_id');
+    }
+
+    /** @test */
+    public function series_id_is_optional()
+    {
+        $book = factory(Book::class)->create();
+        $data = factory(Book::class)->raw(['series_id' => null]);
+
+        $response = $this->putJson("api/books/{$book->id}", $data);
+
+        $response->assertJsonMissingValidationErrors('series_id');
     }
 
     /** @test */

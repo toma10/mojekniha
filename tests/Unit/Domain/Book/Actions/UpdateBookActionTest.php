@@ -7,6 +7,7 @@ use App\Domain\Book\Actions\UploadBookCoverImageAction;
 use App\Domain\Book\DataTransferObjects\BookData;
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
+use App\Domain\Book\Models\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
@@ -22,12 +23,14 @@ class UpdateBookActionTest extends TestCase
     {
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
+        $series = factory(Series::class)->create();
         $bookData = new BookData([
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
             'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
             'release_year' => 1961,
             'author_id' => $author->id,
+            'series_id' => $series->id,
         ]);
 
         $book = app(UpdateBookAction::class)->execute($book, $bookData);
@@ -37,6 +40,7 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals($bookData->description, $book->description);
         $this->assertEquals($bookData->release_year, $book->release_year);
         $this->assertEquals($bookData->author_id, $book->author_id);
+        $this->assertEquals($bookData->series_id, $book->series->id);
     }
 
     /** @test */

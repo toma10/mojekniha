@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Domain\Book\Models;
 
+use App\Domain\Book\Actions\UploadBookCoverImageAction;
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
 use App\Domain\Book\Models\Edition;
@@ -12,11 +13,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class BookTest extends TestCase
 {
     use RefreshDatabase;
+
+    /** @test */
+    public function it_returns_cover_url()
+    {
+        Storage::fake('public');
+
+        $book = factory(Book::class)->create();
+        $file = File::image('cover-image.jpg', $width = 400);
+
+        $this->assertEquals(url(Book::FALLBACK_COVER_IMAGE), $book->cover_url);
+
+        (new UploadBookCoverImageAction())->execute($book, $file);
+        $this->assertEquals($book->getFirstMediaUrl('cover-image'), $book->cover_url);
+    }
 
     /** @test */
     public function it_belongs_to_an_author()

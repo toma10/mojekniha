@@ -23,7 +23,7 @@ class BookResource extends JsonResource
             'original_name' => $this->original_name,
             'description' => $this->description,
             'release_year' => $this->release_year,
-            'cover_image_path' => $this->getFirstMediaUrl('cover-image'),
+            'cover_url' => $this->cover_url,
         ];
     }
 }

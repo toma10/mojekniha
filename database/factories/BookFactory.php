@@ -11,5 +11,6 @@ $factory->define(Book::class, function (Faker $faker) {
         'description' => $faker->sentence,
         'release_year' => $faker->numberBetween(1800, 2000),
         'author_id' => factory(Author::class),
+        'series_id' => null,
     ];
 });

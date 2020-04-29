@@ -22,6 +22,12 @@ return [
         'deleted' => 'Autor byl úspěšně smazán.',
     ],
 
+    'book' => [
+        'created' => 'Kniha byla úspěšně vytvořena.',
+        'updated' => 'Kniha byla úspěšně upravena.',
+        'deleted' => 'Kniha byla úspěšně smazána.',
+    ],
+
     'bookBinding' => [
         'created' => 'Vazba knihy byla úspěšně vytvořena.',
         'updated' => 'Vazba knihy byla úspěšně upravena.',

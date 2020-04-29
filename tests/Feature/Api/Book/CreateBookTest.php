@@ -4,6 +4,7 @@ namespace Tests\Feature\Api\Book;
 
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
+use App\Domain\Book\Models\Series;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,12 +18,14 @@ class CreateBookTest extends TestCase
     public function it_creates_a_book()
     {
         $author = factory(Author::class)->create();
+        $series = factory(Series::class)->create();
         $data = [
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
             'description' => 'Hlavní postavou je poručík letectva Yossarian, který je trochu klaun a trochu blázen.',
             'release_year' => 1961,
             'author_id' => $author->id,
+            'series_id' => $series->id,
         ];
 
         $response = $this->postJson('api/books', $data);
@@ -35,6 +38,7 @@ class CreateBookTest extends TestCase
                 'original_name' => $data['original_name'],
                 'description' => $data['description'],
                 'release_year' => $data['release_year'],
+                'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
             ],
         ]);
     }
@@ -52,7 +56,7 @@ class CreateBookTest extends TestCase
         $this->assertNotNull($book = Book::first());
         $response->assertJson([
             'data' => [
-                'cover_image_path' => $book->getFirstMediaUrl('cover-image'),
+                'cover_url' => $book->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -98,9 +102,9 @@ class CreateBookTest extends TestCase
     }
 
     /** @test */
-    public function release_year_must_be_numeric()
+    public function release_year_must_be_integer()
     {
-        $data = factory(Book::class)->raw(['release_year' => 'not-a-valid-number']);
+        $data = factory(Book::class)->raw(['release_year' => 2000.5]);
 
         $response = $this->postJson('api/books', $data);
 
@@ -135,6 +139,26 @@ class CreateBookTest extends TestCase
         $response = $this->postJson('api/books', $data);
 
         $response->assertJsonValidationErrors('author_id');
+    }
+
+    /** @test */
+    public function series_id_must_exist()
+    {
+        $data = factory(Book::class)->raw(['series_id' => 999]);
+
+        $response = $this->postJson('api/books', $data);
+
+        $response->assertJsonValidationErrors('series_id');
+    }
+
+    /** @test */
+    public function series_id_is_optional()
+    {
+        $data = factory(Book::class)->raw(['series_id' => null]);
+
+        $response = $this->postJson('api/books', $data);
+
+        $response->assertJsonMissingValidationErrors('series_id');
     }
 
     /** @test */

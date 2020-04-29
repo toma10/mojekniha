@@ -18,4 +18,6 @@ class BookData extends DataTransferObject
     public ?UploadedFile $cover_image;
 
     public int $author_id;
+
+    public ?int $series_id;
 }

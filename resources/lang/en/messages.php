@@ -22,6 +22,12 @@ return [
         'deleted' => 'Author was succesfully deleted.',
     ],
 
+    'book' => [
+        'created' => 'Book was succesfully created.',
+        'updated' => 'Book was succesfully updated.',
+        'deleted' => 'Book was succesfully deleted.',
+    ],
+
     'bookBinding' => [
         'created' => 'Book binding was succesfully created.',
         'updated' => 'Book binding was succesfully updated.',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\AuthorsController;
 use App\Http\Controllers\Admin\BookBindingsController;
+use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\ChangePasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GenresController;
@@ -39,6 +40,8 @@ Route::middleware(['auth:web', 'admin'])->group(static function (): void {
 
     Route::prefix('books')->name('books.')->group(static function (): void {
         Route::resource('authors', AuthorsController::class);
+
+        Route::resource('books', BooksController::class);
 
         Route::resource('book-bindings', BookBindingsController::class)->names('bookBindings');
 
