@@ -33,7 +33,7 @@
             label="Date of death"
           />
 
-          <AvatarInput
+          <avatar-input
             label="Portrait"
             :url="author.portrait_url"
           />
