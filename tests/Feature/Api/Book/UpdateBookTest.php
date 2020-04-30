@@ -45,7 +45,7 @@ class UpdateBookTest extends TestCase
     }
 
     /** @test */
-    public function cover_image_path_is_returned_if_cover_image_is_included()
+    public function cover_url_is_returned_if_cover_image_is_included()
     {
         Storage::fake('public');
 

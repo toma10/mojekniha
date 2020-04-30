@@ -11,7 +11,7 @@ class GetBookTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_returns_the_book_with_default_cover_image_path()
+    public function it_returns_the_book_with_default_cover_url()
     {
         $book = factory(Book::class)->create();
 
@@ -25,7 +25,7 @@ class GetBookTest extends TestCase
                 'original_name' => $book->original_name,
                 'description' => $book->description,
                 'release_year' => $book->release_year,
-                'cover_url' => url('/images/book-cover.jpg'),
+                'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
             ],
         ]);
     }
