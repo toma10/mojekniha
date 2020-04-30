@@ -34,6 +34,12 @@ return [
         'deleted' => 'Vazba knihy byla úspěšně smazána.',
     ],
 
+    'edition' => [
+        'created' => 'Edice byla úspěšně vytvořena.',
+        'updated' => 'Edice byla úspěšně upravena.',
+        'deleted' => 'Edice byla úspěšně smazána.',
+    ],
+
     'genre' => [
         'created' => 'Žánr byl úspěšně vytvořen.',
         'updated' => 'Žánr byl úspěšně upraven.',

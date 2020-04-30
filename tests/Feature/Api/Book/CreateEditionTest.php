@@ -49,12 +49,13 @@ class CreateEditionTest extends TestCase
                     'id' => $bookBinding->id,
                     'name' => $bookBinding->name,
                 ],
+                'cover_url' => url(Edition::FALLBACK_COVER_IMAGE),
             ],
         ]);
     }
 
     /** @test */
-    public function cover_image_path_is_returned_if_cover_image_is_included()
+    public function cover_url_is_returned_if_cover_image_is_included()
     {
         Storage::fake('public');
 
@@ -66,7 +67,7 @@ class CreateEditionTest extends TestCase
         $this->assertNotNull($edition = Edition::first());
         $response->assertJson([
             'data' => [
-                'cover_image_path' => $edition->getFirstMediaUrl('cover-image'),
+                'cover_url' => $edition->getFirstMediaUrl('cover-image'),
             ],
         ]);
     }
@@ -112,9 +113,9 @@ class CreateEditionTest extends TestCase
     }
 
     /** @test */
-    public function release_year_must_be_numeric()
+    public function release_year_must_be_integer()
     {
-        $data = factory(Edition::class)->raw(['release_year' => 'not-a-valid-number']);
+        $data = factory(Edition::class)->raw(['release_year' => 2015.5]);
 
         $response = $this->postJson('api/editions', $data);
 
@@ -162,9 +163,9 @@ class CreateEditionTest extends TestCase
     }
 
     /** @test */
-    public function number_of_pages_must_be_numeric()
+    public function number_of_pages_must_be_integet()
     {
-        $data = factory(Edition::class)->raw(['number_of_pages' => 'not-a-valid-number']);
+        $data = factory(Edition::class)->raw(['number_of_pages' => 150.5]);
 
         $response = $this->postJson('api/editions', $data);
 
@@ -192,9 +193,9 @@ class CreateEditionTest extends TestCase
     }
 
     /** @test */
-    public function number_of_copies_must_be_numeric()
+    public function number_of_copies_must_be_integet()
     {
-        $data = factory(Edition::class)->raw(['number_of_copies' => 'not-a-valid-number']);
+        $data = factory(Edition::class)->raw(['number_of_copies' => 150000.5]);
 
         $response = $this->postJson('api/editions', $data);
 

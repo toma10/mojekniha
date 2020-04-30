@@ -34,6 +34,12 @@ return [
         'deleted' => 'Book binding was succesfully deleted.',
     ],
 
+    'edition' => [
+        'created' => 'Edition was succesfully created.',
+        'updated' => 'Edition was succesfully updated.',
+        'deleted' => 'Edition was succesfully deleted.',
+    ],
+
     'genre' => [
         'created' => 'Genre was succesfully created.',
         'updated' => 'Genre was succesfully updated.',
