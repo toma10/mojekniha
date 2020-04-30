@@ -151,6 +151,7 @@ export default {
         release_year: String(this.book.release_year),
         author_id: this.book.author_id,
         series_id: this.book.series_id,
+        cover_image: null,
       },
     }
   },
