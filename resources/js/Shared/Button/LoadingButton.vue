@@ -1,5 +1,6 @@
 <template>
   <x-button
+    ref="button"
     :class="{'pointer-events-none': loading}"
     :disabled="loading"
     v-bind="$attrs"
@@ -44,6 +45,11 @@ export default {
       type: Boolean,
       required: true,
       default: false,
+    },
+  },
+  methods: {
+    focus() {
+      this.$refs.button.focus()
     },
   },
 }

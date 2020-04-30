@@ -4,6 +4,7 @@
     :class="{'w-full': fullWidth}"
   >
     <button
+      ref="button"
       :type="type"
       class="inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150"
       :class="classes"
@@ -42,6 +43,11 @@ export default {
   computed: {
     classes() {
       return cn(COLORS[this.color], { 'w-full justify-center': this.fullWidth })
+    },
+  },
+  methods: {
+    focus() {
+      this.$refs.button.focus()
     },
   },
 }

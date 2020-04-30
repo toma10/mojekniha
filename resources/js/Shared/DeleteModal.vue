@@ -66,6 +66,7 @@
           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse space-y-3 sm:space-y-0 sm:space-x-3 sm:space-x-reverse">
             <span class="flex w-full sm:w-auto">
               <loading-button
+                ref="confirm"
                 color="danger"
                 full-width
                 :loading="sending"
@@ -109,6 +110,15 @@ export default {
     return {
       sending: false,
     }
+  },
+  watch: {
+    show(show) {
+      if (show) {
+        this.$nextTick(() => {
+          this.$refs.confirm.focus()
+        })
+      }
+    },
   },
   created () {
     const escapeHandler = e => {
