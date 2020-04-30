@@ -16,11 +16,11 @@ class CreateBookGenreTable extends Migration
         Schema::create('book_genre', function (Blueprint $table) {
             $table->foreignId('book_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
 
             $table->foreignId('genre_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
     }
 

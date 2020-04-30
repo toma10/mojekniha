@@ -16,7 +16,7 @@ class AddAuthorIdColumnToBooksTable extends Migration
         Schema::table('books', function (Blueprint $table) {
             $table->foreignId('author_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
     }
 

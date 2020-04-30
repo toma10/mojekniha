@@ -17,12 +17,12 @@ class CreateEditionsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('book_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
             $table->string('isbn');
             $table->unsignedSmallInteger('release_year');
             $table->foreignId('language_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
             $table->unsignedSmallInteger('number_of_pages');
             $table->unsignedBigInteger('number_of_copies');
             $table->timestamps();

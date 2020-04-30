@@ -16,11 +16,11 @@ class CreateBookTagTable extends Migration
         Schema::create('book_tag', function (Blueprint $table) {
             $table->foreignId('book_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
 
             $table->foreignId('tag_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
     }
 

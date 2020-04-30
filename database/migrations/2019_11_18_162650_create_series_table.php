@@ -18,7 +18,7 @@ class CreateSeriesTable extends Migration
             $table->string('name');
             $table->foreignId('author_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class AddBookBindingIdColumnToEditionsTable extends Migration
         Schema::table('editions', function (Blueprint $table) {
             $table->foreignId('book_binding_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
     }
 

@@ -16,7 +16,7 @@ class AddNationalityIdColumnToAuthorsTable extends Migration
         Schema::table('authors', function (Blueprint $table) {
             $table->foreignId('nationality_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->cascadeOnDelete();
         });
     }
 
