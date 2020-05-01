@@ -8,3 +8,7 @@
 
 /* Utilities */
 @import "tailwindcss/utilities";
+
+.justify-items-start {
+  justify-items: start;
+}

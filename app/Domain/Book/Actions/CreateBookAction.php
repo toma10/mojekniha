@@ -17,11 +17,19 @@ class CreateBookAction
     public function execute(BookData $bookData): Book
     {
         $book = Book::create(
-            $bookData->except('cover_image')->toArray()
+            $bookData->except('cover_image', 'genres', 'tags')->toArray()
         );
 
         if ($bookData->cover_image) {
             $this->uploadBookCoverImageAction->execute($book, $bookData->cover_image);
+        }
+
+        if (is_array($bookData->genres)) {
+            $book->genres()->sync($bookData->genres);
+        }
+
+        if (is_array($bookData->tags)) {
+            $book->tags()->sync($bookData->tags);
         }
 
         return $book;

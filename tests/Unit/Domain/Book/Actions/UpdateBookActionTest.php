@@ -7,7 +7,9 @@ use App\Domain\Book\Actions\UploadBookCoverImageAction;
 use App\Domain\Book\DataTransferObjects\BookData;
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
+use App\Domain\Book\Models\Genre;
 use App\Domain\Book\Models\Series;
+use App\Domain\Book\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +26,9 @@ class UpdateBookActionTest extends TestCase
         $book = factory(Book::class)->create();
         $author = factory(Author::class)->create();
         $series = factory(Series::class)->create();
+        $genre = factory(Genre::class)->create();
+        $tagA = factory(Tag::class)->create();
+        $tagB = factory(Tag::class)->create();
         $bookData = new BookData([
             'name' => 'Hlava XXII',
             'original_name' => 'Catch-22',
@@ -31,6 +36,8 @@ class UpdateBookActionTest extends TestCase
             'release_year' => 1961,
             'author_id' => $author->id,
             'series_id' => $series->id,
+            'genres' => [$genre->id],
+            'tags' => [$tagA->id, $tagB->id],
         ]);
 
         $book = app(UpdateBookAction::class)->execute($book, $bookData);
@@ -41,6 +48,10 @@ class UpdateBookActionTest extends TestCase
         $this->assertEquals($bookData->release_year, $book->release_year);
         $this->assertEquals($bookData->author_id, $book->author_id);
         $this->assertEquals($bookData->series_id, $book->series->id);
+        $this->assertCount(1, $book->genres);
+        $book->genres->assertContains($genre);
+        $this->assertCount(2, $book->tags);
+        $book->tags->assertContains($tagA, $tagB);
     }
 
     /** @test */

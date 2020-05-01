@@ -20,4 +20,10 @@ class BookData extends DataTransferObject
     public int $author_id;
 
     public ?int $series_id;
+
+    /** @var array<mixed>|null */
+    public ?array $genres;
+
+    /** @var array<mixed>|null */
+    public ?array $tags;
 }

@@ -73,6 +73,22 @@
             :errors="errors.cover_image"
             label="New Cover"
           />
+
+          <multiselect-input
+            id="genres"
+            v-model="form.genres"
+            :options="genreOptions"
+            :errors="errors.genres"
+            label="Genres"
+          />
+
+          <multiselect-input
+            id="tags"
+            v-model="form.tags"
+            :options="tagOptions"
+            :errors="errors.tags"
+            label="Tags"
+          />
         </form-content>
 
         <button-group>
@@ -106,6 +122,7 @@ import {
   SelectInput,
   AvatarInput,
   ImageInput,
+  MultiselectInput,
   ButtonGroup
 } from '@/Shared/Form'
 import { ButtonLink } from '@/Shared/Link'
@@ -123,6 +140,7 @@ export default {
     SelectInput,
     AvatarInput,
     ImageInput,
+    MultiselectInput,
     ButtonGroup,
     ButtonLink,
     LoadingButton,
@@ -133,6 +151,14 @@ export default {
       required: true,
     },
     authors: {
+      type: Array,
+      required: true,
+    },
+    genres: {
+      type: Array,
+      required: true,
+    },
+    tags: {
       type: Array,
       required: true,
     },
@@ -152,6 +178,8 @@ export default {
         author_id: this.book.author_id,
         series_id: this.book.series_id,
         cover_image: null,
+        genres: this.book.genres.map(genre => genre.id),
+        tags: this.book.tags.map(tag => tag.id),
       },
     }
   },
@@ -181,6 +209,18 @@ export default {
       return author.series.map(series => ({
         key: series.id,
         value: series.name,
+      }))
+    },
+    genreOptions() {
+      return this.genres.map(tag => ({
+        key: tag.id,
+        value: tag.name,
+      }))
+    },
+    tagOptions() {
+      return this.tags.map(tag => ({
+        key: tag.id,
+        value: tag.name,
       }))
     },
   },

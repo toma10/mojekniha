@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'col-span-2' : fullWidth}">
+  <div :class="{'md:col-span-2' : fullWidth}">
     <h6 class="text-sm">
       {{ title }}
     </h6>

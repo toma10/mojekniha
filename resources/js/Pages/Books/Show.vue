@@ -76,6 +76,7 @@ import Avatar from '@/Shared/Avatar'
 import { XLink } from '@/Shared/Link'
 import DeleteBookLink from './Components/DeleteBookLink'
 import { DataGrid, DataGridItem } from '@/Shared/DataGrid'
+import Tag from '@/Shared/Tag'
 
 export default {
   components: {
@@ -88,6 +89,7 @@ export default {
     DeleteBookLink,
     DataGrid,
     DataGridItem,
+    Tag,
   },
   props: {
     book: {

@@ -8,6 +8,8 @@ use App\Domain\Book\Actions\UpdateBookAction;
 use App\Domain\Book\DataTransferObjects\BookData;
 use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
+use App\Domain\Book\Models\Genre;
+use App\Domain\Book\Models\Tag;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -25,8 +27,10 @@ class BooksController
     public function create(): Response
     {
         $authors = Author::with('series')->get();
+        $tags = Tag::all();
+        $genres = Genre::all();
 
-        return Inertia::render('Books/Create', compact('authors'));
+        return Inertia::render('Books/Create', compact('authors', 'tags', 'genres'));
     }
 
     public function store(BookRequest $request, CreateBookAction $createBookAction): RedirectResponse
@@ -42,16 +46,20 @@ class BooksController
 
     public function show(Book $book): Response
     {
-        $book->load('author', 'series');
+        $book->load('author', 'series', 'genres', 'tags');
 
         return Inertia::render('Books/Show', compact('book'));
     }
 
     public function edit(Book $book): Response
     {
-        $authors = Author::with('series')->get();
+        $book->load('genres', 'tags');
 
-        return Inertia::render('Books/Edit', compact('book', 'authors'));
+        $authors = Author::with('series')->get();
+        $tags = Tag::all();
+        $genres = Genre::all();
+
+        return Inertia::render('Books/Edit', compact('book', 'authors', 'tags', 'genres'));
     }
 
     public function update(Book $book, BookRequest $request, UpdateBookAction $updateBookAction): RedirectResponse
