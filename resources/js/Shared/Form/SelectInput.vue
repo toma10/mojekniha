@@ -31,13 +31,13 @@
             {{ option.value }}
           </option>
         </select>
-        <p
-          v-if="errors.length"
-          class="mt-1 text-red-500 text-xs italic"
-        >
-          {{ errors[0] }}
-        </p>
       </div>
+      <p
+        v-if="errors.length"
+        class="mt-1 text-red-500 text-xs italic"
+      >
+        {{ errors[0] }}
+      </p>
     </div>
   </div>
 </template>
