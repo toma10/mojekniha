@@ -20,9 +20,7 @@
           :value="value"
           @change="$emit('input', $event.target.value)"
         >
-          <option :value="null">
-            {{ emptyLabel }}
-          </option>
+          <option />
           <option
             v-for="option in options"
             :key="option.key"
@@ -62,11 +60,6 @@ export default {
     options: {
       type: Array,
       required: true,
-    },
-    emptyLabel: {
-      type: String,
-      required: false,
-      default: null,
     },
     errors: {
       type: Array,
