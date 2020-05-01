@@ -172,7 +172,7 @@ export default {
         return []
       }
 
-      const author = this.authors.find(author => author.id === parseInt(this.form.author_id)) || null
+      const author = this.authors.find(author => author.id === this.form.author_id) || null
 
       if (author === null) {
         return []

@@ -18,7 +18,7 @@
           :class="{'text-gray-500 cursor-not-allowed': 'disabled' in $attrs}"
           v-bind="$attrs"
           :value="value"
-          @change="$emit('input', $event.target.value)"
+          @change="$emit('input', parseInt($event.target.value))"
         >
           <option />
           <option
