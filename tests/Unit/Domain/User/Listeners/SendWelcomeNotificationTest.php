@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domain\User\Listeners;
 
-use App\Domain\user\Events\UserCreated;
+use App\Domain\User\Events\UserCreated;
 use App\Domain\User\Models\User;
 use App\Domain\User\Notifications\WelcomeNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;

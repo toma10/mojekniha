@@ -3,7 +3,7 @@
 namespace App\Domain\User\Actions;
 
 use App\Domain\User\DataTransferObjects\CreateUserData;
-use App\Domain\user\Events\UserCreated;
+use App\Domain\User\Events\UserCreated;
 use App\Domain\User\Models\User;
 use Facades\App\Domain\Auth\Support\PasswordGenerator;
 use Illuminate\Support\Facades\Hash;

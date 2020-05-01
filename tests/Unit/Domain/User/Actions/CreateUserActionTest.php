@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\Domain\Auth\Actions;
+namespace Tests\Unit\Domain\User\Actions;
 
 use App\Domain\User\Actions\CreateUserAction;
 use App\Domain\User\DataTransferObjects\CreateUserData;
-use App\Domain\user\Events\UserCreated;
+use App\Domain\User\Events\UserCreated;
 use Facades\App\Domain\Auth\Support\PasswordGenerator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;

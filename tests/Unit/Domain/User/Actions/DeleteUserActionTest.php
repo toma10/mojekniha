@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\Auth\Actions;
+namespace Tests\Unit\Domain\User\Actions;
 
 use App\Domain\User\Actions\DeleteUserAction;
 use App\Domain\User\Models\User;

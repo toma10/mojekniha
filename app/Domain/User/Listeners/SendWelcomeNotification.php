@@ -2,7 +2,7 @@
 
 namespace App\Domain\User\Listeners;
 
-use App\Domain\user\Events\UserCreated;
+use App\Domain\User\Events\UserCreated;
 use App\Domain\User\Notifications\WelcomeNotification;
 
 class SendWelcomeNotification
