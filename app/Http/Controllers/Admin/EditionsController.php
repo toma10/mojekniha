@@ -46,7 +46,7 @@ class EditionsController
 
     public function show(Edition $edition): Response
     {
-        $edition->load('book', 'language', 'bookBinding');
+        $edition->load('book.tags', 'book.genres', 'language', 'bookBinding');
 
         return Inertia::render('Editions/Show', compact('edition'));
     }

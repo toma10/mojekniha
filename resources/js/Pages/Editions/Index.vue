@@ -15,6 +15,7 @@
           <x-th>ISBN</x-th>
           <x-th>Book</x-th>
           <x-th>Language</x-th>
+          <x-th>Release year</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -36,6 +37,7 @@
               {{ edition.language.name }}
             </x-link>
           </x-td>
+          <x-td>{{ edition.release_year }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.editions.show', edition.id)">
               Show

@@ -41,6 +41,8 @@ class BookBindingsController
 
     public function show(BookBinding $bookBinding): Response
     {
+        $bookBinding->load('editions.book', 'editions.language');
+
         return Inertia::render('BookBindings/Show', compact('bookBinding'));
     }
 

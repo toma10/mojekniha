@@ -17,6 +17,8 @@ class NationalitiesController
 
     public function show(Nationality $nationality): Response
     {
+        $nationality->load('authors');
+
         return Inertia::render('Nationalities/Show', compact('nationality'));
     }
 }

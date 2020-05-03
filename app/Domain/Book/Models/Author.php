@@ -45,11 +45,11 @@ class Author extends BaseModel implements HasMedia
 
     public function books(): HasMany
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class)->orderBy('release_year');
     }
 
     public function series(): HasMany
     {
-        return $this->hasMany(Series::class);
+        return $this->hasMany(Series::class)->orderBy('name');
     }
 }

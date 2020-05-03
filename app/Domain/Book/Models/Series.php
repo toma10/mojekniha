@@ -15,6 +15,6 @@ class Series extends BaseModel
 
     public function books(): HasMany
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class)->orderBy('release_year');
     }
 }

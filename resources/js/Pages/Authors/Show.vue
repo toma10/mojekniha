@@ -54,17 +54,88 @@
         </data-grid-item>
       </data-grid>
     </panel>
+
+    <div class="mt-8">
+      <H5Title>Books</H5Title>
+      <x-table class="mt-5">
+        <thead>
+          <x-tr>
+            <x-th>Id</x-th>
+            <x-th>Name</x-th>
+            <x-th>Original name</x-th>
+            <x-th>Release year</x-th>
+            <x-th />
+          </x-tr>
+        </thead>
+        <tbody>
+          <x-tr
+            v-for="book in author.books"
+            :key="book.id"
+            striped
+          >
+            <x-td>{{ book.id }}</x-td>
+            <x-td>{{ book.name }}</x-td>
+            <x-td>{{ book.original_name }}</x-td>
+            <x-td>{{ book.release_year }}</x-td>
+            <x-td links>
+              <x-link :href="route('admin.books.books.show', book.id)">
+                Show
+              </x-link>
+              <x-link :href="route('admin.books.books.edit', book.id)">
+                Edit
+              </x-link>
+              <delete-book-link :book="book" />
+            </x-td>
+          </x-tr>
+        </tbody>
+      </x-table>
+    </div>
+
+    <div class="mt-8">
+      <H5Title>Series</H5Title>
+      <x-table class="mt-5">
+        <thead>
+          <x-tr>
+            <x-th>Id</x-th>
+            <x-th>Name</x-th>
+            <x-th />
+          </x-tr>
+        </thead>
+        <tbody>
+          <x-tr
+            v-for="series in author.series"
+            :key="series.id"
+            striped
+          >
+            <x-td>{{ series.id }}</x-td>
+            <x-td>{{ series.name }}</x-td>
+            <x-td links>
+              <x-link :href="route('admin.books.series.show', series.id)">
+                Show
+              </x-link>
+              <x-link :href="route('admin.books.series.edit', series.id)">
+                Edit
+              </x-link>
+              <delete-series-link :series="series" />
+            </x-td>
+          </x-tr>
+        </tbody>
+      </x-table>
+    </div>
   </layout>
 </template>
 
 <script>
 import Layout, { HorizontalSpacer } from '@/Shared/Layout'
 import Panel from '@/Shared/Panel'
-import { H4Title } from '@/Shared/Title'
+import { H4Title, H5Title } from '@/Shared/Title'
 import Avatar from '@/Shared/Avatar'
 import { XLink } from '@/Shared/Link'
 import DeleteAuthorLink from './Components/DeleteAuthorLink'
 import { DataGrid, DataGridItem } from '@/Shared/DataGrid'
+import { XTable, XTr, XTh, XTd } from '@/Shared/Table'
+import DeleteBookLink from '@/Pages/Books/Components/DeleteBookLink'
+import DeleteSeriesLink from '@/Pages/Series/Components/DeleteSeriesLink'
 
 export default {
   components: {
@@ -72,11 +143,18 @@ export default {
     HorizontalSpacer,
     Panel,
     H4Title,
+    H5Title,
     Avatar,
     XLink,
     DeleteAuthorLink,
     DataGrid,
     DataGridItem,
+    XTable,
+    XTr,
+    XTh,
+    XTd,
+    DeleteBookLink,
+    DeleteSeriesLink,
   },
   props: {
     author: {

@@ -39,6 +39,8 @@ class GenresController
 
     public function show(Genre $genre): Response
     {
+        $genre->load('books.author');
+
         return Inertia::render('Genres/Show', compact('genre'));
     }
 

@@ -42,7 +42,7 @@ class AuthorsController
 
     public function show(Author $author): Response
     {
-        $author->load('nationality');
+        $author->load('nationality', 'books', 'series');
 
         return Inertia::render('Authors/Show', compact('author'));
     }

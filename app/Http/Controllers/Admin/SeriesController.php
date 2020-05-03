@@ -42,7 +42,7 @@ class SeriesController
 
     public function show(Series $series): Response
     {
-        $series->load('author');
+        $series->load('author', 'books');
 
         return Inertia::render('Series/Show', compact('series'));
     }

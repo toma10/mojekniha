@@ -39,6 +39,8 @@ class TagsController
 
     public function show(Tag $tag): Response
     {
+        $tag->load('books.author');
+
         return Inertia::render('Tags/Show', compact('tag'));
     }
 

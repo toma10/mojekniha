@@ -41,7 +41,7 @@ class Book extends BaseModel implements HasMedia
 
     public function editions(): HasMany
     {
-        return $this->hasMany(Edition::class);
+        return $this->hasMany(Edition::class)->orderBy('release_year');
     }
 
     public function series(): BelongsTo

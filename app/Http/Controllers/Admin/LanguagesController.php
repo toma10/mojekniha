@@ -17,6 +17,8 @@ class LanguagesController
 
     public function show(Language $language): Response
     {
+        $language->load('editions.book');
+
         return Inertia::render('Languages/Show', compact('language'));
     }
 }

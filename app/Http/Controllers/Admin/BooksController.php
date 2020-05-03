@@ -46,7 +46,7 @@ class BooksController
 
     public function show(Book $book): Response
     {
-        $book->load('author', 'series', 'genres', 'tags');
+        $book->load('author', 'series', 'editions.language', 'genres', 'tags');
 
         return Inertia::render('Books/Show', compact('book'));
     }

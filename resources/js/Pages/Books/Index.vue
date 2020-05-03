@@ -15,6 +15,7 @@
           <x-th>Name</x-th>
           <x-th>Original name</x-th>
           <x-th>Author</x-th>
+          <x-th>Release year</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -32,6 +33,7 @@
               {{ book.author.name }}
             </x-link>
           </x-td>
+          <x-td>{{ book.release_year }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.books.show', book.id)">
               Show
