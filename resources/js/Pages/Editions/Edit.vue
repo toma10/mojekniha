@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Edit edition</h4-title>
+        <h4-title>{{ __('editions.edit') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -14,7 +14,7 @@
             v-model="form.book_id"
             :errors="errors.book_id"
             :options="bookOptions"
-            label="Book"
+            :label="__('shared.book')"
             required
           />
 
@@ -22,7 +22,7 @@
             id="isbn"
             v-model="form.isbn"
             :errors="errors.isbn"
-            label="ISBN"
+            :label="__('shared.isbn')"
             required
           />
 
@@ -31,7 +31,7 @@
             v-model="form.language_id"
             :errors="errors.language_id"
             :options="languageOptions"
-            label="Language"
+            :label="__('shared.language')"
             required
           />
 
@@ -42,7 +42,7 @@
             :step="1"
             v-model="form.release_year"
             :errors="errors.release_year"
-            label="Release year"
+            :label="__('shared.releaseYear')"
             required
           />
 
@@ -53,7 +53,7 @@
             :step="1"
             v-model="form.number_of_pages"
             :errors="errors.number_of_pages"
-            label="Number of pages"
+            :label="__('shared.numberOfPages')"
             required
           />
 
@@ -64,7 +64,7 @@
             :step="1"
             v-model="form.number_of_copies"
             :errors="errors.number_of_copies"
-            label="Number of copies"
+            :label="__('shared.numberOfCopies')"
             required
           />
 
@@ -73,12 +73,12 @@
             v-model="form.book_binding_id"
             :errors="errors.book_binding_id"
             :options="bookBindingOptions"
-            label="Book Binding"
+            :label="__('shared.bookBinding')"
             required
           />
 
           <avatar-input
-            label="Cover"
+            :label="__('shared.cover')"
             :url="edition.cover_url"
           />
 
@@ -86,7 +86,7 @@
             id="cover_image"
             v-model="form.cover_image"
             :errors="errors.cover_image"
-            label="New Cover"
+            :label="__('shared.newCover')"
           />
         </form-content>
 
@@ -95,13 +95,13 @@
             :href="route('admin.books.editions.show', edition.id)"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Save
+            {{ __('shared.create') }}
           </loading-button>
         </button-group>
       </form>

@@ -1,18 +1,18 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Genres</h2-title>
+      <h2-title>{{ __('shared.genres') }}</h2-title>
 
       <button-link :href="route('admin.books.genres.create')">
-        Create genre
+        {{ __('genres.create') }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
+          <x-th>{{ __('shared.id') }}</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -26,10 +26,10 @@
           <x-td>{{ genre.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.genres.show', genre.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
             <x-link :href="route('admin.books.genres.edit', genre.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-genre-link :genre="genre" />
           </x-td>

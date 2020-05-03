@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Create author</h4-title>
+        <h4-title>{{ __('authors.create') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -11,7 +11,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('authors.name')"
             required
             autofocus
           />
@@ -20,7 +20,7 @@
             id="birth_date"
             v-model="form.birth_date"
             :errors="errors.birth_date"
-            label="Date of birth"
+            :label="__('shared.birthDate')"
             required
           />
 
@@ -28,21 +28,21 @@
             id="death_date"
             v-model="form.death_date"
             :errors="errors.death_date"
-            label="Date of death"
+            :label="__('shared.deathDate')"
           />
 
           <image-input
             id="portrait_image"
             v-model="form.portrait_image"
             :errors="errors.portrait_image"
-            label="Portrait"
+            :label="__('shared.portrait')"
           />
 
           <textarea-input
             id="biography"
             v-model="form.biography"
             :errors="errors.biography"
-            label="Biography"
+            :label="__('shared.biography')"
           />
 
           <select-input
@@ -50,7 +50,7 @@
             v-model="form.nationality_id"
             :errors="errors.nationality_id"
             :options="options"
-            label="Nationality"
+            :label="__('shared.nationality')"
             required
           />
         </form-content>
@@ -60,13 +60,13 @@
             :href="route('admin.books.authors.index')"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Create
+            {{ __('shared.create') }}
           </loading-button>
         </button-group>
       </form>

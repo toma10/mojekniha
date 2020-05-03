@@ -4,11 +4,11 @@
       <template #header>
         <horizontal-spacer>
           <h4-title>
-            Series detail
+            {{ __('shared.series') }}
           </h4-title>
           <div class="space-x-1">
             <x-link :href="route('admin.books.series.edit', series.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-series-link :series="series" />
           </div>
@@ -16,15 +16,15 @@
       </template>
 
       <data-grid>
-        <data-grid-item title="Id">
+        <data-grid-item :title="__('shared.id')">
           {{ series.id }}
         </data-grid-item>
 
-        <data-grid-item title="Name">
+        <data-grid-item :title="__('shared.name')">
           {{ series.name }}
         </data-grid-item>
 
-        <data-grid-item title="Author">
+        <data-grid-item :title="__('shared.author')">
           <x-link :href="route('admin.books.authors.show', series.author.id)">
             {{ series.author.name }}
           </x-link>
@@ -33,14 +33,14 @@
     </panel>
 
     <div class="mt-8">
-      <H5Title>Books</H5Title>
+      <H5Title>{{ __('shared.books') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>Name</x-th>
-            <x-th>Original name</x-th>
-            <x-th>Release year</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.name') }}</x-th>
+            <x-th>{{ __('shared.originalName') }}</x-th>
+            <x-th>{{ __('shared.releaseYear') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -56,10 +56,10 @@
             <x-td>{{ book.release_year }}</x-td>
             <x-td links>
               <x-link :href="route('admin.books.books.show', book.id)">
-                Show
+                {{ __('shared.show') }}
               </x-link>
               <x-link :href="route('admin.books.books.edit', book.id)">
-                Edit
+                {{ __('shared.edit') }}
               </x-link>
               <delete-book-link :book="book" />
             </x-td>

@@ -19,7 +19,9 @@ export default {
   props: {
     label: {
       type: String,
-      default: 'Avatar',
+      default() {
+        return this.__('shared.avatar')
+      },
     },
     url: {
       type: String,

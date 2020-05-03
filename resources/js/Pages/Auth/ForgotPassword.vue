@@ -3,7 +3,7 @@
     <template #header>
       <logo />
       <h3-title class="mt-3">
-        Reset Password
+          {{ __('auth.resetPassword') }}
       </h3-title>
     </template>
 
@@ -14,7 +14,7 @@
           v-model="form.email"
           :errors="errors.email"
           type="email"
-          label="Email"
+          :label="__('shared.email')"
           required
           autofocus
         />
@@ -22,7 +22,7 @@
 
       <form-group>
         <loading-button type="submit" :loading="sending" full-width>
-          Send Password Reset Link
+          {{ __('auth.sendPasswordResetLink') }}
         </loading-button>
       </form-group>
     </form>

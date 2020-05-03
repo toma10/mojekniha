@@ -13,9 +13,10 @@
               </h4-title>
             </div>
           </div>
+
           <div class="space-x-1">
             <x-link :href="route('admin.books.authors.edit', author.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-author-link :author="author" />
           </div>
@@ -23,26 +24,26 @@
       </template>
 
       <data-grid>
-        <data-grid-item title="Id">
+        <data-grid-item :title="__('shared.id')">
           {{ author.id }}
         </data-grid-item>
 
-        <data-grid-item title="Nationality">
+        <data-grid-item :title="__('shared.nationality')">
           <x-link :href="route('admin.books.nationalities.show', author.nationality.id)">
             {{ author.nationality.name }}
           </x-link>
         </data-grid-item>
 
-        <data-grid-item title="Date of birth">
+        <data-grid-item :title="__('shared.birthDate')">
           {{ formatDate(author.birth_date) }}
         </data-grid-item>
 
-        <data-grid-item title="Date of death">
+        <data-grid-item :title="__('shared.deathDate')">
           {{ formatDate(author.death_date) || '-' }}
         </data-grid-item>
 
         <data-grid-item
-          title="Biography"
+          :title="__('shared.biography')"
           full-width
         >
           <div class="max-w-2xl">
@@ -56,14 +57,14 @@
     </panel>
 
     <div class="mt-8">
-      <H5Title>Books</H5Title>
+      <H5Title>{{ __('shared.books') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>Name</x-th>
-            <x-th>Original name</x-th>
-            <x-th>Release year</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.name') }}</x-th>
+            <x-th>{{ __('shared.originalName') }}</x-th>
+            <x-th>{{ __('shared.releaseYear') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -79,10 +80,10 @@
             <x-td>{{ book.release_year }}</x-td>
             <x-td links>
               <x-link :href="route('admin.books.books.show', book.id)">
-                Show
+                {{ __('shared.show') }}
               </x-link>
               <x-link :href="route('admin.books.books.edit', book.id)">
-                Edit
+                {{ __('shared.edit') }}
               </x-link>
               <delete-book-link :book="book" />
             </x-td>
@@ -92,12 +93,12 @@
     </div>
 
     <div class="mt-8">
-      <H5Title>Series</H5Title>
+      <H5Title>{{ __('shared.series') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>Name</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.name') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -111,10 +112,10 @@
             <x-td>{{ series.name }}</x-td>
             <x-td links>
               <x-link :href="route('admin.books.series.show', series.id)">
-                Show
+                {{ __('shared.show') }}
               </x-link>
               <x-link :href="route('admin.books.series.edit', series.id)">
-                Edit
+                {{ __('shared.edit') }}
               </x-link>
               <delete-series-link :series="series" />
             </x-td>

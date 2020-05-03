@@ -12,7 +12,7 @@ export default {
   },
   computed: {
     label() {
-      return this.user.is_admin ? 'Admin' : 'User'
+      return this.user.is_admin ? this.__('shared.admin') : this.__('shared.user')
     },
   },
 }

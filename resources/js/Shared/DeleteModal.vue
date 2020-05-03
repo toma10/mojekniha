@@ -72,7 +72,7 @@
                 :loading="sending"
                 @click="confirm"
               >
-                Delete
+                {{ __('shared.delete') }}
               </loading-button>
             </span>
             <span class="flex w-full sm:w-auto">
@@ -82,7 +82,7 @@
                 :disabled="sending"
                 @click="close"
               >
-                Cancel
+                {{ __('shared.cancel') }}
               </x-button>
             </span>
           </div>

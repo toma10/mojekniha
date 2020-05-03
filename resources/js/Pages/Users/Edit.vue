@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Edit user</h4-title>
+        <h4-title>{{ __('users.edit') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -13,7 +13,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('shared.name')"
             required
             autofocus
           />
@@ -24,7 +24,7 @@
             id="username"
             v-model="form.username"
             :errors="errors.username"
-            label="Username"
+            :label="__('shared.username')"
             required
           />
 
@@ -33,7 +33,7 @@
             v-model="form.email"
             :errors="errors.email"
             type="email"
-            label="Email"
+            :label="__('shared.email')"
             wider
             disabled
           />
@@ -44,13 +44,13 @@
             :href="route('admin.users.show', user.id)"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Save
+            {{ __('shared.save') }}
           </loading-button>
         </button-group>
       </form>

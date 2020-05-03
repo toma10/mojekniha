@@ -6,6 +6,7 @@ import TextareaAutosize from 'vue-textarea-autosize'
 import route from 'ziggy'
 import { Ziggy } from './routes'
 import { format } from 'date-fns'
+import setupTranslations from './setupTranslations'
 
 Vue.use(InertiaApp)
 Vue.use(VueMeta)
@@ -30,8 +31,10 @@ Vue.mixin({
 })
 
 const app = document.getElementById('app')
+const i18n = setupTranslations(Vue)
 
 new Vue({
+  i18n,
   metaInfo: {
     titleTemplate: (title) => title ? `${title} - MojeKniha` : 'MojeKniha'
   },

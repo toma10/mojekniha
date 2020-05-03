@@ -3,7 +3,7 @@
     <div class="space-y-8">
       <panel>
         <template #header>
-          <h4-title>Edit profile</h4-title>
+          <h4-title>{{ __('profile.edit') }}</h4-title>
         </template>
 
         <form @submit.prevent="submit">
@@ -14,7 +14,7 @@
               id="name"
               v-model="form.name"
               :errors="errors.name"
-              label="Name"
+              :label="__('shared.name')"
               required
               autofocus
             />
@@ -25,7 +25,7 @@
               id="username"
               v-model="form.username"
               :errors="errors.username"
-              label="Username"
+              :label="__('shared.username')"
               required
             />
 
@@ -34,7 +34,7 @@
               v-model="form.email"
               :errors="errors.email"
               type="email"
-              label="Email"
+              :label="__('shared.email')"
               wider
               disabled
             />
@@ -45,7 +45,7 @@
               type="submit"
               :loading="sending"
             >
-              Save
+              {{ __('shared.save') }}
             </loading-button>
           </button-group>
         </form>
@@ -53,7 +53,7 @@
 
       <panel>
         <template #header>
-          <h4-title>Change password</h4-title>
+          <h4-title>{{ __('profile.changePassword') }}</h4-title>
         </template>
 
         <form @submit.prevent="submitChangePassword">
@@ -63,7 +63,7 @@
               v-model="formChangePassword.password"
               :errors="errors.password"
               type="password"
-              label="Current Password"
+              :label="__('profile.currentPassword')"
               required
             />
 
@@ -72,7 +72,7 @@
               v-model="formChangePassword.new_password"
               :errors="errors.new_password"
               type="password"
-              label="New Password"
+              :label="__('profile.newPassword')"
               required
             />
 
@@ -81,7 +81,7 @@
               v-model="formChangePassword.new_password_confirmation"
               :errors="errors.new_password_confirmation"
               type="password"
-              label="Confirm New Password"
+              :label="__('profile.confirmNewPassword')"
               required
             />
           </form-content>
@@ -91,7 +91,7 @@
               type="submit"
               :loading="sendingChangePassword"
             >
-              Save
+              {{ __('shared.save') }}
             </loading-button>
           </button-group>
         </form>

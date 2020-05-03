@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Edit book binding</h4-title>
+        <h4-title>{{ __('bookBindings.edit') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -13,7 +13,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('shared.name')"
             required
             autofocus
           />
@@ -24,13 +24,13 @@
             :href="route('admin.books.bookBindings.show', bookBinding.id)"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Save
+            {{ __('shared.save') }}
           </loading-button>
         </button-group>
       </form>

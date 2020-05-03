@@ -1,10 +1,10 @@
 <template>
   <delete-link :url="route('admin.books.tags.destroy', tag.id)">
     <template #title>
-      Delete tag
+      {{ __('tags.delete') }}
     </template>
     <template>
-      Are you sure you want to delete the tag? This action cannot be undone.
+      {{ __('tags.deleteText') }}
     </template>
   </delete-link>
 </template>

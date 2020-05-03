@@ -48,7 +48,7 @@
               >
             </div>
             <div class="mt-1 text-sm text-gray-600">
-              <span v-if="!file">Upload a file or drag and drop</span>
+              <span v-if="!file">{{ __('shared.uploadFileOrDragAndDrop') }}</span>
               <div v-else>
                 <span>{{ file.name }}</span>
                 <button

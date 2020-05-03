@@ -1,10 +1,10 @@
 <template>
   <delete-link :url="route('admin.users.destroy', user.id)">
     <template #title>
-      Delete user
+      {{ __('users.delete') }}
     </template>
     <template>
-      Are you sure you want to delete the user? This action cannot be undone.
+      {{ __('users.deleteText') }}
     </template>
   </delete-link>
 </template>

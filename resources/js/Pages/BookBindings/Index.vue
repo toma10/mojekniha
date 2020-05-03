@@ -1,18 +1,18 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Book Bindings</h2-title>
+      <h2-title>{{ __('shared.bookBindings') }}</h2-title>
 
       <button-link :href="route('admin.books.bookBindings.create')">
-        Create book binding
+        {{ __('bookBindings.create') }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
+          <x-th>{{ __('shared.id') }}</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -26,10 +26,10 @@
           <x-td>{{ bookBinding.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.bookBindings.show', bookBinding.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
             <x-link :href="route('admin.books.bookBindings.edit', bookBinding.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-book-binding-link :book-binding="bookBinding" />
           </x-td>

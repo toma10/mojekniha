@@ -1,10 +1,10 @@
 <template>
   <delete-link :url="route('admin.books.books.destroy', book.id)">
     <template #title>
-      Delete book
+      {{ __('books.delete') }}
     </template>
     <template>
-      Are you sure you want to delete the book? This action cannot be undone.
+      {{ __('books.deleteText') }}
     </template>
   </delete-link>
 </template>

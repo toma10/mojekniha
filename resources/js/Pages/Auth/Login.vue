@@ -3,7 +3,7 @@
     <template #header>
       <logo />
       <h3-title class="mt-3">
-        Sign in
+        {{ __('auth.signIn') }}
       </h3-title>
     </template>
 
@@ -14,7 +14,7 @@
           v-model="form.email"
           :errors="errors.email"
           type="email"
-          label="Email"
+          :label="__('shared.email')"
           required
           autofocus
         />
@@ -25,7 +25,7 @@
           id="password"
           v-model="form.password"
           type="password"
-          label="Password"
+          :label="__('shared.password')"
           required
         />
       </form-group>
@@ -34,16 +34,16 @@
         <checkbox-input
           id="remember"
           v-model="form.remember"
-          label="Remember Me"
+          :label="__('auth.rememberMe')"
         />
         <x-link :href="route('admin.auth.password.forgot')">
-          Forgot your password?
+          {{ __('auth.forgotYourPassword') }}
         </x-link>
       </form-group>
 
       <form-group>
         <loading-button type="submit" :loading="sending" full-width>
-          Sign in
+          {{ __('auth.signIn') }}
         </loading-button>
       </form-group>
     </form>

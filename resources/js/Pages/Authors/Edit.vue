@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Edit author</h4-title>
+        <h4-title>{{ __('authors.edit') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -13,7 +13,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('shared.name')"
             required
             autofocus
           />
@@ -22,7 +22,7 @@
             id="birth_date"
             v-model="form.birth_date"
             :errors="errors.birth_date"
-            label="Date of birth"
+            :label="__('shared.birthDate')"
             required
           />
 
@@ -30,11 +30,11 @@
             id="death_date"
             v-model="form.death_date"
             :errors="errors.death_date"
-            label="Date of death"
+            :label="__('shared.deathDate')"
           />
 
           <avatar-input
-            label="Portrait"
+            :label="__('shared.portrait')"
             :url="author.portrait_url"
           />
 
@@ -42,14 +42,14 @@
             id="portrait_image"
             v-model="form.portrait_image"
             :errors="errors.portrait_image"
-            label="New Portrait"
+            :label="__('shared.newPortrait')"
           />
 
           <textarea-input
             id="biography"
             v-model="form.biography"
             :errors="errors.biography"
-            label="Biography"
+            :label="__('shared.biography')"
           />
 
           <select-input
@@ -57,7 +57,7 @@
             v-model="form.nationality_id"
             :errors="errors.nationality_id"
             :options="options"
-            label="Nationality"
+            :label="__('shared.nationality')"
             required
           />
         </form-content>
@@ -67,13 +67,13 @@
             :href="route('admin.books.authors.show', author.id)"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Save
+            {{ __('shared.save') }}
           </loading-button>
         </button-group>
       </form>

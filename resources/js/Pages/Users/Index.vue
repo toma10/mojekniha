@@ -1,20 +1,20 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Users</h2-title>
+      <h2-title>{{ __('shared.users') }}</h2-title>
 
       <button-link :href="route('admin.users.create')">
-        Create user
+        {{ __('users.create') }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Name</x-th>
-          <x-th>Email</x-th>
-          <x-th>Status</x-th>
-          <x-th>Role</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
+          <x-th>{{ __('shared.email') }}</x-th>
+          <x-th>{{ __('shared.status') }}</x-th>
+          <x-th>{{ __('shared.role') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -47,10 +47,10 @@
           </x-td>
           <x-td links>
             <x-link :href="route('admin.users.show', user.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
             <x-link :href="route('admin.users.edit', user.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-user-link :user="user" />
           </x-td>

@@ -4,11 +4,12 @@
       <template #header>
         <horizontal-spacer>
           <h4-title>
-            Book binding detail
+            {{ __('shared.bookBinding') }}
           </h4-title>
+
           <div class="space-x-1">
             <x-link :href="route('admin.books.bookBindings.edit', bookBinding.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-book-binding-link :book-binding="bookBinding" />
           </div>
@@ -16,26 +17,26 @@
       </template>
 
       <data-grid>
-        <data-grid-item title="Id">
+        <data-grid-item :title="__('shared.id')">
           {{ bookBinding.id }}
         </data-grid-item>
 
-        <data-grid-item title="Name">
+        <data-grid-item :title="__('shared.name')">
           {{ bookBinding.name }}
         </data-grid-item>
       </data-grid>
     </panel>
 
     <div class="mt-8">
-      <H5Title>Editions</H5Title>
+      <H5Title>{{ __('shared.editions') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>ISBN</x-th>
-            <x-th>Book</x-th>
-            <x-th>Language</x-th>
-            <x-th>Release year</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.isbn') }}</x-th>
+            <x-th>{{ __('shared.book') }}</x-th>
+            <x-th>{{ __('shared.language') }}</x-th>
+            <x-th>{{ __('shared.releaseYear') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -60,10 +61,10 @@
             <x-td>{{ edition.release_year }}</x-td>
             <x-td links>
               <x-link :href="route('admin.books.editions.show', edition.id)">
-                Show
+                {{ __('shared.show') }}
               </x-link>
               <x-link :href="route('admin.books.editions.edit', edition.id)">
-                Edit
+                {{ __('shared.edit') }}
               </x-link>
               <delete-edition-link :edition="edition" />
             </x-td>

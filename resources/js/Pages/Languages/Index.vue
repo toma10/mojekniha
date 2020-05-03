@@ -1,12 +1,12 @@
 <template>
   <layout>
-    <h2-title>Languages</h2-title>
+    <h2-title>{{ __('shared.languages') }}</h2-title>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
+          <x-th>{{ __('shared.id') }}</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -20,7 +20,7 @@
           <x-td>{{ language.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.languages.show', language.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
           </x-td>
         </x-tr>

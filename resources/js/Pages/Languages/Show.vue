@@ -2,31 +2,29 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>
-          Language data
-        </h4-title>
+        <h4-title>{{ __('shared.language') }}</h4-title>
       </template>
 
       <data-grid>
-        <data-grid-item title="Id">
+        <data-grid-item :title="__('shared.id')">
           {{ language.id }}
         </data-grid-item>
 
-        <data-grid-item title="Name">
+        <data-grid-item :title="__('shared.name')">
           {{ language.name }}
         </data-grid-item>
       </data-grid>
     </panel>
 
     <div class="mt-8">
-      <H5Title>Editions</H5Title>
+      <H5Title>{{ __('shared.editions') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>ISBN</x-th>
-            <x-th>Book</x-th>
-            <x-th>Release year</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.isbn') }}</x-th>
+            <x-th>{{ __('shared.book') }}</x-th>
+            <x-th>{{ __('shared.releaseYear') }}</x-th>
             <x-th />
           </x-tr>
         </thead>

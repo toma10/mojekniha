@@ -114,12 +114,12 @@ class InertiaServiceProvider extends ServiceProvider
                         'pages' => $pages,
                         'previous' => [
                             'url' => $this->previousPageUrl(),
-                            'label' => 'Previous',
+                            'label' => __('pagination.previous'),
                             'active' => false,
                         ],
                         'next' => [
                             'url' => $this->nextPageUrl(),
-                            'label' => 'Next',
+                            'label' => __('pagination.next'),
                             'active' => false,
                         ],
                     ];

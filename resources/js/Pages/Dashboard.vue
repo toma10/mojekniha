@@ -1,7 +1,7 @@
 <template>
   <layout>
     <h2-title class="text-2xl font-semibold text-gray-900">
-      Dashboard
+      {{ __('shared.dashboard') }}
     </h2-title>
   </layout>
 </template>

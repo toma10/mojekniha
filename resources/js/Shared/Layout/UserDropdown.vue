@@ -34,14 +34,18 @@
                 :href="route('admin.profile')"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition ease-in-out duration-150"
                 @keydown.esc.exact="open = false"
-              >Your Profile</a>
+              >
+                {{ __('shared.yourProfile') }}
+              </a>
               <a
                 :href="route('admin.auth.logout')"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition ease-in-out duration-150"
                 @click.prevent="logout"
                 @keydown.esc.exact="open = false"
                 @keydown.tab.exact="open = false"
-              >Sign out</a>
+              >
+                {{ __('auth.signOut') }}
+              </a>
             </div>
           </div>
         </transition>

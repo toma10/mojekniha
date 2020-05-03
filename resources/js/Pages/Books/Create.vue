@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Create book</h4-title>
+        <h4-title>{{ __('books.create') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -11,7 +11,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('shared.name')"
             required
             autofocus
           />
@@ -20,7 +20,7 @@
             id="original_name"
             v-model="form.original_name"
             :errors="errors.original_name"
-            label="Original name"
+            :label="__('shared.originalName')"
             required
           />
 
@@ -28,7 +28,7 @@
             id="description"
             v-model="form.description"
             :errors="errors.description"
-            label="Description"
+            :label="__('shared.description')"
             required
           />
 
@@ -39,7 +39,7 @@
             :step="1"
             v-model="form.release_year"
             :errors="errors.release_year"
-            label="Release year"
+            :label="__('shared.releaseYear')"
             required
           />
 
@@ -48,7 +48,7 @@
             v-model="form.author_id"
             :errors="errors.author_id"
             :options="authorOptions"
-            label="Author"
+            :label="__('shared.author')"
             required
           />
 
@@ -57,14 +57,14 @@
             v-model="form.series_id"
             :errors="errors.series_id"
             :options="seriesOptions"
-            label="Series"
+            :label="__('shared.series')"
           />
 
           <image-input
             id="cover_image"
             v-model="form.cover_image"
             :errors="errors.cover_image"
-            label="Cover"
+            :label="__('shared.cover')"
           />
 
           <multiselect-input
@@ -72,7 +72,7 @@
             v-model="form.genres"
             :options="genreOptions"
             :errors="errors.genres"
-            label="Genres"
+            :label="__('shared.genres')"
           />
 
           <multiselect-input
@@ -80,7 +80,7 @@
             v-model="form.tags"
             :options="tagOptions"
             :errors="errors.tags"
-            label="Tags"
+            :label="__('shared.tags')"
           />
         </form-content>
 
@@ -89,13 +89,13 @@
             :href="route('admin.books.books.index')"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Create
+            {{ __('shared.create') }}
           </loading-button>
         </button-group>
       </form>

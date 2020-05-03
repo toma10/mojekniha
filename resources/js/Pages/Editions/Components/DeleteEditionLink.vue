@@ -1,10 +1,10 @@
 <template>
   <delete-link :url="route('admin.books.editions.destroy', edition.id)">
     <template #title>
-      Delete edition
+      {{ __('editions.delete') }}
     </template>
     <template>
-      Are you sure you want to delete the edition? This action cannot be undone.
+      {{ __('editions.deleteText') }}
     </template>
   </delete-link>
 </template>

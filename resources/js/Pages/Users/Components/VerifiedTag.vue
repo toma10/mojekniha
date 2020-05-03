@@ -22,7 +22,7 @@ export default {
       return this.isVerified ? 'success' : 'danger'
     },
     label() {
-      return this.isVerified ? 'Verified' : 'Unverified'
+      return this.isVerified ? this.__('shared.verified') : this.__('shared.unverified')
     },
   },
 }

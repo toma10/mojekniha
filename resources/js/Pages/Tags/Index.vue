@@ -1,18 +1,18 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Tags</h2-title>
+      <h2-title>{{ __('shared.tags') }}</h2-title>
 
       <button-link :href="route('admin.books.tags.create')">
-        Create tag
+        {{ __('tags.create') }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
+          <x-th>{{ __('shared.id') }}</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -26,10 +26,10 @@
           <x-td>{{ tag.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.tags.show', tag.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
             <x-link :href="route('admin.books.tags.edit', tag.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-tag-link :tag="tag" />
           </x-td>

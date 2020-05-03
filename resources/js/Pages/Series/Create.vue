@@ -2,7 +2,7 @@
   <layout>
     <panel>
       <template #header>
-        <h4-title>Create series</h4-title>
+        <h4-title>{{ __('series.create') }}</h4-title>
       </template>
 
       <form @submit.prevent="submit">
@@ -11,7 +11,7 @@
             id="name"
             v-model="form.name"
             :errors="errors.name"
-            label="Name"
+            :label="__('shared.name')"
             required
             autofocus
           />
@@ -21,7 +21,7 @@
             v-model="form.author_id"
             :errors="errors.author_id"
             :options="options"
-            label="Author"
+            :label="__('shared.author')"
             required
           />
         </form-content>
@@ -31,13 +31,13 @@
             :href="route('admin.books.series.index')"
             color="plain"
           >
-            Cancel
+            {{ __('shared.cancel') }}
           </button-link>
           <loading-button
             type="submit"
             :loading="sending"
           >
-            Create
+            {{ __('shared.create') }}
           </loading-button>
         </button-group>
       </form>

@@ -1,7 +1,7 @@
 <template>
   <span>
     <link-button @click="modalOpen = true">
-      Delete
+      {{ __('shared.delete') }}
     </link-button>
     <delete-modal
       :show="modalOpen"

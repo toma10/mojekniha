@@ -14,7 +14,7 @@
           d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
         />
       </svg>
-      Dashboard
+      {{ __('shared.dashboard') }}
     </inertia-link>
     <div>
       <span
@@ -29,7 +29,7 @@
             d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"
           />
         </svg>
-        Books
+        {{ __('shared.books') }}
       </span>
       <div class="space-y-1">
         <inertia-link
@@ -37,63 +37,63 @@
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/authors') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Authors
+          {{ __('shared.authors') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.books.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/books') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Books
+          {{ __('shared.books') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.bookBindings.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/book-bindings') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Book Binding
+          {{ __('shared.bookBindings') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.editions.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/editions') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Editions
+          {{ __('shared.editions') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.genres.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/genres') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Genres
+          {{ __('shared.genres') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.languages.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/languages') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Languages
+          {{ __('shared.languages') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.nationalities.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/nationalities') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Nationalities
+          {{ __('shared.nationalities') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.series.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/series') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Series
+          {{ __('shared.series') }}
         </inertia-link>
         <inertia-link
           :href="route('admin.books.tags.index')"
           class="pl-10 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
           :class="isUrl('admin/books/tags') ? 'text-white bg-indigo-900' : 'text-indigo-300 hover:text-white hover:bg-indigo-700'"
         >
-          Tags
+          {{ __('shared.tags') }}
         </inertia-link>
       </div>
     </div>
@@ -111,7 +111,7 @@
           d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
         />
       </svg>
-      Users
+      {{ __('shared.users') }}
     </inertia-link>
   </nav>
 </template>

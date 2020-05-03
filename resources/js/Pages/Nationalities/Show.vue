@@ -3,29 +3,29 @@
     <panel>
       <template #header>
         <h4-title>
-          Nationality detail
+          {{ __('shared.nationality') }}
         </h4-title>
       </template>
 
       <data-grid>
-        <data-grid-item title="Id">
+        <data-grid-item :title="__('shared.id')">
           {{ nationality.id }}
         </data-grid-item>
 
-        <data-grid-item title="Name">
+        <data-grid-item :title="__('shared.name')">
           {{ nationality.name }}
         </data-grid-item>
       </data-grid>
     </panel>
 
     <div class="mt-8">
-      <H5Title>Authors</H5Title>
+      <H5Title>{{ __('shared.authors') }}</H5Title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
-            <x-th>Id</x-th>
-            <x-th>Name</x-th>
-            <x-th>Portrait</x-th>
+            <x-th>{{ __('shared.id') }}</x-th>
+            <x-th>{{ __('shared.name') }}</x-th>
+            <x-th>{{ __('shared.portrait') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -42,10 +42,10 @@
             </x-td>
             <x-td links>
               <x-link :href="route('admin.books.authors.show', author.id)">
-                Show
+                {{ __('shared.show') }}
               </x-link>
               <x-link :href="route('admin.books.authors.edit', author.id)">
-                Edit
+                {{ __('shared.edit') }}
               </x-link>
               <delete-author-link :author="author" />
             </x-td>

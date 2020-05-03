@@ -1,21 +1,21 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Books</h2-title>
+      <h2-title>{{ __("shared.books") }}</h2-title>
 
       <button-link :href="route('admin.books.books.create')">
-        Create book
+        {{ __("books.create") }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
-          <x-th>Original name</x-th>
-          <x-th>Author</x-th>
-          <x-th>Release year</x-th>
+          <x-th>{{ __("shared.id") }}</x-th>
+          <x-th>{{ __("shared.name") }}</x-th>
+          <x-th>{{ __("shared.originalName") }}</x-th>
+          <x-th>{{ __("shared.author") }}</x-th>
+          <x-th>{{ __("shared.releaseYear") }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -36,10 +36,10 @@
           <x-td>{{ book.release_year }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.books.show', book.id)">
-              Show
+              {{ __("shared.show") }}
             </x-link>
             <x-link :href="route('admin.books.books.edit', book.id)">
-              Edit
+              {{ __("shared.edit") }}
             </x-link>
             <delete-book-link :book="book" />
           </x-td>

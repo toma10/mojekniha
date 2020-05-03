@@ -1,18 +1,18 @@
 <template>
   <layout>
     <horizontal-spacer>
-      <h2-title>Series</h2-title>
+      <h2-title>{{ __('shared.series') }}</h2-title>
 
       <button-link :href="route('admin.books.series.create')">
-        Create series
+        {{ __('series.create') }}
       </button-link>
     </horizontal-spacer>
 
     <x-table class="mt-5">
       <thead>
         <x-tr>
-          <x-th>Id</x-th>
-          <x-th>Name</x-th>
+          <x-th>{{ __('shared.id') }}</x-th>
+          <x-th>{{ __('shared.name') }}</x-th>
           <x-th />
         </x-tr>
       </thead>
@@ -26,10 +26,10 @@
           <x-td>{{ item.name }}</x-td>
           <x-td links>
             <x-link :href="route('admin.books.series.show', item.id)">
-              Show
+              {{ __('shared.show') }}
             </x-link>
             <x-link :href="route('admin.books.series.edit', item.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-series-link :series="item" />
           </x-td>

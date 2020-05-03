@@ -3,7 +3,7 @@
     <template #header>
       <logo />
       <h3-title class="mt-3">
-        Reset Password
+          {{ __('auth.resetPassword') }}
       </h3-title>
     </template>
 
@@ -14,7 +14,7 @@
           v-model="form.email"
           :errors="errors.email"
           type="email"
-          label="Email"
+          :label="__('shared.email')"
           required
           autofocus
         />
@@ -26,7 +26,7 @@
           v-model="form.password"
           :errors="errors.password"
           type="password"
-          label="Password"
+          :label="__('shared.password')"
           required
         />
       </form-group>
@@ -37,14 +37,14 @@
           v-model="form.password_confirmation"
           :errors="errors.password_confirmation"
           type="password"
-          label="Confirm Password"
+          :label="__('shared.confirmPassword')"
           required
         />
       </form-group>
 
       <form-group>
         <loading-button type="submit" :loading="sending" full-width>
-          Reset Password
+          {{ __('auth.resetPassword') }}
         </loading-button>
       </form-group>
     </form>

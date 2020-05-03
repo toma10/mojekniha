@@ -18,7 +18,7 @@
           </div>
           <div class="space-x-1">
             <x-link :href="route('admin.users.edit', user.id)">
-              Edit
+              {{ __('shared.edit') }}
             </x-link>
             <delete-user-link :user="user" />
           </div>
@@ -26,15 +26,15 @@
       </template>
 
       <data-grid>
-        <data-grid-item title="Email">
+        <data-grid-item :title="__('shared.email')">
           {{ user.email }}
         </data-grid-item>
 
-        <data-grid-item title="Status">
+        <data-grid-item :title="__('shared.status')">
           <verified-tag :is-verified="user.is_verified" />
         </data-grid-item>
 
-        <data-grid-item title="Role">
+        <data-grid-item :title="__('shared.role')">
           <user-role :user="user" />
         </data-grid-item>
       </data-grid>
