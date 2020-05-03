@@ -14,7 +14,7 @@ class GetAuthorTest extends TestCase
     /** @test */
     public function it_returns_the_author_with_default_portrait_url()
     {
-        $nationality = factory(Nationality::class)->create(['name' => 'americká']);
+        $nationality = factory(Nationality::class)->create();
         $author = factory(Author::class)->create(['nationality_id' => $nationality]);
 
         $response = $this->getJson("api/authors/{$author->id}");
