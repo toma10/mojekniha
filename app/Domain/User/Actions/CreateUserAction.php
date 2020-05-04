@@ -15,7 +15,10 @@ class CreateUserAction
         $password = PasswordGenerator::generate();
 
         $user = User::create(
-            array_merge($userData->all(), ['password' => Hash::make($password)])
+            array_merge($userData->all(), [
+                'password' => Hash::make($password),
+                'email_verified_at' => now(),
+            ])
         );
 
         event(new UserCreated($user, $password));

@@ -35,6 +35,7 @@ class CreateUserActionTest extends TestCase
         $this->assertEquals($userData->name, $user->name);
         $this->assertEquals($userData->username, $user->username);
         $this->assertEquals($userData->email, $user->email);
+        $this->assertNotNull($user->email_verified_at);
         $this->assertTrue(Hash::check($password, $user->password));
 
         Event::assertDispatched(UserCreated::class, function ($event) use ($user, $password) {
