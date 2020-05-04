@@ -18,11 +18,11 @@ class ResetPasswordNotification extends BaseNotification
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-            ->subject(Lang::get('Reset Password Notification'))
+            ->subject(Lang::get('notifications.resetPassword.subject'))
             ->line(
-                Lang::get('You are receiving this email because we received a password reset request for your account.')
+                Lang::get('notifications.resetPassword.resetPasswordRequestEmail')
             )
-            ->action(Lang::get('Reset Password'), $this->resetPasswordUrl)
-            ->line(Lang::get('If you did not request a password reset, no further action is required.'));
+            ->action(Lang::get('notifications.resetPassword.resetPassword'), $this->resetPasswordUrl)
+            ->line(Lang::get('notifications.resetPassword.notRequested'));
     }
 }

@@ -22,8 +22,8 @@ class WelcomeNotification extends BaseNotification
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-            ->subject(Lang::get('Welcome to :name', ['name' => config('app.name')]))
-            ->greeting(Lang::get('Hello :name!', ['name' => $this->user->name]))
-            ->line(Lang::get('Here is your password: :password', ['password' => $this->password]));
+            ->subject(Lang::get('notifications.welcome.subject', ['name' => config('app.name')]))
+            ->greeting(Lang::get('notifications.welcome.greeting', ['name' => $this->user->name]))
+            ->line(Lang::get('notifications.welcome.yourPassword', ['password' => $this->password]));
     }
 }
