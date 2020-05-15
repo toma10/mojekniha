@@ -10,7 +10,7 @@ class PasswordGeneratorTest extends TestCase
     /** @test */
     public function must_be_16_characters_long()
     {
-        $generator = new \App\Domain\User\Support\PasswordGenerator();
+        $generator = new PasswordGenerator();
 
         $password = $generator->generate();
 
