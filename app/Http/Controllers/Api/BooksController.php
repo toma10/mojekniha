@@ -8,6 +8,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class BooksController
 {
+    public function index()
+    {
+        $books = Book::latest()->paginate();
+
+        return BookResource::collection($books);
+    }
+
     public function show(Book $book): JsonResource
     {
         return new BookResource($book);

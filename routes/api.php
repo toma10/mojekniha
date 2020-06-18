@@ -32,6 +32,7 @@ Route::put('me', UpdateProfileController::class)->middleware('auth:api');
 Route::post('password', ChangePasswordController::class)->middleware('auth:api');
 
 Route::get('authors/{author}', [AuthorsController::class, 'show']);
+Route::get('books', [BooksController::class, 'index']);
 Route::get('books/{book}', [BooksController::class, 'show']);
 Route::get('editions/{edition}', [EditionsController::class, 'show']);
 Route::get('genres/{genre}', [GenresController::class, 'show']);
