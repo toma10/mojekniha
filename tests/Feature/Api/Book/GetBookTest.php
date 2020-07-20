@@ -26,6 +26,22 @@ class GetBookTest extends TestCase
                 'description' => $book->description,
                 'release_year' => $book->release_year,
                 'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
+                'author' => [
+                    'id' => $book->author->id,
+                    'name' => $book->author->name,
+                    'birth_date' => $book->author->birth_date->format('Y-m-d'),
+                    'death_date' => $book->author->death_date->format('Y-m-d'),
+                    'biography' => $book->author->biography,
+                    'formatted_biography' => sprintf('<p>%s</p>', $book->author->biography),
+                    'nationality' => [
+                        'id' => $book->author->nationality->id,
+                        'name' => $book->author->nationality->name,
+                    ],
+                    'portrait_url' => url(Author::FALLBACK_PORTRAIT_IMAGE),
+                ],
+                'series' => null,
+                'genres' => [],
+                'tags' => [],
             ],
         ]);
     }

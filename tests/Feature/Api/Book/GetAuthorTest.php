@@ -32,6 +32,8 @@ class GetAuthorTest extends TestCase
                     'name' => $nationality->name,
                 ],
                 'portrait_url' => url(Author::FALLBACK_PORTRAIT_IMAGE),
+                'books' => [],
+                'series' => [],
             ],
         ]);
     }

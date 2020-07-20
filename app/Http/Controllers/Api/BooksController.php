@@ -10,13 +10,15 @@ class BooksController
 {
     public function index()
     {
-        $books = Book::latest()->paginate();
+        $books = Book::with('author')->latest()->paginate();
 
         return BookResource::collection($books);
     }
 
     public function show(Book $book): JsonResource
     {
+        $book->load('author', 'series', 'tags', 'genres');
+
         return new BookResource($book);
     }
 }

@@ -24,6 +24,10 @@ class BookResource extends JsonResource
             'description' => $this->description,
             'release_year' => $this->release_year,
             'cover_url' => $this->cover_url,
+            'author' => new AuthorResource($this->whenLoaded('author')),
+            'series' => new SeriesResource($this->whenLoaded('series')),
+            'genres' => GenreResource::collection($this->whenLoaded('genres')),
+            'tags' => TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }

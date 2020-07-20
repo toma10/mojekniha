@@ -24,6 +24,8 @@ class AuthorResource extends JsonResource
             'death_date' => optional($this->death_date)->format('Y-m-d'),
             'biography' => $this->biography,
             'nationality' => new NationalityResource($this->nationality),
+            'books' => BookResource::collection($this->whenLoaded('books')),
+            'series' => SeriesResource::collection($this->whenLoaded('series')),
             'portrait_url' => $this->portrait_url,
         ];
     }
