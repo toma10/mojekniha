@@ -14,6 +14,7 @@ class NationalitiesTableSeeder extends Seeder
         'německá',
         'ruská',
         'španěslká',
+        'švédská',
     ];
 
     /**
