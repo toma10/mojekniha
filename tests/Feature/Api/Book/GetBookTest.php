@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api\Book;
 
+use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -24,6 +25,7 @@ class GetBookTest extends TestCase
                 'name' => $book->name,
                 'original_name' => $book->original_name,
                 'description' => $book->description,
+                'formatted_description' => sprintf('<p>%s</p>', $book->description),
                 'release_year' => $book->release_year,
                 'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
                 'author' => [

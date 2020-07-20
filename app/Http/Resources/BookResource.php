@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Domain\Shared\Support\HtmlFormatter;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class BookResource extends JsonResource
             'name' => $this->name,
             'original_name' => $this->original_name,
             'description' => $this->description,
+            'formatted_description' => HtmlFormatter::format($this->description),
             'release_year' => $this->release_year,
             'cover_url' => $this->cover_url,
             'author' => new AuthorResource($this->whenLoaded('author')),

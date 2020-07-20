@@ -27,6 +27,7 @@ class GetAuthorTest extends TestCase
                 'birth_date' => $author->birth_date->format('Y-m-d'),
                 'death_date' => $author->death_date->format('Y-m-d'),
                 'biography' => $author->biography,
+                'formatted_biography' => sprintf('<p>%s</p>', $author->biography),
                 'nationality' => [
                     'id' => $nationality->id,
                     'name' => $nationality->name,
