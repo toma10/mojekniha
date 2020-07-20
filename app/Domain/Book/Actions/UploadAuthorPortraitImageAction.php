@@ -4,6 +4,7 @@ namespace App\Domain\Book\Actions;
 
 use App\Domain\Book\Models\Author;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 class UploadAuthorPortraitImageAction
 {
@@ -12,7 +13,7 @@ class UploadAuthorPortraitImageAction
         $author
             ->addMedia($image)
             ->usingName($author->name)
-            ->usingFileName("{$author->name}.jpg")
+            ->usingFileName(sprintf('%s.jpg', Str::slug($author->name)))
             ->sanitizingFileName(static function (string $fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
             })
