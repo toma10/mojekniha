@@ -20,6 +20,8 @@ class SeriesResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'author' => new AuthorResource($this->whenLoaded('author')),
+            'books' => BookResource::collection($this->whenLoaded('books')),
         ];
     }
 }

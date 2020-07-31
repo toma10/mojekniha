@@ -10,6 +10,8 @@ class SeriesController
 {
     public function show(Series $series): JsonResource
     {
+        $series->load('author', 'books');
+
         return new SeriesResource($series);
     }
 }
