@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Api;
 use App\Domain\Book\Models\Author;
 use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AuthorsController
 {
     public function index()
     {
-        $authors = Author::latest()->paginate();
+        $authors = QueryBuilder::for(Author::class)
+            ->allowedFilters([
+                AllowedFilter::exact('nationality.id'),
+            ])
+            ->with('nationality')
+            ->paginate();
 
         return AuthorResource::collection($authors);
     }

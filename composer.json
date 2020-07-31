@@ -25,6 +25,7 @@
         "spatie/data-transfer-object": "^2.0.0",
         "spatie/laravel-flash": "^1.6",
         "spatie/laravel-medialibrary": "^8.0",
+        "spatie/laravel-query-builder": "^2.8",
         "tightenco/ziggy": "^0.9.0",
         "tymon/jwt-auth": "^1.0.0"
     },
