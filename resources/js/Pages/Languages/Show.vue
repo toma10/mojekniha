@@ -17,7 +17,7 @@
     </panel>
 
     <div class="mt-8">
-      <H5Title>{{ __('shared.editions') }}</H5Title>
+      <h5-title>{{ __('shared.editions') }}</h5-title>
       <x-table class="mt-5">
         <thead>
           <x-tr>

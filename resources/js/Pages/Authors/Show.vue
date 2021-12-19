@@ -57,7 +57,7 @@
     </panel>
 
     <div class="mt-8">
-      <H5Title>{{ __('shared.books') }}</H5Title>
+      <h5-title>{{ __('shared.books') }}</h5-title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
@@ -93,7 +93,7 @@
     </div>
 
     <div class="mt-8">
-      <H5Title>{{ __('shared.series') }}</H5Title>
+      <h5-title>{{ __('shared.series') }}</h5-title>
       <x-table class="mt-5">
         <thead>
           <x-tr>

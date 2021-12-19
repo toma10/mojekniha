@@ -64,7 +64,7 @@
     </panel>
 
     <div class="mt-8">
-      <H5Title>{{ __('shared.genres') }}</H5Title>
+      <h5-title>{{ __('shared.genres') }}</h5-title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="mt-8">
-      <H5Title>{{ __('shared.tags') }}</H5Title>
+      <h5-title>{{ __('shared.tags') }}</h5-title>
       <x-table class="mt-5">
         <thead>
           <x-tr>
