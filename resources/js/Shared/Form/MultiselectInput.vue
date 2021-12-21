@@ -44,7 +44,7 @@
           <span v-text="option.value" />
           <button
             type="button"
-            class="flex-shrink-0 ml-1.5 inline-flex text-indigo-500 focus:outline-none focus:text-indigo-700"
+            class="ml-1.5 inline-flex items-center text-indigo-500 focus:outline-none focus:text-indigo-700"
             @click="remove(option)"
           >
             <svg
