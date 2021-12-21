@@ -52,9 +52,11 @@
               </button>
             </div>
             <div class="flex-shrink-0 flex items-center px-4">
-              <h1 class="text-xl text-white font-semibold">
-                MojeKniha
-              </h1>
+              <inertia-link :href="route('admin.dashboard')">
+                <h1 class="text-xl text-white font-semibold">
+                  MojeKniha
+                </h1>
+              </inertia-link>
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
               <navigation class="px-2" />
