@@ -64,7 +64,6 @@ export default {
   data() {
     return {
       open: false,
-      highlig: 0,
     }
   },
   methods: {
