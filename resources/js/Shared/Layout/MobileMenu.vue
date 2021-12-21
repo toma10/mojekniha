@@ -19,7 +19,7 @@
         </div>
       </transition>
 
-      <div class="fixed inset-0 flex z-40">
+      <div class="fixed inset-y-0 w-full max-w-xs flex z-40">
         <transition
           enter-class="-translate-x-full"
           enter-to-class="translate-x-0"
@@ -28,7 +28,7 @@
         >
           <div
             v-show="open"
-            class="flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-indigo-800 transform ease-in-out duration-300"
+            class="flex-1 flex flex-col w-full pt-5 pb-4 bg-indigo-800 transform ease-in-out duration-300"
           >
             <div class="absolute top-0 right-0 -mr-14 p-1">
               <button
