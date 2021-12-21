@@ -57,6 +57,13 @@
         </template>
 
         <form @submit.prevent="submitChangePassword">
+          <input
+            :value="form.email"
+            type="text"
+            autocomplete="email"
+            hidden
+          />
+
           <form-content>
             <text-input
               id="password"
@@ -64,6 +71,7 @@
               :errors="errors.password"
               type="password"
               :label="__('profile.currentPassword')"
+              autocomplete="current-password"
               required
             />
 
@@ -73,6 +81,7 @@
               :errors="errors.new_password"
               type="password"
               :label="__('profile.newPassword')"
+              autocomplete="new-password"
               required
             />
 
@@ -82,6 +91,7 @@
               :errors="errors.new_password_confirmation"
               type="password"
               :label="__('profile.confirmNewPassword')"
+              autocomplete="new-password"
               required
             />
           </form-content>
