@@ -33,7 +33,7 @@ class CreateTagTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_tag()
+    public function it_creates_a_tag()
     {
         $admin = factory(User::class)->states('admin')->create();
         $data = ['name' => 'romance'];

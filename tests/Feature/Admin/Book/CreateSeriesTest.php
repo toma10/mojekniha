@@ -36,7 +36,7 @@ class CreateSeriesTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_series()
+    public function it_creates_a_series()
     {
         $admin = factory(User::class)->states('admin')->create();
         $author = factory(Author::class)->create();

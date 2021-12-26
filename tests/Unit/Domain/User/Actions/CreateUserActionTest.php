@@ -16,7 +16,7 @@ class CreateUserActionTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_creates_the_user()
+    public function it_creates_a_user()
     {
         Event::fake();
 

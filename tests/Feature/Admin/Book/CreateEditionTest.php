@@ -44,7 +44,7 @@ class CreateEditionTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_edition()
+    public function it_creates_an_edition()
     {
         $admin = factory(User::class)->states('admin')->create();
         $book = factory(Book::class)->create();

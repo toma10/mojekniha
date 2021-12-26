@@ -33,7 +33,7 @@ class CreateBookBindingTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_book_binding()
+    public function it_creates_a_book_binding()
     {
         $admin = factory(User::class)->states('admin')->create();
         $data = ['name' => 'hardcover'];

@@ -33,7 +33,7 @@ class CreateGenreTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_genre()
+    public function it_creates_a_genre()
     {
         $admin = factory(User::class)->states('admin')->create();
         $data = ['name' => 'Horror'];

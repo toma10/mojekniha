@@ -38,7 +38,7 @@ class CreateAuthorTest extends InertiaTestCase
     }
 
     /** @test */
-    public function it_creates_the_author()
+    public function it_creates_an_author()
     {
         $admin = factory(User::class)->states('admin')->create();
         $nationality = factory(Nationality::class)->create(['name' => 'americká']);
