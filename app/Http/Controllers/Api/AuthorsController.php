@@ -10,7 +10,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class AuthorsController
 {
-    public function index()
+    public function index(): JsonResource
     {
         $authors = QueryBuilder::for(Author::class)
             ->allowedFilters([
@@ -24,9 +24,10 @@ class AuthorsController
 
     public function show(Author $author): JsonResource
     {
-        $author->load(['books' => function ($query) {
-            $query->reorder()->orderByDesc('release_year');
-        }, 'series']);
+        $author->load([
+            'books' => fn ($query) => $query->reorder()->orderByDesc('release_year'),
+            'series',
+        ]);
 
         return new AuthorResource($author);
     }

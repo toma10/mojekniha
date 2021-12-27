@@ -10,7 +10,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class BooksController
 {
-    public function index()
+    public function index(): JsonResource
     {
         $books = QueryBuilder::for(Book::class)
             ->allowedFilters([

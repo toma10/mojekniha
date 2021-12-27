@@ -15,6 +15,7 @@ class Author extends BaseModel implements HasMedia
 
     public const FALLBACK_PORTRAIT_IMAGE = 'images/portrait-image.jpg';
 
+    /** @var array<string> */
     protected $dates = [
         'birth_date',
         'death_date',
