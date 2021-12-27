@@ -3,6 +3,7 @@
 namespace App\Domain\User\Models;
 
 use App\Domain\Shared\Models\BaseModel;
+use App\Domain\User\Models\Traits\HasReadingListItems;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -12,7 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, Notifiable;
+    use Authenticatable, Authorizable, Notifiable, HasReadingListItems;
 
     /** @var array<string> */
     protected $guarded = [];
