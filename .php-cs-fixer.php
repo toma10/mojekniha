@@ -8,7 +8,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -43,7 +43,7 @@ return PhpCsFixer\Config::create()
         'function_typehint_space' => true,
         'include' => true,
         'list_syntax' => ['syntax' => 'short'],
-        'lowercase_constants' => true,
+        'constant_case' => ['case' => 'lower'],
         'lowercase_static_reference' => true,
         'magic_constant_casing' => true,
         'magic_method_casing' => true,
@@ -64,9 +64,10 @@ return PhpCsFixer\Config::create()
         'no_trailing_comma_in_list_call' => true,
         'no_trailing_comma_in_singleline_array' => true,
         'no_unused_imports' => true,
+        'no_extra_blank_lines' => true,
         'normalize_index_brace' => true,
         'not_operator_with_successor_space' => true,
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'phpdoc_order' => true,
         'phpdoc_separation' => true,
         'phpdoc_var_without_name' => true,
@@ -75,8 +76,9 @@ return PhpCsFixer\Config::create()
         'standardize_increment' => true,
         'standardize_not_equals' => true,
         'ternary_to_null_coalescing' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => ['elements' => ['arrays']],
         'trim_array_spaces' => true,
         'unary_operator_spaces' => true,
+        'whitespace_after_comma_in_array' => true,
     ])
     ->setFinder($finder);
