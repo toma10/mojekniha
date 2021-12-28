@@ -30,9 +30,7 @@ class UsersController
 
     public function store(CreateUserRequest $request, CreateUserAction $createUserAction): RedirectResponse
     {
-        $createUserAction->execute(
-            new CreateUserData($request->validated())
-        );
+        $createUserAction->execute(CreateUserData::fromRequest($request));
 
         flash()->success(trans('messages.user.created'));
 
@@ -51,10 +49,7 @@ class UsersController
 
     public function update(User $user, UpdateUserRequest $request, UpdateUserAction $updateUserAction): RedirectResponse
     {
-        $updateUserAction->execute(
-            $user,
-            new UpdateUserData($request->validated())
-        );
+        $updateUserAction->execute($user, UpdateUserData::fromRequest($request));
 
         flash()->success(trans('messages.user.updated'));
 

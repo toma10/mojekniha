@@ -26,16 +26,4 @@ class AuthorRequest extends FormRequest
             'portrait_image' => ['nullable', 'image', 'mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)],
         ];
     }
-
-    /**
-     * @return array<array<string, mixed>>
-     */
-    public function validated(): array
-    {
-        return transform(parent::validated(), function ($data) {
-            $data['nationality_id'] = (int) $data['nationality_id'];
-
-            return $data;
-        });
-    }
 }

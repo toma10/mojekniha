@@ -14,11 +14,7 @@ class ForgotPasswordController
         ForgotPasswordRequest $request,
         RequestPasswordResetAction $requestPasswordResetAction
     ): JsonResponse {
-        $requestPasswordResetAction->execute(
-            new RequestPasswordResetData(
-                $request->only('email', 'reset_password_url')
-            )
-        );
+        $requestPasswordResetAction->execute(RequestPasswordResetData::fromRequest($request));
 
         return response()->json([], Response::HTTP_ACCEPTED);
     }

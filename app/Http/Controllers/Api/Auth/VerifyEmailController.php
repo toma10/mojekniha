@@ -12,10 +12,7 @@ class VerifyEmailController
 {
     public function __invoke(VerifyEmailRequest $request, VerifyEmailAction $verifyEmailAction): JsonResponse
     {
-        $verifyEmailAction->execute(
-            $request->user(),
-            new VerifyEmailData($request->validated())
-        );
+        $verifyEmailAction->execute($request->user(), VerifyEmailData::fromRequest($request));
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

@@ -35,9 +35,7 @@ class BooksController
 
     public function store(BookRequest $request, CreateBookAction $createBookAction): RedirectResponse
     {
-        $createBookAction->execute(
-            new BookData($request->validated())
-        );
+        $createBookAction->execute(BookData::fromRequest($request));
 
         flash()->success(trans('messages.book.created'));
 
@@ -64,10 +62,7 @@ class BooksController
 
     public function update(Book $book, BookRequest $request, UpdateBookAction $updateBookAction): RedirectResponse
     {
-        $updateBookAction->execute(
-            $book,
-            new BookData($request->validated())
-        );
+        $updateBookAction->execute($book, BookData::fromRequest($request));
 
         flash()->success(trans('messages.book.updated'));
 

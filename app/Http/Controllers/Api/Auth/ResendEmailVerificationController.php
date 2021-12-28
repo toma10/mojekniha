@@ -14,10 +14,7 @@ class ResendEmailVerificationController
         ResendEmailVerificationRequest $request,
         ResendEmailVerificationAction $resendEmailVerificationAction
     ): JsonResponse {
-        $resendEmailVerificationAction->execute(
-            $request->user(),
-            new ResendEmailVerificationData($request->validated())
-        );
+        $resendEmailVerificationAction->execute($request->user(), ResendEmailVerificationData::fromRequest($request));
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

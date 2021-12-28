@@ -18,9 +18,7 @@ class LoginController
 
     public function store(LoginRequest $request, LoginWebAction $loginAction): RedirectResponse
     {
-        $loginAction->execute(
-            new LoginData($request->validated())
-        );
+        $loginAction->execute(LoginData::fromRequest($request));
 
         return redirect()->route('admin.dashboard');
     }

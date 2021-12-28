@@ -19,10 +19,7 @@ class ProfileController
 
     public function store(UpdateUserRequest $request, UpdateUserAction $updateUserAction): RedirectResponse
     {
-        $updateUserAction->execute(
-            $request->user(),
-            new UpdateUserData($request->validated())
-        );
+        $updateUserAction->execute($request->user(), UpdateUserData::fromRequest($request));
 
         flash()->success(trans('messages.profile.updated'));
 

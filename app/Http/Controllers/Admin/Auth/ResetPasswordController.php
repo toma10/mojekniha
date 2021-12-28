@@ -20,9 +20,7 @@ class ResetPasswordController
     public function store(ResetPasswordRequest $request, ResetPasswordAction $resetPasswordAction): RedirectResponse
     {
         try {
-            $resetPasswordAction->execute(
-                new ResetPasswordData($request->validated())
-            );
+            $resetPasswordAction->execute(ResetPasswordData::fromRequest($request));
 
             flash()->success(trans('passwords.reset'));
 

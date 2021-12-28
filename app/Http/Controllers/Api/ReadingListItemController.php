@@ -30,7 +30,7 @@ class ReadingListItemController
     ): JsonResource {
         $readingListItem = $createReadingListItemAction->execute(
             $request->user(),
-            new CreateReadingListItemData($request->validated())
+            CreateReadingListItemData::fromRequest($request)
         );
 
         $readingListItem->load('book');
@@ -45,7 +45,7 @@ class ReadingListItemController
     ): JsonResource {
         $readingListItem = $updateReadingListItemAction->execute(
             $readingListItem,
-            new UpdateReadingListItemData($request->validated())
+            UpdateReadingListItemData::fromRequest($request)
         );
 
         $readingListItem->load('book');

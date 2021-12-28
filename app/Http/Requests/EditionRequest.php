@@ -28,21 +28,4 @@ class EditionRequest extends FormRequest
             'cover_image' => ['nullable', 'image', 'mimes:jpeg,jpg', Rule::dimensions()->minWidth(400)],
         ];
     }
-
-    /**
-     * @return array<array<string, mixed>>
-     */
-    public function validated(): array
-    {
-        return transform(parent::validated(), function ($data) {
-            $data['book_id'] = (int) $data['book_id'];
-            $data['release_year'] = (int) $data['release_year'];
-            $data['language_id'] = (int) $data['language_id'];
-            $data['number_of_pages'] = (int) $data['number_of_pages'];
-            $data['number_of_copies'] = (int) $data['number_of_copies'];
-            $data['book_binding_id'] = (int) $data['book_binding_id'];
-
-            return $data;
-        });
-    }
 }

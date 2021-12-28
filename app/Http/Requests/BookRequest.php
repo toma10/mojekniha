@@ -47,29 +47,4 @@ class BookRequest extends FormRequest
             'tags.*' => ['integer'],
         ];
     }
-
-    /**
-     * @return array<array<string, mixed>>
-     */
-    public function validated(): array
-    {
-        return transform(parent::validated(), function ($data) {
-            $data['release_year'] = (int) $data['release_year'];
-            $data['author_id'] = (int) $data['author_id'];
-
-            if ($data['series_id'] !== null) {
-                $data['series_id'] = (int) $data['series_id'];
-            }
-
-            if (isset($data['genres']) && is_array($data['genres'])) {
-                $data['genres'] = array_map(fn ($genre) => (int) $genre, $data['genres']);
-            }
-
-            if (isset($data['tags']) && is_array($data['tags'])) {
-                $data['tags'] = array_map(fn ($tag) => (int) $tag, $data['tags']);
-            }
-
-            return $data;
-        });
-    }
 }

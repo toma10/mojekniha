@@ -28,9 +28,7 @@ class TagsController
 
     public function store(TagRequest $request, CreateTagAction $createTagAction): RedirectResponse
     {
-        $createTagAction->execute(
-            new TagData($request->validated())
-        );
+        $createTagAction->execute(TagData::fromRequest($request));
 
         flash()->success(trans('messages.tag.created'));
 
@@ -51,10 +49,7 @@ class TagsController
 
     public function update(Tag $tag, TagRequest $request, UpdateTagAction $updateTagAction): RedirectResponse
     {
-        $updateTagAction->execute(
-            $tag,
-            new TagData($request->validated())
-        );
+        $updateTagAction->execute($tag, TagData::fromRequest($request));
 
         flash()->success(trans('messages.tag.updated'));
 

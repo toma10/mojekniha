@@ -20,16 +20,4 @@ class CreateReadingListItemRequest extends FormRequest
             'book_id' => ['required', 'integer', 'exists:books,id'],
         ];
     }
-
-    /**
-     * @return array<array<string, mixed>>
-     */
-    public function validated(): array
-    {
-        return transform(parent::validated(), function ($data) {
-            $data['book_id'] = (int) $data['book_id'];
-
-            return $data;
-        });
-    }
 }

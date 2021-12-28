@@ -28,9 +28,7 @@ class GenresController
 
     public function store(GenreRequest $request, CreateGenreAction $createGenreAction): RedirectResponse
     {
-        $createGenreAction->execute(
-            new GenreData($request->validated())
-        );
+        $createGenreAction->execute(GenreData::fromRequest($request));
 
         flash()->success(trans('messages.genre.created'));
 
@@ -51,10 +49,7 @@ class GenresController
 
     public function update(Genre $genre, GenreRequest $request, UpdateGenreAction $updateGenreAction): RedirectResponse
     {
-        $updateGenreAction->execute(
-            $genre,
-            new GenreData($request->validated())
-        );
+        $updateGenreAction->execute($genre, GenreData::fromRequest($request));
 
         flash()->success(trans('messages.genre.updated'));
 

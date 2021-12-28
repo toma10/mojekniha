@@ -35,9 +35,7 @@ class EditionsController
 
     public function store(EditionRequest $request, CreateEditionAction $createEditionAction): RedirectResponse
     {
-        $createEditionAction->execute(
-            new EditionData($request->validated())
-        );
+        $createEditionAction->execute(EditionData::fromRequest($request));
 
         flash()->success(trans('messages.edition.created'));
 
@@ -65,10 +63,7 @@ class EditionsController
         EditionRequest $request,
         UpdateEditionAction $updateEditionAction
     ): RedirectResponse {
-        $updateEditionAction->execute(
-            $edition,
-            new EditionData($request->validated())
-        );
+        $updateEditionAction->execute($edition, EditionData::fromRequest($request));
 
         flash()->success(trans('messages.edition.updated'));
 

@@ -30,9 +30,7 @@ class BookBindingsController
         BookBindingRequest $request,
         CreateBookBindingAction $createBookBindingAction
     ): RedirectResponse {
-        $createBookBindingAction->execute(
-            new BookBindingData($request->validated())
-        );
+        $createBookBindingAction->execute(BookBindingData::fromRequest($request));
 
         flash()->success(trans('messages.bookBinding.created'));
 
@@ -56,10 +54,7 @@ class BookBindingsController
         BookBindingRequest $request,
         UpdateBookBindingAction $updateBookBindingAction
     ): RedirectResponse {
-        $updateBookBindingAction->execute(
-            $bookBinding,
-            new BookBindingData($request->validated())
-        );
+        $updateBookBindingAction->execute($bookBinding, BookBindingData::fromRequest($request));
 
         flash()->success(trans('messages.bookBinding.updated'));
 

@@ -12,9 +12,7 @@ class RegisterController
 {
     public function __invoke(RegisterRequest $request, RegisterAction $registerAction): JsonResource
     {
-        $token = $registerAction->execute(
-            new RegisterData($request->validated())
-        );
+        $token = $registerAction->execute(RegisterData::fromRequest($request));
 
         return new TokenResource($token);
     }

@@ -31,9 +31,7 @@ class SeriesController
 
     public function store(SeriesRequest $request, CreateSeriesAction $createSeriesAction): RedirectResponse
     {
-        $createSeriesAction->execute(
-            new SeriesData($request->validated())
-        );
+        $createSeriesAction->execute(SeriesData::fromRequest($request));
 
         flash()->success(trans('messages.series.created'));
 
@@ -59,10 +57,7 @@ class SeriesController
         SeriesRequest $request,
         UpdateSeriesAction $updateSeriesAction
     ): RedirectResponse {
-        $updateSeriesAction->execute(
-            $series,
-            new SeriesData($request->validated())
-        );
+        $updateSeriesAction->execute($series, SeriesData::fromRequest($request));
 
         flash()->success(trans('messages.series.updated'));
 

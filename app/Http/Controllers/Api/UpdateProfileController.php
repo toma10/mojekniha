@@ -14,7 +14,7 @@ class UpdateProfileController
     {
         $user = $updateUserAction->execute(
             $request->user(),
-            new UpdateUserData($request->validated())
+            UpdateUserData::fromRequest($request)
         );
 
         return new UserResource($user);

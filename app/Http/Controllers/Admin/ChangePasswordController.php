@@ -11,10 +11,7 @@ class ChangePasswordController
 {
     public function __invoke(PasswordRequest $request, ChangePasswordAction $changePasswordAction): RedirectResponse
     {
-        $changePasswordAction->execute(
-            $request->user(),
-            new PasswordData($request->validated())
-        );
+        $changePasswordAction->execute($request->user(), PasswordData::fromRequest($request));
 
         flash()->success(trans('messages.password.changed'));
 

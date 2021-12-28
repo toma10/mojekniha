@@ -31,9 +31,7 @@ class AuthorsController
 
     public function store(AuthorRequest $request, CreateAuthorAction $createAuthorAction): RedirectResponse
     {
-        $createAuthorAction->execute(
-            new AuthorData($request->validated())
-        );
+        $createAuthorAction->execute(AuthorData::fromRequest($request));
 
         flash()->success(trans('messages.author.created'));
 
@@ -59,10 +57,7 @@ class AuthorsController
         AuthorRequest $request,
         UpdateAuthorAction $updateAuthorAction
     ): RedirectResponse {
-        $updateAuthorAction->execute(
-            $author,
-            new AuthorData($request->validated())
-        );
+        $updateAuthorAction->execute($author, AuthorData::fromRequest($request));
 
         flash()->success(trans('messages.author.updated'));
 
