@@ -33,6 +33,7 @@ class CreateReadingListItemTest extends TestCase
             'data' => [
                 'id',
                 'book',
+                'rating',
                 'notes',
             ],
         ]);

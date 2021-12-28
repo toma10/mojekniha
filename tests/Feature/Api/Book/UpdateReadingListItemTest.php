@@ -36,7 +36,10 @@ class UpdateReadingListItemTest extends TestCase
     {
         $readingListItem = factory(ReadingListItem::class)->create();
 
-        $response = $this->actingAs($readingListItem->user)->putJson("api/reading-list-items/{$readingListItem->id}", ['notes' => 'Prety good']);
+        $response = $this->actingAs($readingListItem->user)->putJson("api/reading-list-items/{$readingListItem->id}", [
+            'rating' => 4,
+            'notes' => 'Prety good',
+        ]);
 
         $response->assertOk();
 
@@ -44,6 +47,7 @@ class UpdateReadingListItemTest extends TestCase
             'data' => [
                 'id',
                 'book' ,
+                'rating',
                 'notes',
             ],
         ]);

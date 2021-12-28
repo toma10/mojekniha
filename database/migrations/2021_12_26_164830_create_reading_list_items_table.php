@@ -17,6 +17,7 @@ class CreateReadingListItemsTable extends Migration
             $table->id();
             $table->foreignId('book_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->unsignedSmallInteger('rating')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
 

@@ -12,5 +12,7 @@ class UpdateReadingListItemData extends DataTransferObject
         return new self($request->validated());
     }
 
+    public ?int $rating;
+
     public ?string $notes;
 }

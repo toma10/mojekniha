@@ -19,9 +19,13 @@ class UpdateReadingListItemActionTest extends TestCase
 
         $readingListItem = app(UpdateReadingListItemAction::class)->execute(
             $readingListItem,
-            new UpdateReadingListItemData(['notes' => 'Prety good'])
+            new UpdateReadingListItemData([
+                'rating'=> 3,
+                'notes' => 'Prety good',
+            ])
         );
 
+        $this->assertEquals(3, $readingListItem->rating);
         $this->assertEquals('Prety good', $readingListItem->notes);
     }
 }

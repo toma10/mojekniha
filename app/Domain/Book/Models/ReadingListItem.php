@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ReadingListItem extends BaseModel
 {
+    /** @var array<string,string> */
+    protected $casts = [
+        'rating' => 'integer',
+    ];
+
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);

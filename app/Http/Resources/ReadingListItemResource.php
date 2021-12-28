@@ -20,6 +20,7 @@ class ReadingListItemResource extends JsonResource
         return [
             'id' => $this->id,
             'book' => new BookResource($this->whenLoaded('book')),
+            'rating' => $this->rating,
             'notes' => $this->notes,
         ];
     }

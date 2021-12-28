@@ -17,7 +17,8 @@ class UpdateReadingListItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'notes' => ['required', 'nullable'],
+            'rating' => ['required', 'integer', 'min:0', 'max:5', 'nullable'],
+            'notes' => ['required', 'string', 'nullable'],
         ];
     }
 }
