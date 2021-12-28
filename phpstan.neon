@@ -9,6 +9,10 @@ parameters:
 
     ignoreErrors:
         -
+            message: '#Property App\\Nova\\[A-z]+::\$model has no type specified.#'
+            paths:
+                - app/Nova/*
+        -
             message: '#Method App\\Nova\\[A-z]+::(group|label|singularLabel)\(\) should return string but returns array\|string\|null.#'
             paths:
                 - app/Nova/*
