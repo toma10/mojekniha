@@ -45,6 +45,7 @@ export default {
     password: 'Password',
     portrait: 'Portrait',
     releaseYear: 'Release Year',
+    averageRating: 'Rating',
     role: 'Role',
     status: 'Status',
     tag: 'Tag',

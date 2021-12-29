@@ -7,6 +7,7 @@ use App\Domain\Book\Models\Author;
 use App\Domain\Book\Models\Book;
 use App\Domain\Book\Models\Edition;
 use App\Domain\Book\Models\Genre;
+use App\Domain\Book\Models\ReadingListItem;
 use App\Domain\Book\Models\Series;
 use App\Domain\Book\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -92,5 +93,41 @@ class BookTest extends TestCase
         $this->assertInstanceOf(BelongsTo::class, $bookA->series());
         $this->assertTrue($bookA->series->is($series));
         $this->assertNull($bookB->series);
+    }
+
+    /** @test */
+    public function it_may_have_multiple_reading_list_items()
+    {
+        $book = factory(Book::class)->create();
+        $readingListItemA = factory(ReadingListItem::class)->create(['book_id' => $book]);
+        $readingListItemB = factory(ReadingListItem::class)->create(['book_id' => $book]);
+
+        $this->assertInstanceOf(HasMany::class, $book->readingListItems());
+        $book->readingListItems->assertContains($readingListItemA, $readingListItemB);
+    }
+
+    /** @test */
+    public function it_returns_average_rating()
+    {
+        $book = factory(Book::class)->create();
+
+        factory(ReadingListItem::class)->create([
+            'book_id' => $book,
+            'rating' => 2,
+        ]);
+        factory(ReadingListItem::class)->create([
+            'book_id' => $book,
+            'rating' => 4,
+        ]);
+        factory(ReadingListItem::class)->create([
+            'book_id' => $book,
+            'rating' => 2,
+        ]);
+        factory(ReadingListItem::class)->create([
+            'book_id' => $book,
+            'rating' => 3,
+        ]);
+
+        $this->assertEquals(2.75, Book::findOrFail($book->id)->average_rating);
     }
 }

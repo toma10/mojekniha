@@ -45,6 +45,7 @@ export default {
     password: 'Heslo',
     portrait: 'Portrét',
     releaseYear: 'Datum vydání',
+    averageRating: 'Hodnocení',
     role: 'Role',
     status: 'Status',
     tag: 'Tag',

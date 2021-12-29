@@ -76,13 +76,17 @@ class Book extends Resource
             Number::make(__('Release year'), 'release_year')->min(0)->step(1)
                 ->rules('required', ' numeric', 'min:0'),
 
+            Number::make(__('Average rating'), 'average_rating')
+                ->exceptOnForms(),
+
             BelongsTo::make(__('Author'), 'author', Author::class)
                 ->searchable()
                 ->withoutTrashed(),
 
             BelongsTo::make(__('Series'), 'series', Series::class)
                 ->searchable()
-                ->rules('nullable'),
+                ->rules('nullable')
+                ->hideFromIndex(),
 
             Images::make(__('Cover image'), 'cover-image')
                 ->rules('nullable')

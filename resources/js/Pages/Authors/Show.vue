@@ -65,6 +65,7 @@
             <x-th>{{ __('shared.name') }}</x-th>
             <x-th>{{ __('shared.originalName') }}</x-th>
             <x-th>{{ __('shared.releaseYear') }}</x-th>
+            <x-th>{{ __('shared.averageRating') }}</x-th>
             <x-th />
           </x-tr>
         </thead>
@@ -78,6 +79,7 @@
             <x-td>{{ book.name }}</x-td>
             <x-td>{{ book.original_name }}</x-td>
             <x-td>{{ book.release_year }}</x-td>
+            <x-td>{{ book.average_rating }}</x-td>
             <x-td links>
               <x-link :href="route('admin.books.books.show', book.id)">
                 {{ __('shared.show') }}

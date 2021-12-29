@@ -25,6 +25,7 @@ class BookResource extends JsonResource
             'description' => $this->description,
             'formatted_description' => HtmlFormatter::format($this->description),
             'release_year' => $this->release_year,
+            'average_rating' => $this->average_rating,
             'cover_url' => $this->cover_url,
             'author' => new AuthorResource($this->whenLoaded('author')),
             'series' => new SeriesResource($this->whenLoaded('series')),
