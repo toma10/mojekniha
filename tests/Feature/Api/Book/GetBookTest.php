@@ -28,6 +28,7 @@ class GetBookTest extends TestCase
                 'formatted_description' => sprintf('<p>%s</p>', $book->description),
                 'release_year' => $book->release_year,
                 'average_rating' => null,
+                'ratings_count' => 0,
                 'cover_url' => url(Book::FALLBACK_COVER_IMAGE),
                 'author' => [
                     'id' => $book->author->id,

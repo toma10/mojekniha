@@ -74,9 +74,12 @@ class Book extends BaseModel implements HasMedia
     protected static function booted(): void
     {
         static::addGlobalScope('average_rating', function (Builder $builder): void {
-            $builder->withCount(['readingListItems as average_rating' => function ($query): void {
-                $query->select(DB::raw('avg(rating)'));
-            }]);
+            $builder->withCount([
+                'readingListItems as ratings_count',
+                'readingListItems as average_rating' => function ($query): void {
+                    $query->select(DB::raw('avg(rating)'));
+                },
+            ]);
         });
     }
 }
