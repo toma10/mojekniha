@@ -56,7 +56,6 @@ class UpdateAuthorActionTest extends TestCase
             'portrait_image' => $file,
         ]);
 
-
         $uploadAuthorPortraitImageAction = $this->mock(UploadAuthorPortraitImageAction::class);
         $uploadAuthorPortraitImageAction
             ->shouldReceive()
